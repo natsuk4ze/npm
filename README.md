@@ -1,6 +1,6 @@
 # npm client
 
-A minimum implementation of npm client with modern flutter coding style.
+A minimum implementation of npm client app with modern flutter coding style.
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/example.gif" width=280 alt="example"/>
 
