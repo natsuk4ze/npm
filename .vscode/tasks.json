@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "flutter clean and pub get",
+            "type": "shell",
+            "command": "flutter clean && flutter pub get",
+            "problemMatcher": []
+        },
+        {
+            "label": "dart run build_runner watch",
+            "type": "shell",
+            "command": "dart run build_runner watch --delete-conflicting-outputs",
+            "problemMatcher": []
+        }
+    ]
+}
