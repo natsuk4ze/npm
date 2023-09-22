@@ -19,6 +19,7 @@ mixin _$Package {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get keywords => throw _privateConstructorUsedError;
+  String get version => throw _privateConstructorUsedError;
   Score get score => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,11 @@ abstract class $PackageCopyWith<$Res> {
       _$PackageCopyWithImpl<$Res, Package>;
   @useResult
   $Res call(
-      {String name, String description, List<String> keywords, Score score});
+      {String name,
+      String description,
+      List<String> keywords,
+      String version,
+      Score score});
 
   $ScoreCopyWith<$Res> get score;
 }
@@ -52,6 +57,7 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
+    Object? version = null,
     Object? score = null,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +73,10 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
           ? _value.keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -91,7 +101,11 @@ abstract class _$$_PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name, String description, List<String> keywords, Score score});
+      {String name,
+      String description,
+      List<String> keywords,
+      String version,
+      Score score});
 
   @override
   $ScoreCopyWith<$Res> get score;
@@ -110,6 +124,7 @@ class __$$_PackageCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
+    Object? version = null,
     Object? score = null,
   }) {
     return _then(_$_Package(
@@ -125,6 +140,10 @@ class __$$_PackageCopyWithImpl<$Res>
           ? _value._keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -140,6 +159,7 @@ class _$_Package extends _Package {
       {required this.name,
       this.description = '',
       final List<String> keywords = const [],
+      required this.version,
       required this.score})
       : _keywords = keywords,
         super._();
@@ -159,11 +179,13 @@ class _$_Package extends _Package {
   }
 
   @override
+  final String version;
+  @override
   final Score score;
 
   @override
   String toString() {
-    return 'Package(name: $name, description: $description, keywords: $keywords, score: $score)';
+    return 'Package(name: $name, description: $description, keywords: $keywords, version: $version, score: $score)';
   }
 
   @override
@@ -175,12 +197,13 @@ class _$_Package extends _Package {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._keywords, _keywords) &&
+            (identical(other.version, version) || other.version == version) &&
             (identical(other.score, score) || other.score == score));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, description,
-      const DeepCollectionEquality().hash(_keywords), score);
+      const DeepCollectionEquality().hash(_keywords), version, score);
 
   @JsonKey(ignore: true)
   @override
@@ -194,6 +217,7 @@ abstract class _Package extends Package {
       {required final String name,
       final String description,
       final List<String> keywords,
+      required final String version,
       required final Score score}) = _$_Package;
   const _Package._() : super._();
 
@@ -203,6 +227,8 @@ abstract class _Package extends Package {
   String get description;
   @override
   List<String> get keywords;
+  @override
+  String get version;
   @override
   Score get score;
   @override

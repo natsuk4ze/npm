@@ -18,6 +18,7 @@ class Package with _$Package {
     required final String name,
     @Default('') final String description,
     @Default([]) final List<String> keywords,
+    required final String version,
     required final Score score,
   }) = _Package;
   factory Package.fromJson(Map<String, dynamic> json) {
@@ -26,7 +27,9 @@ class Package with _$Package {
     return Package(
       name: package['name'],
       description: package['description'],
-      keywords: List<String>.from(package['keywords'].map((e) => e.toString())),
+      version: package['version'],
+      keywords: List<String>.from(
+          package['keywords']?.map((e) => e.toString()) ?? []),
       score: Score.fromJson(score),
     );
   }
