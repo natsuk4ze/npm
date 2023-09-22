@@ -35,6 +35,7 @@ class PackagesPage extends HookConsumerWidget {
                   const Gap(20),
                   Expanded(
                       child: SearchBar(
+                    hintText: 'Search packages',
                     focusNode: focus,
                     controller: controller,
                     onSubmitted: (_) => focus.unfocus(),
@@ -82,12 +83,25 @@ class _PackageItem extends StatelessWidget {
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
       child: ListTile(
-        title: Text(package.name),
+        title: Wrap(
+          spacing: 8,
+          children: [
+            Text(
+              package.name,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text('v${package.version}'),
+          ],
+        ),
         subtitle: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(package.description),
+            Text(
+              package.description,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
             package.keywords.isEmpty
                 ? const SizedBox.shrink()
                 : SizedBox(
@@ -96,9 +110,11 @@ class _PackageItem extends StatelessWidget {
                       separatorBuilder: (_, __) => const Gap(8),
                       scrollDirection: Axis.horizontal,
                       itemCount: package.keywords.length,
-                      itemBuilder: (_, int i) {
-                        return Chip(label: Text(package.keywords[i]));
-                      },
+                      itemBuilder: (_, int i) => Chip(
+                        label: Text(package.keywords[i]),
+                        backgroundColor: Colors.grey.shade200,
+                        side: BorderSide.none,
+                      ),
                     ),
                   ),
             ScoreBar(
@@ -128,7 +144,8 @@ class _EmptyItem extends StatelessWidget {
     return Column(
       children: [
         Image.network(
-            'https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif'),
+          'https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif',
+        ),
         const Text('Package not found.')
       ],
     );

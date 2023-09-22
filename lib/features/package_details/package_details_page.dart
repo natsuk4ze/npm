@@ -15,6 +15,7 @@ class PackageDetailsPage extends ConsumerWidget {
     final package = ref.watch(packageDetailsProvider(id: id));
     return Scaffold(
       appBar: AppBar(
+        elevation: 4,
         title: const Text(
           'Details',
           style: TextStyle(
@@ -58,26 +59,16 @@ class _PackegeItem extends ConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          Text(
+            package.description,
+          ),
           const Gap(20),
           const Text('Homepage'),
-          GestureDetector(
-            onTap: () => launchUrl(Uri.parse(package.homepage)),
-            child: Text(
-              package.homepage,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
-          const Gap(20),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: List.generate(package.keywords.length,
-                (i) => Chip(label: Text(package.keywords[i]))),
-          ),
-          const Gap(20),
+          _linkText(package.homepage),
+          const Divider(),
+          const Text('Repository'),
+          _linkText(package.repository.replaceAll('git+', '')),
+          const Gap(40),
           const Row(
             children: [
               Icon(Icons.description_outlined),
@@ -91,8 +82,28 @@ class _PackegeItem extends ConsumerWidget {
             physics: const NeverScrollableScrollPhysics(),
             data: package.readme,
           ),
+          const Gap(20),
+          const Text('Keywords'),
+          const Divider(),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            children: List.generate(
+                package.keywords.length, (i) => Text(package.keywords[i])),
+          ),
         ],
       ),
     );
   }
+
+  Widget _linkText(String text) => GestureDetector(
+        onTap: () => launchUrl(Uri.parse(text)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      );
 }
