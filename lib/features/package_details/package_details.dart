@@ -27,5 +27,4 @@ class PackageDetails with _$PackageDetails {
       _$PackageDetailsFromJson(json);
 }
 
-String _repositoryReadValue(Map json, String _) =>
-    (json['repository'] as Map)['url'];
+String _repositoryReadValue(Map json, String _) => json['repository']['url'];

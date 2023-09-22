@@ -46,51 +46,53 @@ class _PackegeItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          package.name,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Gap(20),
-        const Text('Homepage'),
-        GestureDetector(
-          onTap: () => launchUrl(Uri.parse(package.homepage)),
-          child: Text(
-            package.homepage,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            package.name,
             style: const TextStyle(
+              fontSize: 20,
               fontWeight: FontWeight.bold,
-              decoration: TextDecoration.underline,
             ),
           ),
-        ),
-        const Gap(20),
-        Wrap(
-          spacing: 8,
-          runSpacing: 4,
-          children: List.generate(package.keywords.length,
-              (i) => Chip(label: Text(package.keywords[i]))),
-        ),
-        const Gap(20),
-        const Row(
-          children: [
-            Icon(Icons.description_outlined),
-            Gap(8),
-            Text('Readme'),
-          ],
-        ),
-        const Divider(),
-        Expanded(
-          child: MarkdownWidget(
+          const Gap(20),
+          const Text('Homepage'),
+          GestureDetector(
+            onTap: () => launchUrl(Uri.parse(package.homepage)),
+            child: Text(
+              package.homepage,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+          const Gap(20),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            children: List.generate(package.keywords.length,
+                (i) => Chip(label: Text(package.keywords[i]))),
+          ),
+          const Gap(20),
+          const Row(
+            children: [
+              Icon(Icons.description_outlined),
+              Gap(8),
+              Text('Readme'),
+            ],
+          ),
+          const Divider(),
+          MarkdownWidget(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             data: package.readme,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

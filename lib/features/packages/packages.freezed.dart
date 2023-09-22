@@ -14,17 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Package _$PackageFromJson(Map<String, dynamic> json) {
-  return _Package.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Package {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get keywords => throw _privateConstructorUsedError;
+  Score get score => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,7 +30,10 @@ abstract class $PackageCopyWith<$Res> {
   factory $PackageCopyWith(Package value, $Res Function(Package) then) =
       _$PackageCopyWithImpl<$Res, Package>;
   @useResult
-  $Res call({String name, String description, List<String> keywords});
+  $Res call(
+      {String name, String description, List<String> keywords, Score score});
+
+  $ScoreCopyWith<$Res> get score;
 }
 
 /// @nodoc
@@ -53,6 +52,7 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
+    Object? score = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -67,7 +67,19 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
           ? _value.keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as Score,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ScoreCopyWith<$Res> get score {
+    return $ScoreCopyWith<$Res>(_value.score, (value) {
+      return _then(_value.copyWith(score: value) as $Val);
+    });
   }
 }
 
@@ -78,7 +90,11 @@ abstract class _$$_PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
       __$$_PackageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String description, List<String> keywords});
+  $Res call(
+      {String name, String description, List<String> keywords, Score score});
+
+  @override
+  $ScoreCopyWith<$Res> get score;
 }
 
 /// @nodoc
@@ -94,6 +110,7 @@ class __$$_PackageCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
+    Object? score = null,
   }) {
     return _then(_$_Package(
       name: null == name
@@ -108,22 +125,24 @@ class __$$_PackageCopyWithImpl<$Res>
           ? _value._keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as Score,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Package extends _Package {
   const _$_Package(
       {required this.name,
       this.description = '',
-      final List<String> keywords = const []})
+      final List<String> keywords = const [],
+      required this.score})
       : _keywords = keywords,
         super._();
-
-  factory _$_Package.fromJson(Map<String, dynamic> json) =>
-      _$$_PackageFromJson(json);
 
   @override
   final String name;
@@ -140,8 +159,11 @@ class _$_Package extends _Package {
   }
 
   @override
+  final Score score;
+
+  @override
   String toString() {
-    return 'Package(name: $name, description: $description, keywords: $keywords)';
+    return 'Package(name: $name, description: $description, keywords: $keywords, score: $score)';
   }
 
   @override
@@ -152,36 +174,28 @@ class _$_Package extends _Package {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._keywords, _keywords));
+            const DeepCollectionEquality().equals(other._keywords, _keywords) &&
+            (identical(other.score, score) || other.score == score));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, description,
-      const DeepCollectionEquality().hash(_keywords));
+      const DeepCollectionEquality().hash(_keywords), score);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_PackageCopyWith<_$_Package> get copyWith =>
       __$$_PackageCopyWithImpl<_$_Package>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PackageToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Package extends Package {
   const factory _Package(
       {required final String name,
       final String description,
-      final List<String> keywords}) = _$_Package;
+      final List<String> keywords,
+      required final Score score}) = _$_Package;
   const _Package._() : super._();
-
-  factory _Package.fromJson(Map<String, dynamic> json) = _$_Package.fromJson;
 
   @override
   String get name;
@@ -189,6 +203,8 @@ abstract class _Package extends Package {
   String get description;
   @override
   List<String> get keywords;
+  @override
+  Score get score;
   @override
   @JsonKey(ignore: true)
   _$$_PackageCopyWith<_$_Package> get copyWith =>

@@ -3,26 +3,6 @@
 part of 'packages.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-_$_Package _$$_PackageFromJson(Map<String, dynamic> json) => _$_Package(
-      name: json['name'] as String,
-      description: json['description'] as String? ?? '',
-      keywords: (json['keywords'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-    );
-
-Map<String, dynamic> _$$_PackageToJson(_$_Package instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'keywords': instance.keywords,
-    };
-
-// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 

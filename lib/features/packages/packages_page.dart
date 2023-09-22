@@ -3,6 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
+import 'package:npm/features/score/score.dart';
+import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/router.dart';
 
 class PackagesPage extends HookConsumerWidget {
@@ -10,7 +12,7 @@ class PackagesPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useTextEditingController(text: 'hello');
+    final controller = useTextEditingController(text: 'color');
     final packages = ref.watch(packagesProvider(search: controller.text));
     final focus = FocusNode();
     useListenable(controller);
@@ -43,7 +45,7 @@ class PackagesPage extends HookConsumerWidget {
               Expanded(
                 child: packages.when(
                   data: (packages) {
-                    if (packages.isEmpty) return const _Empty();
+                    if (packages.isEmpty) return const _EmptyItem();
                     return RefreshIndicator(
                       onRefresh: () async {
                         ref.invalidate(packagesProvider);
@@ -99,6 +101,18 @@ class _PackageItem extends StatelessWidget {
                       },
                     ),
                   ),
+            ScoreBar(
+              type: ScoreType.popularity,
+              value: package.score.popularity,
+            ),
+            ScoreBar(
+              type: ScoreType.quality,
+              value: package.score.quality,
+            ),
+            ScoreBar(
+              type: ScoreType.maintenance,
+              value: package.score.maintenance,
+            ),
           ],
         ),
       ),
@@ -106,8 +120,8 @@ class _PackageItem extends StatelessWidget {
   }
 }
 
-class _Empty extends StatelessWidget {
-  const _Empty();
+class _EmptyItem extends StatelessWidget {
+  const _EmptyItem();
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class Repository {
     final List packages = response.data['objects'];
     return packages
         .map((package) =>
-            Package.fromJson(package['package'] as Map<String, dynamic>))
+            Package.fromJson(package as Map<String, dynamic>))
         .toList();
   }
 

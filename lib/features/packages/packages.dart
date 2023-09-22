@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:npm/features/score/score.dart';
 import 'package:npm/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,10 +14,20 @@ Future<List<Package>> packages(PackagesRef ref,
 @freezed
 class Package with _$Package {
   const Package._();
-  const factory Package(
-      {required final String name,
-      @Default('') final String description,
-      @Default([]) final List<String> keywords}) = _Package;
-  factory Package.fromJson(Map<String, dynamic> json) =>
-      _$PackageFromJson(json);
+  const factory Package({
+    required final String name,
+    @Default('') final String description,
+    @Default([]) final List<String> keywords,
+    required final Score score,
+  }) = _Package;
+  factory Package.fromJson(Map<String, dynamic> json) {
+    final package = json['package'];
+    final score = json['score']['detail'];
+    return Package(
+      name: package['name'],
+      description: package['description'],
+      keywords: List<String>.from(package['keywords'].map((e) => e.toString())),
+      score: Score.fromJson(score),
+    );
+  }
 }
