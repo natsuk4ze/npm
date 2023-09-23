@@ -25,6 +25,13 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: gradle
+
       - name: Setup Flutter SDK
         timeout-minutes: 10
         uses: subosito/flutter-action@v2
@@ -38,17 +45,17 @@ jobs:
         run: flutter analyze
 
       - name: Unit Test
-        timeout-minutes: 10
+        timeout-minutes: 5
         run: flutter test test/unit_test.dart
 
       - name: Widget Test
-        timeout-minutes: 10
+        timeout-minutes: 5
         run: flutter test test/widget_test.dart
 
       - name: Build iOS
-        timeout-minutes: 15
+        timeout-minutes: 10
         run: flutter build ios --no-codesign
 
       - name: Build Android
-        timeout-minutes: 15
-        run: flutter build apk
+        timeout-minutes: 10
+        run: flutter build appbundle
