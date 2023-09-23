@@ -7,35 +7,37 @@ import 'package:test/test.dart';
 import 'mock.dart';
 
 void main() {
-  test('[Unit Test] getPackages()', () async {
-    final container = ProviderContainer(
-      overrides: [repositoryProvider.overrideWithValue(MockRepository())],
-    );
-    const search = MockRepository.name;
-    expect(
-      container.read(packagesProvider(search: search)),
-      const AsyncValue<List<Package>>.loading(),
-    );
-    await container.read(packagesProvider(search: search).future);
-    expect(
-      container.read(packagesProvider(search: search)).value,
-      MockRepository.packages,
-    );
-  });
+  group('[Unit Test]', () {
+    test('getPackages()', () async {
+      final container = ProviderContainer(
+        overrides: [repositoryProvider.overrideWithValue(MockRepository())],
+      );
+      const search = MockRepository.name;
+      expect(
+        container.read(packagesProvider(search: search)),
+        const AsyncValue<List<Package>>.loading(),
+      );
+      await container.read(packagesProvider(search: search).future);
+      expect(
+        container.read(packagesProvider(search: search)).value,
+        MockRepository.packages,
+      );
+    });
 
-  test('[Unit Test] getPackageDetails()', () async {
-    final container = ProviderContainer(
-      overrides: [repositoryProvider.overrideWithValue(MockRepository())],
-    );
-    const id = MockRepository.name;
-    expect(
-      container.read(packageDetailsProvider(id: id)),
-      const AsyncValue<PackageDetails>.loading(),
-    );
-    await container.read(packageDetailsProvider(id: id).future);
-    expect(
-      container.read(packageDetailsProvider(id: id)).value,
-      MockRepository.packageDetils,
-    );
+    test('getPackageDetails()', () async {
+      final container = ProviderContainer(
+        overrides: [repositoryProvider.overrideWithValue(MockRepository())],
+      );
+      const id = MockRepository.name;
+      expect(
+        container.read(packageDetailsProvider(id: id)),
+        const AsyncValue<PackageDetails>.loading(),
+      );
+      await container.read(packageDetailsProvider(id: id).future);
+      expect(
+        container.read(packageDetailsProvider(id: id)).value,
+        MockRepository.packageDetils,
+      );
+    });
   });
 }
