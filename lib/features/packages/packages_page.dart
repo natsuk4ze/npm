@@ -28,9 +28,7 @@ class PackagesPage extends HookConsumerWidget {
                 children: [
                   SizedBox(
                     width: 60,
-                    child: Image.network(
-                      'https://searchvectorlogo.com/wp-content/uploads/2021/10/npm-inc-logo-vector.png',
-                    ),
+                    child: Image.asset('assets/npm.png'),
                   ),
                   const Gap(20),
                   Expanded(
@@ -142,10 +140,13 @@ class _EmptyItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.network(
-          'https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif',
+        Image.asset(
+          'assets/empty.png',
+          width: 200,
         ),
+        const Gap(20),
         const Text('Package not found.')
       ],
     );
