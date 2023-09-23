@@ -54,7 +54,7 @@ class PackagesPage extends HookConsumerWidget {
                       child: ListView.separated(
                         separatorBuilder: (_, __) => const Divider(),
                         itemCount: packages.length,
-                        itemBuilder: (_, int i) => _PackageItem(packages[i]),
+                        itemBuilder: (_, int i) => PackageItem(packages[i]),
                       ),
                     );
                   },
@@ -71,8 +71,9 @@ class PackagesPage extends HookConsumerWidget {
   }
 }
 
-class _PackageItem extends StatelessWidget {
-  const _PackageItem(this.package);
+// Keep public for testing.
+class PackageItem extends StatelessWidget {
+  const PackageItem(this.package, {super.key});
 
   final Package package;
 

@@ -27,12 +27,10 @@ class PackageDetailsPage extends ConsumerWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Center(
-            child: package.when(
-              data: (package) => _PackegeItem(package),
-              error: (e, _) => Text(e.toString()),
-              loading: () => const CircularProgressIndicator(),
-            ),
+          child: package.when(
+            data: (package) => PackegeDetailsItem(package),
+            error: (e, _) => Center(child: Text(e.toString())),
+            loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ),
       ),
@@ -40,8 +38,9 @@ class PackageDetailsPage extends ConsumerWidget {
   }
 }
 
-class _PackegeItem extends ConsumerWidget {
-  const _PackegeItem(this.package);
+// Keep public for testing.
+class PackegeDetailsItem extends ConsumerWidget {
+  const PackegeDetailsItem(this.package, {super.key});
 
   final PackageDetails package;
 
@@ -50,7 +49,6 @@ class _PackegeItem extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             package.name,

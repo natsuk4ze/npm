@@ -22,7 +22,7 @@ class MockRepository implements Repository {
     license: 'MIT',
     homepage: 'https://homepage',
     readme: 'readme',
-    repository: 'https://repository',
+    repository: 'git+https://repository',
   );
 
   @override
