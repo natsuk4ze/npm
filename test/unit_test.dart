@@ -7,29 +7,35 @@ import 'package:test/test.dart';
 import 'mock.dart';
 
 void main() {
-  test('Unit Test getPackages()', () async {
+  test('[Unit Test] getPackages()', () async {
     final container = ProviderContainer(
       overrides: [repositoryProvider.overrideWithValue(MockRepository())],
     );
-    const search = 'package';
+    const search = MockRepository.name;
     expect(
       container.read(packagesProvider(search: search)),
       const AsyncValue<List<Package>>.loading(),
     );
     await container.read(packagesProvider(search: search).future);
-    expect(container.read(packagesProvider(search: search)).value!.length, 10);
+    expect(
+      container.read(packagesProvider(search: search)).value,
+      MockRepository.packages,
+    );
   });
 
-  test('Unit Test getPackageDetails()', () async {
+  test('[Unit Test] getPackageDetails()', () async {
     final container = ProviderContainer(
       overrides: [repositoryProvider.overrideWithValue(MockRepository())],
     );
-    const id = 'package';
+    const id = MockRepository.name;
     expect(
       container.read(packageDetailsProvider(id: id)),
       const AsyncValue<PackageDetails>.loading(),
     );
     await container.read(packageDetailsProvider(id: id).future);
-    expect(container.read(packageDetailsProvider(id: id)).value!.name, id);
+    expect(
+      container.read(packageDetailsProvider(id: id)).value,
+      MockRepository.packageDetils,
+    );
   });
 }
