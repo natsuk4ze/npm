@@ -15,7 +15,7 @@ RouteBase get $packagesRoute => GoRouteData.$route(
       factory: $PackagesRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'details',
+          path: 'details/:id',
           factory: $PackageDetailsRouteExtension._fromState,
         ),
         GoRouteData.$route(
@@ -45,14 +45,11 @@ extension $PackagesRouteExtension on PackagesRoute {
 extension $PackageDetailsRouteExtension on PackageDetailsRoute {
   static PackageDetailsRoute _fromState(GoRouterState state) =>
       PackageDetailsRoute(
-        id: state.uri.queryParameters['id']!,
+        id: state.pathParameters['id']!,
       );
 
   String get location => GoRouteData.$location(
-        '/details',
-        queryParams: {
-          'id': id,
-        },
+        '/details/${Uri.encodeComponent(id)}',
       );
 
   void go(BuildContext context) => context.go(location);

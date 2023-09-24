@@ -14,6 +14,14 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          elevation: 4,
+          titleTextStyle: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
         colorSchemeSeed: Colors.black,
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
