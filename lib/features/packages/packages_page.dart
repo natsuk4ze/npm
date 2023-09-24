@@ -18,9 +18,10 @@ class PackagesPage extends HookConsumerWidget {
     useListenable(controller);
 
     return Scaffold(
+      bottomNavigationBar: const BottomNaviBar(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           child: Column(
             children: [
               Row(

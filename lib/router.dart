@@ -1,5 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details_page.dart';
 import 'package:npm/features/packages/packages_page.dart';
 import 'package:npm/features/settings/settings_page.dart';
@@ -48,4 +49,39 @@ class SettingsRoute extends GoRouteData {
 
   @override
   Widget build(context, state) => const SettingsPage();
+}
+
+class BottomNaviBar extends ConsumerWidget {
+  const BottomNaviBar({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final path = GoRouterState.of(context).path;
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        onTap: (index) => switch (index) {
+          1 => const SettingsRoute().go(context),
+          _ => const PackagesRoute().go(context)
+        },
+        currentIndex: switch (path) {
+          'settings' => 1,
+          _ => 0,
+        },
+      ),
+    );
+  }
 }
