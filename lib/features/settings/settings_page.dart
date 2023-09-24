@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:npm/i18n/language.dart';
+import 'package:npm/features/settings/settings.dart';
 import 'package:npm/router.dart';
 
 class SettingsPage extends ConsumerWidget {

@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details_page.dart';
 import 'package:npm/features/packages/packages_page.dart';
 import 'package:npm/features/settings/settings_page.dart';
-import 'package:npm/i18n/language.dart';
+import 'package:npm/features/settings/settings.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';

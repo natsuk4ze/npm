@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
-import 'package:npm/i18n/language.dart';
+import 'package:npm/features/settings/settings.dart';
 import 'package:npm/router.dart';
 
 class PackagesPage extends HookConsumerWidget {
