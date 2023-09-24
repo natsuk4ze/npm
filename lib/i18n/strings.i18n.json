@@ -11,7 +11,8 @@
   "settingsPage": {
     "title": "Settings",
     "language": "Language",
-    "darkMode": "Dark Mode"
+    "darkMode": "Dark Mode",
+    "report": "Report issues"
   },
   "bottomNaviBar": {
     "search": "Search",

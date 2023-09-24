@@ -5,6 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
+import 'package:npm/widgets/link_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -22,22 +24,30 @@ class SettingsPage extends ConsumerWidget {
           padding: const EdgeInsets.all(32),
           child: Align(
             alignment: Alignment.topCenter,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).hoverColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: const [
-                    _LanguageItem(),
-                    Divider(),
-                    _DarkModeItem(),
-                  ],
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).hoverColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: const [
+                        _LanguageItem(),
+                        Divider(),
+                        _DarkModeItem(),
+                        Divider(),
+                        _ReportItem(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                const Gap(80),
+                const _Lecense(),
+              ],
             ),
           ),
         ),
@@ -92,6 +102,60 @@ class _DarkModeItem extends ConsumerWidget {
           value: darkMode,
           onChanged: (_) => ref.read(darkModeProvider.notifier).swich()),
       onTap: () {},
+    );
+  }
+}
+
+class _ReportItem extends ConsumerWidget {
+  const _ReportItem();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+
+    return _BaseItem(
+      icon: Icons.report,
+      leading: translate.settingsPage.report,
+      trailing: const Icon(Icons.arrow_forward),
+      onTap: () async =>
+          launchUrl(Uri.parse('https://github.com/natsuk4ze/npm/issues')),
+    );
+  }
+}
+
+class _Lecense extends StatelessWidget {
+  const _Lecense();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).dividerColor,
+              width: 4,
+            ),
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: Image.asset('assets/owner.png').image,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const Gap(20),
+        const LinkText(
+          'https://github.com/natsuk4ze',
+          text: 'Created by @natsuk4ze',
+        ),
+        const Gap(12),
+        const Text(
+          'Midori Design Studio',
+          style: TextStyle(color: Colors.grey),
+        )
+      ],
     );
   }
 }

@@ -11,7 +11,8 @@
   "settingsPage": {
     "title": "設定",
     "language": "言語",
-    "darkMode": "ダークモード"
+    "darkMode": "ダークモード",
+    "report": "問題を報告"
   },
   "bottomNaviBar": {
     "search": "探す",
