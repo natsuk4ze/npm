@@ -6,6 +6,7 @@ import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/features/settings/language.dart';
+import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
 
 class PackagesPage extends HookConsumerWidget {
@@ -16,6 +17,7 @@ class PackagesPage extends HookConsumerWidget {
     final controller = useTextEditingController(text: 'color');
     final packages = ref.watch(packagesProvider(search: controller.text));
     final translate = ref.watch(translationProvider);
+    final darkMode = ref.watch(darkModeProvider);
     final focus = FocusNode();
     useListenable(controller);
 
@@ -31,7 +33,10 @@ class PackagesPage extends HookConsumerWidget {
                 children: [
                   SizedBox(
                     width: 60,
-                    child: Image.asset('assets/npm.png'),
+                    child: Image.asset(
+                      'assets/npm.png',
+                      color: darkMode ? Colors.white : null,
+                    ),
                   ),
                   const Gap(20),
                   Expanded(
