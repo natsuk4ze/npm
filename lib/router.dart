@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:npm/features/package_details/package_details_page.dart';
 import 'package:npm/features/packages/packages_page.dart';
+import 'package:npm/features/settings/settings_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -18,6 +19,9 @@ Raw<GoRouter> router(RouterRef ref) {
 @TypedGoRoute<PackagesRoute>(path: '/', routes: [
   TypedGoRoute<PackageDetailsRoute>(
     path: 'details',
+  ),
+  TypedGoRoute<SettingsRoute>(
+    path: 'settings',
   ),
 ])
 @immutable
@@ -36,4 +40,12 @@ class PackageDetailsRoute extends GoRouteData {
 
   @override
   Widget build(context, state) => PackageDetailsPage(id: id);
+}
+
+@immutable
+class SettingsRoute extends GoRouteData {
+  const SettingsRoute();
+
+  @override
+  Widget build(context, state) => const SettingsPage();
 }
