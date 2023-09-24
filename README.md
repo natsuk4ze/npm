@@ -141,7 +141,7 @@ Dynamic localization with *slang* and *riverpod*.
 
 ```dart
 @riverpod
-translation(TranslationRef ref) {
+StringsEn translation(TranslationRef ref) {
   final lan = ref.watch(languageProvider);
   switch (lan) {
     case LanguageType.ja:
