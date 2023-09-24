@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:markdown_widget/widget/markdown.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
+import 'package:npm/features/settings/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
@@ -42,6 +43,7 @@ class PackegeDetailsItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
+    final darkMode = ref.watch(darkModeProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -73,6 +75,9 @@ class PackegeDetailsItem extends ConsumerWidget {
           ),
           const Divider(),
           MarkdownWidget(
+            config: darkMode
+                ? MarkdownConfig.darkConfig
+                : MarkdownConfig.defaultConfig,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             data: package.readme,
