@@ -6,6 +6,7 @@ import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
 import 'package:npm/widgets/link_text.dart';
+import 'package:npm/widgets/safe_scaffold_padding.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -14,42 +15,37 @@ class SettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
-    return Scaffold(
+    return SafeScaffoldPadding(
       appBar: AppBar(
         title: Text(translate.settingsPage.title),
       ),
       bottomNavigationBar: const BottomNaviBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Theme.of(context).hoverColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: const [
-                        _LanguageItem(),
-                        Divider(),
-                        _DarkModeItem(),
-                        Divider(),
-                        _ReportItem(),
-                      ],
-                    ),
-                  ),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).hoverColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: const [
+                    _LanguageItem(),
+                    Divider(),
+                    _DarkModeItem(),
+                    Divider(),
+                    _ReportItem(),
+                  ],
                 ),
-                const Gap(80),
-                const _Lecense(),
-              ],
+              ),
             ),
-          ),
+            const Gap(80),
+            const _Lecense(),
+          ],
         ),
       ),
     );

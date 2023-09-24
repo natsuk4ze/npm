@@ -6,6 +6,7 @@ import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/widgets/link_text.dart';
+import 'package:npm/widgets/safe_scaffold_padding.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({required this.id, super.key});
@@ -16,19 +17,14 @@ class PackageDetailsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final package = ref.watch(packageDetailsProvider(id: id));
     final translate = ref.watch(translationProvider);
-    return Scaffold(
+    return SafeScaffoldPadding(
       appBar: AppBar(
         title: Text(translate.packageDetailsPage.title),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          child: package.when(
-            data: (package) => PackegeDetailsItem(package),
-            error: (e, _) => Center(child: Text(e.toString())),
-            loading: () => const Center(child: CircularProgressIndicator()),
-          ),
-        ),
+      child: package.when(
+        data: (package) => PackegeDetailsItem(package),
+        error: (e, _) => Center(child: Text(e.toString())),
+        loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );
   }

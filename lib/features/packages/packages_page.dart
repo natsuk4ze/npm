@@ -8,6 +8,7 @@ import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
+import 'package:npm/widgets/safe_scaffold_padding.dart';
 
 class PackagesPage extends HookConsumerWidget {
   const PackagesPage({super.key});
@@ -21,59 +22,54 @@ class PackagesPage extends HookConsumerWidget {
     final focus = FocusNode();
     useListenable(controller);
 
-    return Scaffold(
+    return SafeScaffoldPadding(
       bottomNavigationBar: const BottomNaviBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          child: Column(
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 60,
-                    child: Image.asset(
-                      'assets/npm.png',
-                      color: darkMode ? Colors.white : null,
-                    ),
-                  ),
-                  const Gap(20),
-                  Expanded(
-                      child: SearchBar(
-                    hintText: translate.packagesPage.searchPackages,
-                    focusNode: focus,
-                    controller: controller,
-                    onSubmitted: (_) => focus.unfocus(),
-                  )),
-                ],
+              SizedBox(
+                width: 60,
+                child: Image.asset(
+                  'assets/npm.png',
+                  color: darkMode ? Colors.white : null,
+                ),
               ),
               const Gap(20),
               Expanded(
-                child: packages.when(
-                  data: (packages) {
-                    if (packages.isEmpty) return const _EmptyItem();
-                    return RefreshIndicator(
-                      onRefresh: () async {
-                        ref.invalidate(packagesProvider);
-                        await ref.read(
-                            packagesProvider(search: controller.text).future);
-                      },
-                      child: ListView.separated(
-                        separatorBuilder: (_, __) => const Divider(),
-                        itemCount: packages.length,
-                        itemBuilder: (_, int i) => PackageItem(packages[i]),
-                      ),
-                    );
-                  },
-                  error: (e, _) => Center(child: Text(e.toString())),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                ),
-              ),
+                  child: SearchBar(
+                hintText: translate.packagesPage.searchPackages,
+                focusNode: focus,
+                controller: controller,
+                onSubmitted: (_) => focus.unfocus(),
+              )),
             ],
           ),
-        ),
+          const Gap(20),
+          Expanded(
+            child: packages.when(
+              data: (packages) {
+                if (packages.isEmpty) return const _EmptyItem();
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    ref.invalidate(packagesProvider);
+                    await ref.read(
+                        packagesProvider(search: controller.text).future);
+                  },
+                  child: ListView.separated(
+                    separatorBuilder: (_, __) => const Divider(),
+                    itemCount: packages.length,
+                    itemBuilder: (_, int i) => PackageItem(packages[i]),
+                  ),
+                );
+              },
+              error: (e, _) => Center(child: Text(e.toString())),
+              loading: () =>
+                  const Center(child: CircularProgressIndicator()),
+            ),
+          ),
+        ],
       ),
     );
   }
