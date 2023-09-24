@@ -19,9 +19,10 @@ ThemeData theme(ThemeRef ref) {
           appBarTheme: _CustomTheme.appBarTheme(darkMode),
           pageTransitionsTheme: _CustomTheme.pageTransitionsTheme,
         )
-      : ThemeData.light().copyWith(
+      : ThemeData(
           appBarTheme: _CustomTheme.appBarTheme(darkMode),
           pageTransitionsTheme: _CustomTheme.pageTransitionsTheme,
+          colorSchemeSeed: Colors.black,
         );
 }
 
@@ -37,7 +38,7 @@ class _CustomTheme {
   static AppBarTheme appBarTheme(bool darkMode) => AppBarTheme(
         elevation: 4,
         titleTextStyle: TextStyle(
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
           color: darkMode ? null : Colors.black,
         ),
