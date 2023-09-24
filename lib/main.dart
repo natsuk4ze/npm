@@ -13,7 +13,22 @@ class App extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: ThemeData(colorSchemeSeed: Colors.black),
+      theme: ThemeData(
+        colorSchemeSeed: Colors.black,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: _NoTransitionsBuilder(),
+            TargetPlatform.iOS: _NoTransitionsBuilder(),
+          },
+        ),
+      ),
     );
   }
+}
+
+class _NoTransitionsBuilder extends PageTransitionsBuilder {
+  const _NoTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(_, __, ___, ____, Widget child) => child;
 }
