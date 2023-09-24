@@ -5,7 +5,7 @@ import 'package:markdown_widget/markdown_widget.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:npm/widgets/link_text.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({required this.id, super.key});
@@ -61,10 +61,10 @@ class PackegeDetailsItem extends ConsumerWidget {
           ),
           const Gap(20),
           Text(translate.packageDetailsPage.homepage),
-          _linkText(package.homepage),
+          LinkText(package.homepage),
           const Divider(),
           Text(translate.packageDetailsPage.repository),
-          _linkText(package.repository.replaceAll('git+', '')),
+          LinkText(package.repository.replaceAll('git+', '')),
           const Gap(40),
           const Row(
             children: [
@@ -95,15 +95,4 @@ class PackegeDetailsItem extends ConsumerWidget {
       ),
     );
   }
-
-  Widget _linkText(String text) => GestureDetector(
-        onTap: () => launchUrl(Uri.parse(text)),
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-          ),
-        ),
-      );
 }
