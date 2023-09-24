@@ -20,12 +20,13 @@ final translationProvider = AutoDisposeProvider<dynamic>.internal(
 );
 
 typedef TranslationRef = AutoDisposeProviderRef<dynamic>;
-String _$languageHash() => r'af141283d42c88874e15c2116d47e7e9167c3f74';
+String _$languageHash() => r'fffeb41dad0fe8e0e076261ae6f919921eb94529';
 
-/// See also [language].
-@ProviderFor(language)
-final languageProvider = AutoDisposeProvider<LanguageType>.internal(
-  language,
+/// See also [Language].
+@ProviderFor(Language)
+final languageProvider =
+    AutoDisposeNotifierProvider<Language, LanguageType>.internal(
+  Language.new,
   name: r'languageProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$languageHash,
@@ -33,6 +34,6 @@ final languageProvider = AutoDisposeProvider<LanguageType>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef LanguageRef = AutoDisposeProviderRef<LanguageType>;
+typedef _$Language = AutoDisposeNotifier<LanguageType>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

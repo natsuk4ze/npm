@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 8 (4 per locale)
+/// Strings: 20 (10 per locale)
 ///
-/// Built on 2023-09-24 at 02:34 UTC
+/// Built on 2023-09-24 at 06:50 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,20 +150,56 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 	late final _StringsEn _root = this; // ignore: unused_field
 
 	// Translations
-	String hello({required Object name}) => 'Hello ${name}';
-	String get save => 'Save';
-	late final _StringsLoginEn login = _StringsLoginEn._(_root);
+	late final _StringsPackagesPageEn packagesPage = _StringsPackagesPageEn._(_root);
+	late final _StringsPackageDetailsPageEn packageDetailsPage = _StringsPackageDetailsPageEn._(_root);
+	late final _StringsSettingsPageEn settingsPage = _StringsSettingsPageEn._(_root);
+	late final _StringsBottomNaviBarEn bottomNaviBar = _StringsBottomNaviBarEn._(_root);
 }
 
-// Path: login
-class _StringsLoginEn {
-	_StringsLoginEn._(this._root);
+// Path: packagesPage
+class _StringsPackagesPageEn {
+	_StringsPackagesPageEn._(this._root);
 
 	final _StringsEn _root; // ignore: unused_field
 
 	// Translations
-	String get success => 'Logged in successfully';
-	String get fail => 'Logged in failed';
+	String get searchPackages => 'Search Packages';
+	String get packageNotFound => 'Package not found.';
+}
+
+// Path: packageDetailsPage
+class _StringsPackageDetailsPageEn {
+	_StringsPackageDetailsPageEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Details';
+	String get homepage => 'Homepage';
+	String get repository => 'Repository';
+}
+
+// Path: settingsPage
+class _StringsSettingsPageEn {
+	_StringsSettingsPageEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Settings';
+	String get language => 'Language';
+	String get darkMode => 'Dark Mode';
+}
+
+// Path: bottomNaviBar
+class _StringsBottomNaviBarEn {
+	_StringsBottomNaviBarEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get search => 'Search';
+	String get settings => 'Settings';
 }
 
 // Path: <root>
@@ -191,20 +227,56 @@ class _StringsJa implements _StringsEn {
 	@override late final _StringsJa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String hello({required Object name}) => 'Hallo ${name}';
-	@override String get save => 'Speichern';
-	@override late final _StringsLoginJa login = _StringsLoginJa._(_root);
+	@override late final _StringsPackagesPageJa packagesPage = _StringsPackagesPageJa._(_root);
+	@override late final _StringsPackageDetailsPageJa packageDetailsPage = _StringsPackageDetailsPageJa._(_root);
+	@override late final _StringsSettingsPageJa settingsPage = _StringsSettingsPageJa._(_root);
+	@override late final _StringsBottomNaviBarJa bottomNaviBar = _StringsBottomNaviBarJa._(_root);
 }
 
-// Path: login
-class _StringsLoginJa implements _StringsLoginEn {
-	_StringsLoginJa._(this._root);
+// Path: packagesPage
+class _StringsPackagesPageJa implements _StringsPackagesPageEn {
+	_StringsPackagesPageJa._(this._root);
 
 	@override final _StringsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get success => 'Login erfolgreich';
-	@override String get fail => 'Login fehlgeschlagen';
+	@override String get searchPackages => 'パッケージを検索';
+	@override String get packageNotFound => 'パッケージが見つかりません。';
+}
+
+// Path: packageDetailsPage
+class _StringsPackageDetailsPageJa implements _StringsPackageDetailsPageEn {
+	_StringsPackageDetailsPageJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '詳細';
+	@override String get homepage => 'ホームページ';
+	@override String get repository => 'リポジトリ';
+}
+
+// Path: settingsPage
+class _StringsSettingsPageJa implements _StringsSettingsPageEn {
+	_StringsSettingsPageJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '設定';
+	@override String get language => '言語';
+	@override String get darkMode => 'ダークモード';
+}
+
+// Path: bottomNaviBar
+class _StringsBottomNaviBarJa implements _StringsBottomNaviBarEn {
+	_StringsBottomNaviBarJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get search => '探す';
+	@override String get settings => '設定';
 }
 
 /// Flat map(s) containing all translations.
@@ -213,10 +285,16 @@ class _StringsLoginJa implements _StringsLoginEn {
 extension on _StringsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'Hello ${name}';
-			case 'save': return 'Save';
-			case 'login.success': return 'Logged in successfully';
-			case 'login.fail': return 'Logged in failed';
+			case 'packagesPage.searchPackages': return 'Search Packages';
+			case 'packagesPage.packageNotFound': return 'Package not found.';
+			case 'packageDetailsPage.title': return 'Details';
+			case 'packageDetailsPage.homepage': return 'Homepage';
+			case 'packageDetailsPage.repository': return 'Repository';
+			case 'settingsPage.title': return 'Settings';
+			case 'settingsPage.language': return 'Language';
+			case 'settingsPage.darkMode': return 'Dark Mode';
+			case 'bottomNaviBar.search': return 'Search';
+			case 'bottomNaviBar.settings': return 'Settings';
 			default: return null;
 		}
 	}
@@ -225,10 +303,16 @@ extension on _StringsEn {
 extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'Hallo ${name}';
-			case 'save': return 'Speichern';
-			case 'login.success': return 'Login erfolgreich';
-			case 'login.fail': return 'Login fehlgeschlagen';
+			case 'packagesPage.searchPackages': return 'パッケージを検索';
+			case 'packagesPage.packageNotFound': return 'パッケージが見つかりません。';
+			case 'packageDetailsPage.title': return '詳細';
+			case 'packageDetailsPage.homepage': return 'ホームページ';
+			case 'packageDetailsPage.repository': return 'リポジトリ';
+			case 'settingsPage.title': return '設定';
+			case 'settingsPage.language': return '言語';
+			case 'settingsPage.darkMode': return 'ダークモード';
+			case 'bottomNaviBar.search': return '探す';
+			case 'bottomNaviBar.settings': return '設定';
 			default: return null;
 		}
 	}

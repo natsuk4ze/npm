@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details_page.dart';
 import 'package:npm/features/packages/packages_page.dart';
 import 'package:npm/features/settings/settings_page.dart';
+import 'package:npm/i18n/language.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -19,7 +20,7 @@ Raw<GoRouter> router(RouterRef ref) {
 
 @TypedGoRoute<PackagesRoute>(path: '/', routes: [
   TypedGoRoute<PackageDetailsRoute>(
-    path: 'details',
+    path: 'details/:id',
   ),
   TypedGoRoute<SettingsRoute>(
     path: 'settings',
@@ -57,20 +58,21 @@ class BottomNaviBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final path = GoRouterState.of(context).path;
+    final translate = ref.watch(translationProvider);
     return Theme(
       data: Theme.of(context).copyWith(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),
       child: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: const Icon(Icons.search),
+            label: translate.bottomNaviBar.search,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.settings),
+            label: translate.bottomNaviBar.settings,
           ),
         ],
         onTap: (index) => switch (index) {

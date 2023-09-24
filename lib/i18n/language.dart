@@ -15,6 +15,20 @@ translation(TranslationRef ref) {
 }
 
 @riverpod
-LanguageType language(LanguageRef ref) => LanguageType.ja;
+class Language extends _$Language {
+  @override
+  LanguageType build() => LanguageType.en;
 
-enum LanguageType { en, ja }
+  void update(LanguageType type) => state = type;
+}
+
+enum LanguageType {
+  en,
+  ja;
+
+  @override
+  String toString() => switch (this) {
+        en => 'English',
+        ja => '日本語',
+      };
+}

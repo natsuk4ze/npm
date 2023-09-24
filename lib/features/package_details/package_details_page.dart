@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:markdown_widget/widget/markdown.dart';
 import 'package:npm/features/package_details/package_details.dart';
+import 'package:npm/i18n/language.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
@@ -13,20 +14,14 @@ class PackageDetailsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final package = ref.watch(packageDetailsProvider(id: id));
+    final translate = ref.watch(translationProvider);
     return Scaffold(
       appBar: AppBar(
-        elevation: 4,
-        title: const Text(
-          'Details',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text(translate.packageDetailsPage.title),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           child: package.when(
             data: (package) => PackegeDetailsItem(package),
             error: (e, _) => Center(child: Text(e.toString())),
@@ -46,6 +41,8 @@ class PackegeDetailsItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,10 +58,10 @@ class PackegeDetailsItem extends ConsumerWidget {
             package.description,
           ),
           const Gap(20),
-          const Text('Homepage'),
+          Text(translate.packageDetailsPage.homepage),
           _linkText(package.homepage),
           const Divider(),
-          const Text('Repository'),
+          Text(translate.packageDetailsPage.repository),
           _linkText(package.repository.replaceAll('git+', '')),
           const Gap(40),
           const Row(

@@ -1,3 +1,20 @@
 {
-  "hello": "hello"
+  "packagesPage": {
+    "searchPackages": "Search Packages",
+    "packageNotFound": "Package not found."
+  },
+  "packageDetailsPage": {
+    "title": "Details",
+    "homepage": "Homepage",
+    "repository": "Repository"
+  },
+  "settingsPage": {
+    "title": "Settings",
+    "language": "Language",
+    "darkMode": "Dark Mode"
+  },
+  "bottomNaviBar": {
+    "search": "Search",
+    "settings": "Settings"
+  }
 }

@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
+import 'package:npm/i18n/language.dart';
 import 'package:npm/router.dart';
 
 class PackagesPage extends HookConsumerWidget {
@@ -14,6 +15,7 @@ class PackagesPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController(text: 'color');
     final packages = ref.watch(packagesProvider(search: controller.text));
+    final translate = ref.watch(translationProvider);
     final focus = FocusNode();
     useListenable(controller);
 
@@ -34,7 +36,7 @@ class PackagesPage extends HookConsumerWidget {
                   const Gap(20),
                   Expanded(
                       child: SearchBar(
-                    hintText: 'Search packages',
+                    hintText: translate.packagesPage.searchPackages,
                     focusNode: focus,
                     controller: controller,
                     onSubmitted: (_) => focus.unfocus(),
@@ -136,11 +138,13 @@ class PackageItem extends StatelessWidget {
   }
 }
 
-class _EmptyItem extends StatelessWidget {
+class _EmptyItem extends ConsumerWidget {
   const _EmptyItem();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -149,7 +153,7 @@ class _EmptyItem extends StatelessWidget {
           width: 200,
         ),
         const Gap(20),
-        const Text('Package not found.')
+        Text(translate.packagesPage.packageNotFound)
       ],
     );
   }

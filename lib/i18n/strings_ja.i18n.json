@@ -1,3 +1,20 @@
 {
-  "hello": "こんにちは"
+  "packagesPage": {
+    "searchPackages": "パッケージを検索",
+    "packageNotFound": "パッケージが見つかりません。"
+  },
+  "packageDetailsPage": {
+    "title": "詳細",
+    "homepage": "ホームページ",
+    "repository": "リポジトリ"
+  },
+  "settingsPage": {
+    "title": "設定",
+    "language": "言語",
+    "darkMode": "ダークモード"
+  },
+  "bottomNaviBar": {
+    "search": "探す",
+    "settings": "設定"
+  }
 }
