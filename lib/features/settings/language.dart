@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'language.g.dart';
 
 @riverpod
-translation(TranslationRef ref) {
+StringsEn translation(TranslationRef ref) {
   final lan = ref.watch(languageProvider);
   switch (lan) {
     case LanguageType.ja:

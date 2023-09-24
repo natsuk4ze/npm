@@ -6,11 +6,11 @@ part of 'language.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$translationHash() => r'e03461f49307971e50b0098c3d0a20566dd15ef9';
+String _$translationHash() => r'f846b16768f968bd6e4a727b9c38c087b43977b3';
 
 /// See also [translation].
 @ProviderFor(translation)
-final translationProvider = AutoDisposeProvider<dynamic>.internal(
+final translationProvider = AutoDisposeProvider<StringsEn>.internal(
   translation,
   name: r'translationProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,7 @@ final translationProvider = AutoDisposeProvider<dynamic>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef TranslationRef = AutoDisposeProviderRef<dynamic>;
+typedef TranslationRef = AutoDisposeProviderRef<StringsEn>;
 String _$languageHash() => r'fffeb41dad0fe8e0e076261ae6f919921eb94529';
 
 /// See also [Language].

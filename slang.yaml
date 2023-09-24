@@ -1,0 +1,2 @@
+locale_handling: false
+translation_class_visibility: public
