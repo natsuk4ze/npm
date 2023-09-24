@@ -1,7 +1,7 @@
 import 'package:npm/i18n/strings.g.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'settings.g.dart';
+part 'language.g.dart';
 
 @riverpod
 translation(TranslationRef ref) {

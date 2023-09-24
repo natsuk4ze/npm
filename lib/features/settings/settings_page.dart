@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:npm/features/settings/settings.dart';
+import 'package:npm/features/settings/language.dart';
+import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -24,21 +25,16 @@ class SettingsPage extends ConsumerWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.grey.shade200,
+                color: Theme.of(context).hoverColor,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   shrinkWrap: true,
-                  children: [
-                    const _LanguageItem(),
-                    const Divider(),
-                    _BaseItem(
-                      icon: Icons.light_mode,
-                      leading: translate.settingsPage.darkMode,
-                      trailing: Switch(value: true, onChanged: (_) {}),
-                      onTap: () {},
-                    ),
+                  children: const [
+                    _LanguageItem(),
+                    Divider(),
+                    _DarkModeItem(),
                   ],
                 ),
               ),
@@ -81,6 +77,25 @@ class _LanguageItem extends ConsumerWidget {
   }
 }
 
+class _DarkModeItem extends ConsumerWidget {
+  const _DarkModeItem();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+    final darkMode = ref.watch(darkModeProvider);
+
+    return _BaseItem(
+      icon: Icons.light_mode,
+      leading: translate.settingsPage.darkMode,
+      trailing: Switch(
+          value: darkMode,
+          onChanged: (_) => ref.read(darkModeProvider.notifier).swich()),
+      onTap: () {},
+    );
+  }
+}
+
 class _BaseItem extends StatelessWidget {
   const _BaseItem({
     required this.icon,
@@ -98,7 +113,7 @@ class _BaseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: SizedBox(
         height: 40,

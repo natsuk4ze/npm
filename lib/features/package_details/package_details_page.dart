@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:markdown_widget/widget/markdown.dart';
 import 'package:npm/features/package_details/package_details.dart';
-import 'package:npm/features/settings/settings.dart';
+import 'package:npm/features/settings/language.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
