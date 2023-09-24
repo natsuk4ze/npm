@@ -71,7 +71,7 @@ class PackagesPage extends HookConsumerWidget {
   }
 }
 
-// Keep public for testing.
+@visibleForTesting
 class PackageItem extends StatelessWidget {
   const PackageItem(this.package, {super.key});
 

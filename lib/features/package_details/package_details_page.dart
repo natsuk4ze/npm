@@ -38,7 +38,7 @@ class PackageDetailsPage extends ConsumerWidget {
   }
 }
 
-// Keep public for testing.
+@visibleForTesting
 class PackegeDetailsItem extends ConsumerWidget {
   const PackegeDetailsItem(this.package, {super.key});
 
