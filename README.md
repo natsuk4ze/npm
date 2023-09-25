@@ -264,3 +264,5 @@ See:
 - [workflows](https://github.com/natsuk4ze/npm/actions)
 
 </details>
+
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/auto_test.gif" width=330 alt="Auto test"/>
