@@ -15,6 +15,10 @@ To run the app, [install flutter](https://docs.flutter.dev/get-started/install) 
 ### 🛜 Real time fetch
 Real-time fetching with *dio* and *riverpod*.
 Listen to `TextEditingController` to rebuild the widget.
+
+<details>
+<summary>Show codes</summary>
+
 ```dart
 final controller = useTextEditingController(text: 'color');
 final packages = ref.watch(packagesProvider(search: controller.text));
@@ -22,10 +26,16 @@ useListenable(controller);
 ```
 See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/real_time_fetch.gif" width=200 alt="Real time fetch"/>
 
 ### 👌 Pull to reflesh
 Pull to reflaseh with `RefleshIndicator`.
+
+<details>
+<summary>Show codes</summary>
+
 ```dart
 return RefreshIndicator(
   onRefresh: () async {
@@ -42,10 +52,16 @@ return RefreshIndicator(
 ```
 See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/pull_to_reflesh.gif" width=200 alt="Pull to reflesh"/>
 
 ### ☁️ Empty state
 Switching widget according to status with `AsyncValue`.
+
+<details>
+<summary>Show codes</summary>
+
 ```dart
 child: packages.when(
   data: (packages) {
@@ -70,28 +86,40 @@ child: packages.when(
 ```
 See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/empty_state.gif" width=200 alt="Empty state"/>
 
 ### 🪽 Jump to repository
 Jumping to repository with *url_launcher*.
+
+<details>
+<summary>Show codes</summary>
+
 ```dart
-Widget _linkText(String text) => GestureDetector(
-        onTap: () => launchUrl(Uri.parse(text)),
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-          ),
-        ),
-      );
+return GestureDetector(
+  onTap: () => launchUrl(Uri.parse(url)),
+  child: Text(
+    text ?? url,
+    style: const TextStyle(
+    fontWeight: FontWeight.bold,
+    decoration: TextDecoration.underline,
+    ),
+  ),
+);
 ```
-See: [package_details_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/package_details/package_details_page.dart)
+See: [link_text.dart](https://github.com/natsuk4ze/npm/blob/master/lib/widgets/link_text.dart)
+
+</details>
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/jump_to_repo.gif" width=200 alt="Jump to repository"/>
 
 ### 🔍 See package details
 Getting package details for requesting api with *dio* and *freezed*.
+
+<details>
+<summary>Show codes</summary>
+
 ```dart
 class Repository {
   final _dio = Dio();
@@ -117,10 +145,15 @@ See:
 - [repository.dart](https://github.com/natsuk4ze/npm/blob/master/lib/repository.dart)
 - [package_details.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/package_details/package_details.dart)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/see_package_details.gif" width=200 alt="See package details"/>
 
 ### 🌙 Dark mode
 Dynamic theming with *riverpod*
+
+<details>
+<summary>Show codes</summary>
 
 ```dart
 @riverpod
@@ -134,10 +167,15 @@ class DarkMode extends _$DarkMode {
 
 See: [theme.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/settings/theme.dart)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/dark_mode.gif" width=200 alt="Dark mode"/>
 
 ### 🗣️ Localization
 Dynamic localization with *slang* and *riverpod*.
+
+<details>
+<summary>Show codes</summary>
 
 ```dart
 @riverpod
@@ -164,10 +202,15 @@ See:
 - [language.dart](https://github.com/natsuk4ze/npm/blob/master/lib/settings/language.dart)
 - [i18n](https://github.com/natsuk4ze/npm/blob/master/lib/i18n)
 
+</details>
+
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/localization.gif" width=200 alt="Localization"/>
 
 ### ✅ Auto testing
 Auto testing with *github actions*.
+
+<details>
+<summary>Show codes</summary>
 
 ```yml
 jobs:
@@ -219,3 +262,5 @@ jobs:
 See:
 - [test](https://github.com/natsuk4ze/npm/blob/master/test)
 - [workflows](https://github.com/natsuk4ze/npm/actions)
+
+</details>
