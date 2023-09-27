@@ -60,6 +60,7 @@ class PackagesPage extends HookConsumerWidget {
               )),
               const Gap(20),
               IconButton.filledTonal(
+                isSelected: sort != null,
                 onPressed: () => showDialog(
                   context: context,
                   builder: (_) => SimpleDialog(
