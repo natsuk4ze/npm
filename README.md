@@ -56,6 +56,27 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/pull_to_reflesh.gif" width=200 alt="Pull to reflesh"/>
 
+### 📊 Sort
+Sort with *riverpod*.
+
+<details>
+<summary>Show codes</summary>
+
+```dart
+@riverpod
+class Sort extends _$Sort {
+  @override
+  ScoreType? build() => null;
+
+  void update(ScoreType? type) => state = type;
+}
+```
+See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
+
+</details>
+
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/sort.gif" width=200 alt="Pull to reflesh"/>
+
 ### ☁️ Empty state
 Switching widget according to status with `AsyncValue`.
 
