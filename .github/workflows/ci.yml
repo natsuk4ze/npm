@@ -25,11 +25,6 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
@@ -51,11 +46,16 @@ jobs:
 
       - name: Unit Test
         timeout-minutes: 5
-        run: flutter test test/unit_test.dart
+        run: flutter test test/unit_test.dart --coverage
 
       - name: Widget Test
         timeout-minutes: 5
-        run: flutter test test/widget_test.dart
+        run: flutter test test/widget_test.dart --coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build iOS
         timeout-minutes: 10
