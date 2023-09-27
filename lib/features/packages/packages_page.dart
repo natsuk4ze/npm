@@ -19,7 +19,7 @@ class Sort extends _$Sort {
   @override
   ScoreType? build() => null;
 
-  void update(ScoreType? type) => state = type;
+  void update(ScoreType type) => state = type;
 }
 
 class PackagesPage extends HookConsumerWidget {

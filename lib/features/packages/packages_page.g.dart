@@ -6,7 +6,7 @@ part of 'packages_page.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sortHash() => r'ce7069911ef76ea415db141395ed6041baa8c7f4';
+String _$sortHash() => r'0e39309c3109d3dbd35deaaf10c62dde6de29523';
 
 /// See also [Sort].
 @ProviderFor(Sort)
