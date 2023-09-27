@@ -69,11 +69,9 @@ class PackagesPage extends HookConsumerWidget {
                         ListTile(
                           title: Text(score.transltate(ref)),
                           leading: Radio(
-                            fillColor: MaterialStateProperty.all<Color>(
-                                Theme.of(context).primaryColor),
                             value: score,
                             groupValue: sort,
-                            onChanged: null,
+                            onChanged: (_) {},
                           ),
                           onTap: () {
                             sort == score
