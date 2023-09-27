@@ -22,7 +22,6 @@ class ScoreBar extends StatelessWidget {
           width: 10,
           child: Text(
             type.toString(),
-            style: const TextStyle(),
           ),
         ),
         const Gap(8),

@@ -11,7 +11,6 @@ import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
 import 'package:npm/widgets/safe_scaffold_padding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:slang/builder/utils/string_extensions.dart';
 
 part 'packages_page.g.dart';
 

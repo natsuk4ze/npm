@@ -59,6 +59,7 @@ class _LanguageItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLang = ref.watch(languageProvider);
     final translate = ref.watch(translationProvider);
+    
     return _BaseItem(
       icon: Icons.language,
       leading: translate.settingsPage.language,
