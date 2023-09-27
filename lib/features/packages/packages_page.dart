@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -9,6 +10,18 @@ import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
 import 'package:npm/widgets/safe_scaffold_padding.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:slang/builder/utils/string_extensions.dart';
+
+part 'packages_page.g.dart';
+
+@riverpod
+class Sort extends _$Sort {
+  @override
+  ScoreType? build() => null;
+
+  void update(ScoreType? type) => state = type;
+}
 
 class PackagesPage extends HookConsumerWidget {
   const PackagesPage({super.key});
@@ -19,24 +32,26 @@ class PackagesPage extends HookConsumerWidget {
     final packages = ref.watch(packagesProvider(search: controller.text));
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
+    final sort = ref.watch(sortProvider);
     final focus = FocusNode();
     useListenable(controller);
 
     return SafeScaffoldPadding(
+      appBar: AppBar(
+        title: SizedBox(
+          width: 60,
+          child: Image.asset(
+            'assets/npm.png',
+            color: darkMode ? Colors.white : null,
+          ),
+        ),
+      ),
       bottomNavigationBar: const BottomNaviBar(),
       child: Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                width: 60,
-                child: Image.asset(
-                  'assets/npm.png',
-                  color: darkMode ? Colors.white : null,
-                ),
-              ),
-              const Gap(20),
               Expanded(
                   child: SearchBar(
                 hintText: translate.packagesPage.searchPackages,
@@ -44,6 +59,34 @@ class PackagesPage extends HookConsumerWidget {
                 controller: controller,
                 onSubmitted: (_) => focus.unfocus(),
               )),
+              const Gap(20),
+              IconButton.filledTonal(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (_) => SimpleDialog(
+                    children: [
+                      for (var score in ScoreType.values)
+                        ListTile(
+                          title: Text(score.transltate(ref)),
+                          leading: Radio(
+                            fillColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor),
+                            value: score,
+                            groupValue: sort,
+                            onChanged: null,
+                          ),
+                          onTap: () {
+                            sort == score
+                                ? ref.invalidate(sortProvider)
+                                : ref.read(sortProvider.notifier).update(score);
+                            context.pop();
+                          },
+                        ),
+                    ],
+                  ),
+                ),
+                icon: const Icon(Icons.sort),
+              ),
             ],
           ),
           const Gap(20),
@@ -51,22 +94,37 @@ class PackagesPage extends HookConsumerWidget {
             child: packages.when(
               data: (packages) {
                 if (packages.isEmpty) return const _EmptyItem();
+                List<Package>? sortedPackages;
+                if (sort != null) {
+                  sortedPackages = List.from(packages);
+                  sortedPackages.sort((a, b) {
+                    switch (sort) {
+                      case ScoreType.maintenance:
+                        return b.score.maintenance
+                            .compareTo(a.score.maintenance);
+                      case ScoreType.popularity:
+                        return b.score.popularity.compareTo(a.score.popularity);
+                      case ScoreType.quality:
+                        return b.score.quality.compareTo(a.score.quality);
+                    }
+                  });
+                }
                 return RefreshIndicator(
                   onRefresh: () async {
                     ref.invalidate(packagesProvider);
-                    await ref.read(
-                        packagesProvider(search: controller.text).future);
+                    await ref
+                        .read(packagesProvider(search: controller.text).future);
                   },
                   child: ListView.separated(
                     separatorBuilder: (_, __) => const Divider(),
-                    itemCount: packages.length,
-                    itemBuilder: (_, int i) => PackageItem(packages[i]),
+                    itemCount: sortedPackages?.length ?? packages.length,
+                    itemBuilder: (_, int i) =>
+                        PackageItem(sortedPackages?[i] ?? packages[i]),
                   ),
                 );
               },
               error: (e, _) => Center(child: Text(e.toString())),
-              loading: () =>
-                  const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(child: CircularProgressIndicator()),
             ),
           ),
         ],
@@ -76,13 +134,13 @@ class PackagesPage extends HookConsumerWidget {
 }
 
 @visibleForTesting
-class PackageItem extends StatelessWidget {
+class PackageItem extends ConsumerWidget {
   const PackageItem(this.package, {super.key});
 
   final Package package;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
       child: ListTile(
@@ -120,18 +178,11 @@ class PackageItem extends StatelessWidget {
                       ),
                     ),
                   ),
-            ScoreBar(
-              type: ScoreType.popularity,
-              value: package.score.popularity,
-            ),
-            ScoreBar(
-              type: ScoreType.quality,
-              value: package.score.quality,
-            ),
-            ScoreBar(
-              type: ScoreType.maintenance,
-              value: package.score.maintenance,
-            ),
+            for (var score in ScoreType.values)
+              ScoreBar(
+                type: score,
+                value: score.getValue(package.score),
+              ),
           ],
         ),
       ),

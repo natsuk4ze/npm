@@ -1,7 +1,12 @@
 {
   "packagesPage": {
     "searchPackages": "Search Packages",
-    "packageNotFound": "Package not found."
+    "packageNotFound": "Package not found.",
+    "score": {
+      "popularity": "Popularity",
+      "quality": "Quality",
+      "maintenance": "Maintenance"
+    }
   },
   "packageDetailsPage": {
     "title": "Details",

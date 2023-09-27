@@ -1,7 +1,12 @@
 {
   "packagesPage": {
     "searchPackages": "パッケージを検索",
-    "packageNotFound": "パッケージが見つかりません。"
+    "packageNotFound": "パッケージが見つかりません。",
+    "score": {
+      "popularity": "人気",
+      "quality": "品質",
+      "maintenance": "メンテナンス"
+    }
   },
   "packageDetailsPage": {
     "title": "詳細",

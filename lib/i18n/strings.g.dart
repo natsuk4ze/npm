@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 22 (11 per locale)
+/// Strings: 28 (14 per locale)
 ///
-/// Built on 2023-09-24 at 15:30 UTC
+/// Built on 2023-09-27 at 12:21 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -92,6 +92,7 @@ class StringsPackagesPageEn {
 	// Translations
 	String get searchPackages => 'Search Packages';
 	String get packageNotFound => 'Package not found.';
+	late final StringsPackagesPageScoreEn score = StringsPackagesPageScoreEn._(_root);
 }
 
 // Path: packageDetailsPage
@@ -128,6 +129,18 @@ class StringsBottomNaviBarEn {
 	// Translations
 	String get search => 'Search';
 	String get settings => 'Settings';
+}
+
+// Path: packagesPage.score
+class StringsPackagesPageScoreEn {
+	StringsPackagesPageScoreEn._(this._root);
+
+	final StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get popularity => 'Popularity';
+	String get quality => 'Quality';
+	String get maintenance => 'Maintenance';
 }
 
 // Path: <root>
@@ -170,6 +183,7 @@ class StringsPackagesPageJa implements StringsPackagesPageEn {
 	// Translations
 	@override String get searchPackages => 'パッケージを検索';
 	@override String get packageNotFound => 'パッケージが見つかりません。';
+	@override late final StringsPackagesPageScoreJa score = StringsPackagesPageScoreJa._(_root);
 }
 
 // Path: packageDetailsPage
@@ -208,6 +222,18 @@ class StringsBottomNaviBarJa implements StringsBottomNaviBarEn {
 	@override String get settings => '設定';
 }
 
+// Path: packagesPage.score
+class StringsPackagesPageScoreJa implements StringsPackagesPageScoreEn {
+	StringsPackagesPageScoreJa._(this._root);
+
+	@override final StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get popularity => '人気';
+	@override String get quality => '品質';
+	@override String get maintenance => 'メンテナンス';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -216,6 +242,9 @@ extension on StringsEn {
 		switch (path) {
 			case 'packagesPage.searchPackages': return 'Search Packages';
 			case 'packagesPage.packageNotFound': return 'Package not found.';
+			case 'packagesPage.score.popularity': return 'Popularity';
+			case 'packagesPage.score.quality': return 'Quality';
+			case 'packagesPage.score.maintenance': return 'Maintenance';
 			case 'packageDetailsPage.title': return 'Details';
 			case 'packageDetailsPage.homepage': return 'Homepage';
 			case 'packageDetailsPage.repository': return 'Repository';
@@ -235,6 +264,9 @@ extension on StringsJa {
 		switch (path) {
 			case 'packagesPage.searchPackages': return 'パッケージを検索';
 			case 'packagesPage.packageNotFound': return 'パッケージが見つかりません。';
+			case 'packagesPage.score.popularity': return '人気';
+			case 'packagesPage.score.quality': return '品質';
+			case 'packagesPage.score.maintenance': return 'メンテナンス';
 			case 'packageDetailsPage.title': return '詳細';
 			case 'packageDetailsPage.homepage': return 'ホームページ';
 			case 'packageDetailsPage.repository': return 'リポジトリ';
