@@ -26,13 +26,14 @@ class PackagesPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useTextEditingController(text: 'color');
-    final packages = ref.watch(packagesProvider(search: controller.text));
+    final textController = useTextEditingController(text: 'color');
+    final scrollController = useScrollController();
+    useListenable(textController);
+    final packages = ref.watch(packagesProvider(search: textController.text));
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
     final sort = ref.watch(sortProvider);
     final focus = FocusNode();
-    useListenable(controller);
 
     return SafeScaffoldPadding(
       appBar: AppBar(
@@ -40,11 +41,14 @@ class PackagesPage extends HookConsumerWidget {
         toolbarHeight: 80,
         title: Row(
           children: [
-            SizedBox(
-              width: 60,
-              child: Image.asset(
-                'assets/app/npm.png',
-                color: darkMode ? Colors.white : null,
+            GestureDetector(
+              onTap: () => scrollController.jumpTo(0),
+              child: SizedBox(
+                width: 60,
+                child: Image.asset(
+                  'assets/app/npm.png',
+                  color: darkMode ? Colors.white : null,
+                ),
               ),
             ),
             const Gap(20),
@@ -52,7 +56,7 @@ class PackagesPage extends HookConsumerWidget {
                 child: SearchBar(
               hintText: translate.packagesPage.searchPackages,
               focusNode: focus,
-              controller: controller,
+              controller: textController,
               onSubmitted: (_) => focus.unfocus(),
             )),
           ],
@@ -60,6 +64,7 @@ class PackagesPage extends HookConsumerWidget {
       ),
       bottomNavigationBar: const BottomNaviBar(),
       child: NestedScrollView(
+        controller: scrollController,
         headerSliverBuilder: (BuildContext context, _) => [const _SortPannel()],
         body: packages.when(
           data: (packages) {
@@ -82,7 +87,7 @@ class PackagesPage extends HookConsumerWidget {
               onRefresh: () async {
                 ref.invalidate(packagesProvider);
                 await ref
-                    .read(packagesProvider(search: controller.text).future);
+                    .read(packagesProvider(search: textController.text).future);
               },
               child: ListView.separated(
                 separatorBuilder: (_, __) => const Divider(),
