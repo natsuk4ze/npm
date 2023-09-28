@@ -64,3 +64,7 @@ jobs:
       - name: Build Android
         timeout-minutes: 10
         run: flutter build appbundle
+
+      - name: Build Web
+        timeout-minutes: 10
+        run: flutter build web
