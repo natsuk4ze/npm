@@ -24,10 +24,10 @@ mixin _$PackageDetails {
   String get description => throw _privateConstructorUsedError;
   List<String> get keywords => throw _privateConstructorUsedError;
   String get license => throw _privateConstructorUsedError;
-  String get homepage => throw _privateConstructorUsedError;
   String get readme => throw _privateConstructorUsedError;
+  String? get homepage => throw _privateConstructorUsedError;
   @JsonKey(readValue: _repositoryReadValue)
-  String get repository => throw _privateConstructorUsedError;
+  String? get repository => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +46,9 @@ abstract class $PackageDetailsCopyWith<$Res> {
       String description,
       List<String> keywords,
       String license,
-      String homepage,
       String readme,
-      @JsonKey(readValue: _repositoryReadValue) String repository});
+      String? homepage,
+      @JsonKey(readValue: _repositoryReadValue) String? repository});
 }
 
 /// @nodoc
@@ -68,9 +68,9 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
     Object? description = null,
     Object? keywords = null,
     Object? license = null,
-    Object? homepage = null,
     Object? readme = null,
-    Object? repository = null,
+    Object? homepage = freezed,
+    Object? repository = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -89,18 +89,18 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
               as String,
-      homepage: null == homepage
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String,
       readme: null == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
               as String,
-      repository: null == repository
+      homepage: freezed == homepage
+          ? _value.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repository: freezed == repository
           ? _value.repository
           : repository // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -118,9 +118,9 @@ abstract class _$$_PackageDetailsCopyWith<$Res>
       String description,
       List<String> keywords,
       String license,
-      String homepage,
       String readme,
-      @JsonKey(readValue: _repositoryReadValue) String repository});
+      String? homepage,
+      @JsonKey(readValue: _repositoryReadValue) String? repository});
 }
 
 /// @nodoc
@@ -138,9 +138,9 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
     Object? description = null,
     Object? keywords = null,
     Object? license = null,
-    Object? homepage = null,
     Object? readme = null,
-    Object? repository = null,
+    Object? homepage = freezed,
+    Object? repository = freezed,
   }) {
     return _then(_$_PackageDetails(
       name: null == name
@@ -159,18 +159,18 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
               as String,
-      homepage: null == homepage
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String,
       readme: null == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
               as String,
-      repository: null == repository
+      homepage: freezed == homepage
+          ? _value.homepage
+          : homepage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repository: freezed == repository
           ? _value.repository
           : repository // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -183,8 +183,8 @@ class _$_PackageDetails extends _PackageDetails {
       this.description = '',
       final List<String> keywords = const [],
       required this.license,
-      required this.homepage,
       required this.readme,
+      required this.homepage,
       @JsonKey(readValue: _repositoryReadValue) required this.repository})
       : _keywords = keywords,
         super._();
@@ -209,16 +209,16 @@ class _$_PackageDetails extends _PackageDetails {
   @override
   final String license;
   @override
-  final String homepage;
-  @override
   final String readme;
   @override
+  final String? homepage;
+  @override
   @JsonKey(readValue: _repositoryReadValue)
-  final String repository;
+  final String? repository;
 
   @override
   String toString() {
-    return 'PackageDetails(name: $name, description: $description, keywords: $keywords, license: $license, homepage: $homepage, readme: $readme, repository: $repository)';
+    return 'PackageDetails(name: $name, description: $description, keywords: $keywords, license: $license, readme: $readme, homepage: $homepage, repository: $repository)';
   }
 
   @override
@@ -231,9 +231,9 @@ class _$_PackageDetails extends _PackageDetails {
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._keywords, _keywords) &&
             (identical(other.license, license) || other.license == license) &&
+            (identical(other.readme, readme) || other.readme == readme) &&
             (identical(other.homepage, homepage) ||
                 other.homepage == homepage) &&
-            (identical(other.readme, readme) || other.readme == readme) &&
             (identical(other.repository, repository) ||
                 other.repository == repository));
   }
@@ -246,8 +246,8 @@ class _$_PackageDetails extends _PackageDetails {
       description,
       const DeepCollectionEquality().hash(_keywords),
       license,
-      homepage,
       readme,
+      homepage,
       repository);
 
   @JsonKey(ignore: true)
@@ -270,10 +270,10 @@ abstract class _PackageDetails extends PackageDetails {
       final String description,
       final List<String> keywords,
       required final String license,
-      required final String homepage,
       required final String readme,
+      required final String? homepage,
       @JsonKey(readValue: _repositoryReadValue)
-      required final String repository}) = _$_PackageDetails;
+      required final String? repository}) = _$_PackageDetails;
   const _PackageDetails._() : super._();
 
   factory _PackageDetails.fromJson(Map<String, dynamic> json) =
@@ -288,12 +288,12 @@ abstract class _PackageDetails extends PackageDetails {
   @override
   String get license;
   @override
-  String get homepage;
-  @override
   String get readme;
   @override
+  String? get homepage;
+  @override
   @JsonKey(readValue: _repositoryReadValue)
-  String get repository;
+  String? get repository;
   @override
   @JsonKey(ignore: true)
   _$$_PackageDetailsCopyWith<_$_PackageDetails> get copyWith =>

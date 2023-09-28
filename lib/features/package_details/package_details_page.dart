@@ -57,10 +57,16 @@ class PackegeDetailsItem extends ConsumerWidget {
           ),
           const Gap(20),
           Text(translate.packageDetailsPage.homepage),
-          LinkText(package.homepage),
+          const Gap(4),
+          package.homepage != null
+              ? LinkText(package.homepage!)
+              : const Text('unkwnon'),
           const Divider(),
           Text(translate.packageDetailsPage.repository),
-          LinkText(package.repository.replaceAll('git+', '')),
+          const Gap(4),
+          package.repository != null
+              ? LinkText(package.repository!)
+              : const Text('unkwon'),
           const Gap(40),
           const Row(
             children: [

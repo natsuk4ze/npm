@@ -19,12 +19,21 @@ class PackageDetails with _$PackageDetails {
     @Default('') final String description,
     @Default([]) final List<String> keywords,
     required final String license,
-    required final String homepage,
     required final String readme,
-    @JsonKey(readValue: _repositoryReadValue) required final String repository,
+    required final String? homepage,
+    @JsonKey(readValue: _repositoryReadValue) required final String? repository,
   }) = _PackageDetails;
   factory PackageDetails.fromJson(Map<String, dynamic> json) =>
       _$PackageDetailsFromJson(json);
 }
 
-String _repositoryReadValue(Map json, String _) => json['repository']['url'];
+String? _repositoryReadValue(Map json, String _) {
+  final git = json['repository']?['url'] as String?;
+  if (git == null) return null;
+  final int index = git.indexOf('github.com');
+  if (index != -1) {
+    final url = git.substring(index);
+    return 'https://$url';
+  }
+  return null;
+}
