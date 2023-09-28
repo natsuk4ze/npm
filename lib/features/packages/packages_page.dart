@@ -65,7 +65,7 @@ class PackagesPage extends HookConsumerWidget {
       bottomNavigationBar: const BottomNaviBar(),
       child: NestedScrollView(
         controller: scrollController,
-        headerSliverBuilder: (BuildContext context, _) => [const _SortPannel()],
+        headerSliverBuilder: (_, __) => [const _SortPannel()],
         body: packages.when(
           data: (packages) {
             if (packages.isEmpty) return const _EmptyItem();
