@@ -59,7 +59,7 @@ class _LanguageItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLang = ref.watch(languageProvider);
     final translate = ref.watch(translationProvider);
-    
+
     return _BaseItem(
       icon: Icons.language,
       leading: translate.settingsPage.language,
@@ -137,7 +137,7 @@ class _Lecense extends StatelessWidget {
             ),
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: Image.asset('assets/owner.png').image,
+              image: Image.asset('assets/app/owner.png').image,
               fit: BoxFit.cover,
             ),
           ),

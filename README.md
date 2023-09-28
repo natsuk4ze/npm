@@ -8,7 +8,7 @@ A minimum implementation of [npm](https://www.npmjs.com) client app with modern 
 
 To run the app, [install flutter](https://docs.flutter.dev/get-started/install) and run `flutter run`.
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/example.gif" width=280 alt="example"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/example.gif" width=280 alt="example"/>
 
 ## Features
 
@@ -28,7 +28,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/real_time_fetch.gif" width=200 alt="Real time fetch"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/real_time_fetch.gif" width=200 alt="Real time fetch"/>
 
 ### 👌 Pull to reflesh
 Pull to reflaseh with `RefleshIndicator`.
@@ -54,7 +54,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/pull_to_reflesh.gif" width=200 alt="Pull to reflesh"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/pull_to_reflesh.gif" width=200 alt="Pull to reflesh"/>
 
 ### 📊 Sort
 Sort with *riverpod*.
@@ -75,7 +75,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/sort.gif" width=200 alt="Pull to reflesh"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/sort.gif" width=200 alt="Pull to reflesh"/>
 
 ### ☁️ Empty state
 Switching widget according to status with `AsyncValue`.
@@ -109,7 +109,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/empty_state.gif" width=200 alt="Empty state"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/empty_state.gif" width=200 alt="Empty state"/>
 
 ### 🪽 Jump to repository
 Jumping to repository with *url_launcher*.
@@ -133,7 +133,7 @@ See: [link_text.dart](https://github.com/natsuk4ze/npm/blob/master/lib/widgets/l
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/jump_to_repo.gif" width=200 alt="Jump to repository"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/jump_to_repo.gif" width=200 alt="Jump to repository"/>
 
 ### 🔍 See package details
 Getting package details for requesting api with *dio* and *freezed*.
@@ -168,7 +168,7 @@ See:
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/see_package_details.gif" width=200 alt="See package details"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/see_package_details.gif" width=200 alt="See package details"/>
 
 ### 🌙 Dark mode
 Dynamic theming with *riverpod*
@@ -190,7 +190,7 @@ See: [theme.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/sett
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/dark_mode.gif" width=200 alt="Dark mode"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/dark_mode.gif" width=200 alt="Dark mode"/>
 
 ### 🗣️ Localization
 Dynamic localization with *slang* and *riverpod*.
@@ -225,7 +225,7 @@ See:
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/localization.gif" width=200 alt="Localization"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/localization.gif" width=200 alt="Localization"/>
 
 ### ✅ Auto testing
 Auto testing with *github actions*.
@@ -286,4 +286,4 @@ See:
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/auto_test.gif" width=330 alt="Auto test"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/auto_test.gif" width=330 alt="Auto test"/>

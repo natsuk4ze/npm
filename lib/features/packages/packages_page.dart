@@ -40,7 +40,7 @@ class PackagesPage extends HookConsumerWidget {
         title: SizedBox(
           width: 60,
           child: Image.asset(
-            'assets/npm.png',
+            'assets/app/npm.png',
             color: darkMode ? Colors.white : null,
           ),
         ),
@@ -199,7 +199,7 @@ class _EmptyItem extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/empty.png',
+          'assets/app/empty.png',
           width: 200,
         ),
         const Gap(20),
