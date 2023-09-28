@@ -234,6 +234,52 @@ See:
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/localization.gif" width=200 alt="Localization"/>
 
+### 🪄 Responsive Design
+Dynamic layouting for diffrent screen sizes.
+
+<details>
+<summary>Show codes</summary>
+
+```dart
+largeScreen
+        ? Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                child: Row(
+                  children: [
+                    sideNavigationBar ?? const SizedBox.shrink(),
+                    const Gap(12),
+                    const VerticalDivider(),
+                    const Gap(12),
+                    Expanded(child: child),
+                  ],
+                ),
+              ),
+            ),
+          )
+        : Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: appBar,
+            bottomNavigationBar: bottomNavigationBar,
+            body: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+                child: child,
+              ),
+            ),
+          )
+```
+
+See: [language.dart](https://github.com/natsuk4ze/npm/blob/master/lib/widgets/responsive_scaffold.dart)
+
+</details>
+
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/responsive.gif" width=400 alt="Responsive"/>
+
 ### ✅ Auto testing
 Auto testing with *github actions*.
 
@@ -285,6 +331,10 @@ jobs:
       - name: Build Android
         timeout-minutes: 10
         run: flutter build appbundle
+
+      - name: Build Web
+        timeout-minutes: 10
+        run: flutter build web
 ```
 
 See:
