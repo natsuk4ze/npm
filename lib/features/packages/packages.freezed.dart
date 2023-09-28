@@ -157,8 +157,8 @@ class __$$_PackageCopyWithImpl<$Res>
 class _$_Package extends _Package {
   const _$_Package(
       {required this.name,
-      this.description = '',
-      final List<String> keywords = const [],
+      required this.description,
+      required final List<String> keywords,
       required this.version,
       required this.score})
       : _keywords = keywords,
@@ -167,11 +167,9 @@ class _$_Package extends _Package {
   @override
   final String name;
   @override
-  @JsonKey()
   final String description;
   final List<String> _keywords;
   @override
-  @JsonKey()
   List<String> get keywords {
     if (_keywords is EqualUnmodifiableListView) return _keywords;
     // ignore: implicit_dynamic_type
@@ -215,8 +213,8 @@ class _$_Package extends _Package {
 abstract class _Package extends Package {
   const factory _Package(
       {required final String name,
-      final String description,
-      final List<String> keywords,
+      required final String description,
+      required final List<String> keywords,
       required final String version,
       required final Score score}) = _$_Package;
   const _Package._() : super._();

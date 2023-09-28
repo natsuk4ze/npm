@@ -16,8 +16,8 @@ class Package with _$Package {
   const Package._();
   const factory Package({
     required final String name,
-    @Default('') final String description,
-    @Default([]) final List<String> keywords,
+    required final String description,
+    required final List<String> keywords,
     required final String version,
     required final Score score,
   }) = _Package;
@@ -26,7 +26,7 @@ class Package with _$Package {
     final score = json['score']['detail'];
     return Package(
       name: package['name'],
-      description: package['description'],
+      description: package['description'] ?? '',
       version: package['version'],
       keywords: List<String>.from(
           package['keywords']?.map((e) => e.toString()) ?? []),
