@@ -95,10 +95,8 @@ class _DarkModeItem extends ConsumerWidget {
     return _BaseItem(
       icon: Icons.light_mode,
       leading: translate.settingsPage.darkMode,
-      trailing: Switch(
-          value: darkMode,
-          onChanged: (_) => ref.read(darkModeProvider.notifier).swich()),
-      onTap: () {},
+      trailing: Switch(value: darkMode, onChanged: (_) {}),
+      onTap: () => ref.read(darkModeProvider.notifier).swich(),
     );
   }
 }
