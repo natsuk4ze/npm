@@ -43,7 +43,7 @@ class SettingsPage extends ConsumerWidget {
                 ),
               ),
             ),
-            const Gap(80),
+            const Spacer(),
             const _Lecense(),
           ],
         ),
@@ -128,8 +128,8 @@ class _Lecense extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 100,
-          height: 100,
+          width: 60,
+          height: 60,
           decoration: BoxDecoration(
             border: Border.all(
               color: Theme.of(context).dividerColor,
@@ -142,16 +142,16 @@ class _Lecense extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(20),
+        const Gap(16),
         const LinkText(
           'https://github.com/natsuk4ze',
           text: 'Created by @natsuk4ze',
         ),
-        const Gap(12),
+        const Gap(16),
         const Text(
           'Midori Design Studio',
           style: TextStyle(color: Colors.grey),
-        )
+        ),
       ],
     );
   }
