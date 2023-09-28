@@ -14,6 +14,7 @@ class SafeScaffoldPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: SafeArea(
