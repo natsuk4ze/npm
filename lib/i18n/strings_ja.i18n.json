@@ -1,6 +1,7 @@
 {
   "packagesPage": {
     "searchPackages": "パッケージを検索",
+    "sortPackages": "パッケージを並べ替え",
     "packageNotFound": "パッケージが見つかりません。",
     "score": {
       "popularity": "人気",

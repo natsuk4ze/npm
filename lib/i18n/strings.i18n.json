@@ -1,6 +1,7 @@
 {
   "packagesPage": {
     "searchPackages": "Search Packages",
+    "sortPackages": "Sort Packages",
     "packageNotFound": "Package not found.",
     "score": {
       "popularity": "Popularity",

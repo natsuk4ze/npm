@@ -33,13 +33,6 @@ enum ScoreType {
         maintenance => score.maintenance,
       };
 
-  @override
-  String toString() => switch (this) {
-        popularity => 'p',
-        quality => 'q',
-        maintenance => 'm',
-      };
-
   String transltate(WidgetRef ref) {
     final translate = ref.read(translationProvider);
     return switch (this) {

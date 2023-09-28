@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/score/score.dart';
 
-class ScoreBar extends StatelessWidget {
+class ScoreBar extends ConsumerWidget {
   const ScoreBar({
     required this.type,
     required this.value,
@@ -13,15 +14,18 @@ class ScoreBar extends StatelessWidget {
   final double value;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 10,
+          width: 12,
           child: Text(
-            type.toString(),
+            type.transltate(ref)[0],
+            style: const TextStyle(
+              fontSize: 12,
+            ),
           ),
         ),
         const Gap(8),

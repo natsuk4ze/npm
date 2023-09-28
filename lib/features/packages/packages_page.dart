@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -37,95 +36,131 @@ class PackagesPage extends HookConsumerWidget {
 
     return SafeScaffoldPadding(
       appBar: AppBar(
-        title: SizedBox(
-          width: 60,
-          child: Image.asset(
-            'assets/app/npm.png',
-            color: darkMode ? Colors.white : null,
-          ),
+        surfaceTintColor: Colors.transparent,
+        toolbarHeight: 80,
+        title: Row(
+          children: [
+            SizedBox(
+              width: 60,
+              child: Image.asset(
+                'assets/app/npm.png',
+                color: darkMode ? Colors.white : null,
+              ),
+            ),
+            const Gap(20),
+            Expanded(
+                child: SearchBar(
+              hintText: translate.packagesPage.searchPackages,
+              focusNode: focus,
+              controller: controller,
+              onSubmitted: (_) => focus.unfocus(),
+            )),
+          ],
         ),
       ),
       bottomNavigationBar: const BottomNaviBar(),
-      child: Column(
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                  child: SearchBar(
-                hintText: translate.packagesPage.searchPackages,
-                focusNode: focus,
-                controller: controller,
-                onSubmitted: (_) => focus.unfocus(),
-              )),
-              const Gap(20),
-              IconButton.filledTonal(
-                isSelected: sort != null,
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (_) => SimpleDialog(
-                    children: [
-                      for (var score in ScoreType.values)
-                        ListTile(
-                          title: Text(score.transltate(ref)),
-                          leading: Radio(
-                            value: score,
-                            groupValue: sort,
-                            onChanged: (_) {},
-                          ),
-                          onTap: () {
-                            sort == score
-                                ? ref.invalidate(sortProvider)
-                                : ref.read(sortProvider.notifier).update(score);
-                            context.pop();
-                          },
-                        ),
-                    ],
-                  ),
-                ),
-                icon: const Icon(Icons.sort),
-              ),
-            ],
-          ),
-          const Gap(20),
-          Expanded(
-            child: packages.when(
-              data: (packages) {
-                if (packages.isEmpty) return const _EmptyItem();
-                List<Package>? sortedPackages;
-                if (sort != null) {
-                  sortedPackages = List.from(packages);
-                  sortedPackages.sort((a, b) {
-                    switch (sort) {
-                      case ScoreType.maintenance:
-                        return b.score.maintenance
-                            .compareTo(a.score.maintenance);
-                      case ScoreType.popularity:
-                        return b.score.popularity.compareTo(a.score.popularity);
-                      case ScoreType.quality:
-                        return b.score.quality.compareTo(a.score.quality);
-                    }
-                  });
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, _) => [const _SortPannel()],
+        body: packages.when(
+          data: (packages) {
+            if (packages.isEmpty) return const _EmptyItem();
+            List<Package>? sortedPackages;
+            if (sort != null) {
+              sortedPackages = List.from(packages);
+              sortedPackages.sort((a, b) {
+                switch (sort) {
+                  case ScoreType.maintenance:
+                    return b.score.maintenance.compareTo(a.score.maintenance);
+                  case ScoreType.popularity:
+                    return b.score.popularity.compareTo(a.score.popularity);
+                  case ScoreType.quality:
+                    return b.score.quality.compareTo(a.score.quality);
                 }
-                return RefreshIndicator(
-                  onRefresh: () async {
-                    ref.invalidate(packagesProvider);
-                    await ref
-                        .read(packagesProvider(search: controller.text).future);
-                  },
-                  child: ListView.separated(
-                    separatorBuilder: (_, __) => const Divider(),
-                    itemCount: sortedPackages?.length ?? packages.length,
-                    itemBuilder: (_, int i) =>
-                        PackageItem(sortedPackages?[i] ?? packages[i]),
-                  ),
-                );
+              });
+            }
+            return RefreshIndicator(
+              onRefresh: () async {
+                ref.invalidate(packagesProvider);
+                await ref
+                    .read(packagesProvider(search: controller.text).future);
               },
-              error: (e, _) => Center(child: Text(e.toString())),
-              loading: () => const Center(child: CircularProgressIndicator()),
+              child: ListView.separated(
+                separatorBuilder: (_, __) => const Divider(),
+                itemCount: sortedPackages?.length ?? packages.length,
+                itemBuilder: (_, int i) =>
+                    PackageItem(sortedPackages?[i] ?? packages[i]),
+              ),
+            );
+          },
+          error: (e, _) => Center(child: Text(e.toString())),
+          loading: () => const Center(child: CircularProgressIndicator()),
+        ),
+      ),
+    );
+  }
+}
+
+class _SortPannel extends ConsumerWidget {
+  const _SortPannel();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+    final sort = ref.watch(sortProvider);
+
+    return SliverAppBar(
+      surfaceTintColor: Colors.transparent,
+      toolbarHeight: 200,
+      title: SizedBox(
+        width: double.maxFinite,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              translate.packagesPage.sortPackages,
+              style: const TextStyle(fontSize: 14),
             ),
-          ),
-        ],
+            const Gap(8),
+            for (var score in ScoreType.values)
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () => sort == score
+                    ? ref.invalidate(sortProvider)
+                    : ref.read(sortProvider.notifier).update(score),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 16,
+                          child: Transform.scale(
+                            scale: 0.7,
+                            child: Radio(
+                              activeColor: score.color,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                              value: score,
+                              groupValue: sort,
+                              onChanged: (_) {},
+                            ),
+                          ),
+                        ),
+                        const Gap(12),
+                        Text(
+                          score.transltate(ref),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Divider(color: score.color)
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -139,6 +174,16 @@ class PackageItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final sort = ref.watch(sortProvider);
+    List<ScoreType> scoreTypes = ScoreType.values.toList();
+    if (sort != null) {
+      scoreTypes.sort((a, b) {
+        if (a == sort) return -1;
+        if (b == sort) return 1;
+        return 0;
+      });
+    }
+
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
       child: ListTile(
@@ -176,7 +221,7 @@ class PackageItem extends ConsumerWidget {
                       ),
                     ),
                   ),
-            for (var score in ScoreType.values)
+            for (var score in scoreTypes)
               ScoreBar(
                 type: score,
                 value: score.getValue(package.score),

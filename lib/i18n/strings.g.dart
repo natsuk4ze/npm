@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 28 (14 per locale)
+/// Strings: 30 (15 per locale)
 ///
-/// Built on 2023-09-27 at 12:21 UTC
+/// Built on 2023-09-28 at 04:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -91,6 +91,7 @@ class StringsPackagesPageEn {
 
 	// Translations
 	String get searchPackages => 'Search Packages';
+	String get sortPackages => 'Sort Packages';
 	String get packageNotFound => 'Package not found.';
 	late final StringsPackagesPageScoreEn score = StringsPackagesPageScoreEn._(_root);
 }
@@ -182,6 +183,7 @@ class StringsPackagesPageJa implements StringsPackagesPageEn {
 
 	// Translations
 	@override String get searchPackages => 'パッケージを検索';
+	@override String get sortPackages => 'パッケージを並べ替え';
 	@override String get packageNotFound => 'パッケージが見つかりません。';
 	@override late final StringsPackagesPageScoreJa score = StringsPackagesPageScoreJa._(_root);
 }
@@ -241,6 +243,7 @@ extension on StringsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'packagesPage.searchPackages': return 'Search Packages';
+			case 'packagesPage.sortPackages': return 'Sort Packages';
 			case 'packagesPage.packageNotFound': return 'Package not found.';
 			case 'packagesPage.score.popularity': return 'Popularity';
 			case 'packagesPage.score.quality': return 'Quality';
@@ -263,6 +266,7 @@ extension on StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'packagesPage.searchPackages': return 'パッケージを検索';
+			case 'packagesPage.sortPackages': return 'パッケージを並べ替え';
 			case 'packagesPage.packageNotFound': return 'パッケージが見つかりません。';
 			case 'packagesPage.score.popularity': return '人気';
 			case 'packagesPage.score.quality': return '品質';
