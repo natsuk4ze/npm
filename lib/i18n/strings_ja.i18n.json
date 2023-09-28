@@ -20,8 +20,9 @@
     "darkMode": "ダークモード",
     "report": "問題を報告"
   },
-  "bottomNaviBar": {
+  "naviBar": {
     "search": "探す",
+    "packages": "パッケージ一覧",
     "settings": "設定"
   }
 }

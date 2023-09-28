@@ -20,8 +20,9 @@
     "darkMode": "Dark Mode",
     "report": "Report issues"
   },
-  "bottomNaviBar": {
+  "naviBar": {
     "search": "Search",
+    "packages": "Packages",
     "settings": "Settings"
   }
 }

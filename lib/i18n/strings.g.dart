@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 30 (15 per locale)
+/// Strings: 32 (16 per locale)
 ///
-/// Built on 2023-09-28 at 08:02 UTC
+/// Built on 2023-09-28 at 13:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -80,7 +80,7 @@ class StringsEn implements BaseTranslations<AppLocale, StringsEn> {
 	late final StringsPackagesPageEn packagesPage = StringsPackagesPageEn._(_root);
 	late final StringsPackageDetailsPageEn packageDetailsPage = StringsPackageDetailsPageEn._(_root);
 	late final StringsSettingsPageEn settingsPage = StringsSettingsPageEn._(_root);
-	late final StringsBottomNaviBarEn bottomNaviBar = StringsBottomNaviBarEn._(_root);
+	late final StringsNaviBarEn naviBar = StringsNaviBarEn._(_root);
 }
 
 // Path: packagesPage
@@ -121,14 +121,15 @@ class StringsSettingsPageEn {
 	String get report => 'Report issues';
 }
 
-// Path: bottomNaviBar
-class StringsBottomNaviBarEn {
-	StringsBottomNaviBarEn._(this._root);
+// Path: naviBar
+class StringsNaviBarEn {
+	StringsNaviBarEn._(this._root);
 
 	final StringsEn _root; // ignore: unused_field
 
 	// Translations
 	String get search => 'Search';
+	String get packages => 'Packages';
 	String get settings => 'Settings';
 }
 
@@ -172,7 +173,7 @@ class StringsJa implements StringsEn {
 	@override late final StringsPackagesPageJa packagesPage = StringsPackagesPageJa._(_root);
 	@override late final StringsPackageDetailsPageJa packageDetailsPage = StringsPackageDetailsPageJa._(_root);
 	@override late final StringsSettingsPageJa settingsPage = StringsSettingsPageJa._(_root);
-	@override late final StringsBottomNaviBarJa bottomNaviBar = StringsBottomNaviBarJa._(_root);
+	@override late final StringsNaviBarJa naviBar = StringsNaviBarJa._(_root);
 }
 
 // Path: packagesPage
@@ -213,14 +214,15 @@ class StringsSettingsPageJa implements StringsSettingsPageEn {
 	@override String get report => '問題を報告';
 }
 
-// Path: bottomNaviBar
-class StringsBottomNaviBarJa implements StringsBottomNaviBarEn {
-	StringsBottomNaviBarJa._(this._root);
+// Path: naviBar
+class StringsNaviBarJa implements StringsNaviBarEn {
+	StringsNaviBarJa._(this._root);
 
 	@override final StringsJa _root; // ignore: unused_field
 
 	// Translations
 	@override String get search => '探す';
+	@override String get packages => 'パッケージ一覧';
 	@override String get settings => '設定';
 }
 
@@ -255,8 +257,9 @@ extension on StringsEn {
 			case 'settingsPage.language': return 'Language';
 			case 'settingsPage.darkMode': return 'Dark Mode';
 			case 'settingsPage.report': return 'Report issues';
-			case 'bottomNaviBar.search': return 'Search';
-			case 'bottomNaviBar.settings': return 'Settings';
+			case 'naviBar.search': return 'Search';
+			case 'naviBar.packages': return 'Packages';
+			case 'naviBar.settings': return 'Settings';
 			default: return null;
 		}
 	}
@@ -278,8 +281,9 @@ extension on StringsJa {
 			case 'settingsPage.language': return '言語';
 			case 'settingsPage.darkMode': return 'ダークモード';
 			case 'settingsPage.report': return '問題を報告';
-			case 'bottomNaviBar.search': return '探す';
-			case 'bottomNaviBar.settings': return '設定';
+			case 'naviBar.search': return '探す';
+			case 'naviBar.packages': return 'パッケージ一覧';
+			case 'naviBar.settings': return '設定';
 			default: return null;
 		}
 	}

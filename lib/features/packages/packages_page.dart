@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -65,7 +66,24 @@ class PackagesPage extends HookConsumerWidget {
         ),
       ),
       bottomNavigationBar: const BottomNaviBar(),
-      sideNavigationBar: const SideNaviBar(),
+      sideNavigationBar: SideNaviBar(
+        floatingActionButton: FloatingActionButton(
+          elevation: 0,
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => Dialog(
+              child: SearchBar(
+                hintText: translate.packagesPage.searchPackages,
+                focusNode: FocusNode()..requestFocus(),
+                controller: textController,
+                leading: const Icon(Icons.search),
+                onSubmitted: (_) => context.pop(),
+              ),
+            ),
+          ),
+          child: const Icon(Icons.search),
+        ),
+      ),
       child: NestedScrollView(
         controller: scrollController,
         headerSliverBuilder: (_, __) => [const _SortPannel()],

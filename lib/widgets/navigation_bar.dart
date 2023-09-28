@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
@@ -22,11 +23,11 @@ class BottomNaviBar extends ConsumerWidget {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.search),
-            label: translate.bottomNaviBar.search,
+            label: translate.naviBar.search,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.settings),
-            label: translate.bottomNaviBar.settings,
+            label: translate.naviBar.settings,
           ),
         ],
         onTap: (index) => switch (index) {
@@ -43,7 +44,12 @@ class BottomNaviBar extends ConsumerWidget {
 }
 
 class SideNaviBar extends ConsumerWidget {
-  const SideNaviBar({super.key});
+  const SideNaviBar({
+    this.floatingActionButton,
+    super.key,
+  });
+
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,36 +57,52 @@ class SideNaviBar extends ConsumerWidget {
     final darkMode = ref.watch(darkModeProvider);
     final translate = ref.watch(translationProvider);
 
-    return NavigationRail(
-      labelType: NavigationRailLabelType.all,
-      selectedIndex: switch (path) {
-        'settings' => 1,
-        _ => 0,
-      },
-      leading: GestureDetector(
-        onTap: () => const PackagesRoute().go(context),
-        child: SizedBox(
-          width: 80,
-          child: Image.asset(
-            'assets/app/npm.png',
-            color: darkMode ? Colors.white : null,
+    return SizedBox(
+      width: 104,
+      child: NavigationRail(
+        groupAlignment: 1.0,
+        labelType: NavigationRailLabelType.all,
+        selectedIndex: switch (path) {
+          '/' => 0,
+          'settings' => 1,
+          _ => null,
+        },
+        leading: Column(
+          children: [
+            GestureDetector(
+              onTap: () => const PackagesRoute().go(context),
+              child: SizedBox(
+                width: 80,
+                child: Image.asset(
+                  'assets/app/npm.png',
+                  color: darkMode ? Colors.white : null,
+                ),
+              ),
+            ),
+            const Gap(20),
+            floatingActionButton ?? const SizedBox.shrink(),
+          ],
+        ),
+        onDestinationSelected: (index) => switch (index) {
+          1 => const SettingsRoute().go(context),
+          _ => const PackagesRoute().go(context)
+        },
+        destinations: [
+          path == '/'
+              ? NavigationRailDestination(
+                  icon: const Icon(Icons.list),
+                  label: Text(translate.naviBar.packages),
+                )
+              : NavigationRailDestination(
+                  icon: const Icon(Icons.search),
+                  label: Text(translate.naviBar.search),
+                ),
+          NavigationRailDestination(
+            icon: const Icon(Icons.settings),
+            label: Text(translate.naviBar.settings),
           ),
-        ),
+        ],
       ),
-      onDestinationSelected: (index) => switch (index) {
-        1 => const SettingsRoute().go(context),
-        _ => const PackagesRoute().go(context)
-      },
-      destinations: [
-        NavigationRailDestination(
-          icon: const Icon(Icons.search),
-          label: Text(translate.bottomNaviBar.search),
-        ),
-        NavigationRailDestination(
-          icon: const Icon(Icons.settings),
-          label: Text(translate.bottomNaviBar.settings),
-        ),
-      ],
     );
   }
 }
