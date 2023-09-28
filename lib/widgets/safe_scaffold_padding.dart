@@ -18,7 +18,7 @@ class SafeScaffoldPadding extends StatelessWidget {
       bottomNavigationBar: bottomNavigationBar,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
           child: child,
         ),
       ),
