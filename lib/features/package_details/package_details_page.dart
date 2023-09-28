@@ -5,8 +5,9 @@ import 'package:markdown_widget/markdown_widget.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
+import 'package:npm/widgets/navigation_bar.dart';
 import 'package:npm/widgets/link_text.dart';
-import 'package:npm/widgets/safe_scaffold_padding.dart';
+import 'package:npm/widgets/responsive_scaffold.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({required this.id, super.key});
@@ -17,10 +18,12 @@ class PackageDetailsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final package = ref.watch(packageDetailsProvider(id: id));
     final translate = ref.watch(translationProvider);
-    return SafeScaffoldPadding(
+
+    return ResponsiveScaffold(
       appBar: AppBar(
         title: Text(translate.packageDetailsPage.title),
       ),
+      sideNavigationBar: const SideNaviBar(),
       child: package.when(
         data: (package) => PackegeDetailsItem(package),
         error: (e, _) => Center(child: Text(e.toString())),

@@ -8,8 +8,8 @@ import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
-import 'package:npm/widgets/bottom_navi_bar.dart';
-import 'package:npm/widgets/safe_scaffold_padding.dart';
+import 'package:npm/widgets/navigation_bar.dart';
+import 'package:npm/widgets/responsive_scaffold.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'packages_page.g.dart';
@@ -36,11 +36,12 @@ class PackagesPage extends HookConsumerWidget {
     final sort = ref.watch(sortProvider);
     final focus = FocusNode();
 
-    return SafeScaffoldPadding(
+    return ResponsiveScaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         toolbarHeight: 80,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
               onTap: () => scrollController.jumpTo(0),
@@ -53,7 +54,7 @@ class PackagesPage extends HookConsumerWidget {
               ),
             ),
             const Gap(20),
-            Expanded(
+            Flexible(
                 child: SearchBar(
               hintText: translate.packagesPage.searchPackages,
               focusNode: focus,
@@ -64,6 +65,7 @@ class PackagesPage extends HookConsumerWidget {
         ),
       ),
       bottomNavigationBar: const BottomNaviBar(),
+      sideNavigationBar: const SideNaviBar(),
       child: NestedScrollView(
         controller: scrollController,
         headerSliverBuilder: (_, __) => [const _SortPannel()],
