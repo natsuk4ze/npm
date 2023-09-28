@@ -6,9 +6,15 @@
 
 A minimum implementation of [npm](https://www.npmjs.com) client app with modern flutter coding style.
 
-To run the app, [install flutter](https://docs.flutter.dev/get-started/install) and run `flutter run`.
-
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/example.gif" width=280 alt="example"/>
+
+## How to install
+
+1. install [flutter](https://docs.flutter.dev/get-started/install)
+2. clone this repository
+3. run `flutter pub get`
+4. run `flutter pub run build_runner build`
+5. run `flutter run`
 
 ## Features
 
