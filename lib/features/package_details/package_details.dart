@@ -31,9 +31,7 @@ String? _repositoryReadValue(Map json, String _) {
   final git = json['repository']?['url'] as String?;
   if (git == null) return null;
   final int index = git.indexOf('github.com');
-  if (index != -1) {
-    final url = git.substring(index);
-    return 'https://$url';
-  }
-  return null;
+  if (index == -1) return null;
+  final url = git.substring(index);
+  return 'https://$url';
 }
