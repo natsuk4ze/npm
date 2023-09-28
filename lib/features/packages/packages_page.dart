@@ -8,6 +8,7 @@ import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
+import 'package:npm/widgets/bottom_navi_bar.dart';
 import 'package:npm/widgets/safe_scaffold_padding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

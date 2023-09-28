@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
-import 'package:npm/router.dart';
+import 'package:npm/widgets/bottom_navi_bar.dart';
 import 'package:npm/widgets/link_text.dart';
 import 'package:npm/widgets/safe_scaffold_padding.dart';
 import 'package:url_launcher/url_launcher.dart';
