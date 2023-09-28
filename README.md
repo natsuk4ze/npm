@@ -4,7 +4,7 @@
 ![Test](https://github.com/natsuk4ze/npm/actions/workflows/ci.yml/badge.svg?branch=master)
 
 
-A minimum implementation of [npm](https://www.npmjs.com) client app with modern flutter coding style.
+A [npm](https://www.npmjs.com) client app with modern flutter coding style.
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/example.gif" width=280 alt="example"/>
 
