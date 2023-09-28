@@ -10,6 +10,8 @@ class MockRepository implements Repository {
     (i) => Package(
       name: '$name $i',
       version: '$i',
+      description: '',
+      keywords: [],
       score: Score(
         popularity: i.toDouble(),
         quality: i.toDouble(),
