@@ -13,8 +13,9 @@ A minimum implementation of [npm](https://www.npmjs.com) client app with modern 
 1. install [flutter](https://docs.flutter.dev/get-started/install)
 2. clone this repository
 3. run `flutter pub get`
-4. run `flutter pub run build_runner build`
-5. run `flutter run`
+4. run `dart run slang`
+5. run `dart run build_runner build`
+6. run `flutter run`
 
 ## Features
 
