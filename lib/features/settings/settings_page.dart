@@ -63,7 +63,7 @@ class _LanguageItem extends ConsumerWidget {
     final currentLang = ref.watch(languageProvider);
     final translate = ref.watch(translationProvider);
 
-    return _BaseItem(
+    return _Item(
       icon: Icons.language,
       leading: translate.settingsPage.language,
       title: currentLang.toString(),
@@ -95,7 +95,7 @@ class _DarkModeItem extends ConsumerWidget {
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
 
-    return _BaseItem(
+    return _Item(
       icon: Icons.light_mode,
       leading: translate.settingsPage.darkMode,
       trailing: Switch(
@@ -113,7 +113,7 @@ class _ReportItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
 
-    return _BaseItem(
+    return _Item(
       icon: Icons.report,
       leading: translate.settingsPage.report,
       trailing: const Icon(Icons.arrow_forward),
@@ -160,8 +160,8 @@ class _Lecense extends StatelessWidget {
   }
 }
 
-class _BaseItem extends StatelessWidget {
-  const _BaseItem({
+class _Item extends StatelessWidget {
+  const _Item({
     required this.icon,
     required this.leading,
     this.title,

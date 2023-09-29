@@ -92,7 +92,7 @@ class PackagesPage extends HookConsumerWidget {
             if (packages.isEmpty) return const _EmptyItem();
             List<Package>? sortedPackages;
             if (sort != null) {
-              sortedPackages = List.from(packages);
+              sortedPackages = List.of(packages);
               sortedPackages.sort((a, b) {
                 switch (sort) {
                   case ScoreType.maintenance:
