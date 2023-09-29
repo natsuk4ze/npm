@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 class ResponsiveScaffold extends StatelessWidget {
   const ResponsiveScaffold({
     required this.child,
+    required this.sideNavigationBar,
     this.bottomNavigationBar,
-    this.sideNavigationBar,
     this.appBar,
     super.key,
   });
@@ -13,7 +13,7 @@ class ResponsiveScaffold extends StatelessWidget {
   final Widget child;
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigationBar;
-  final Widget? sideNavigationBar;
+  final Widget sideNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ResponsiveScaffold extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
                 child: Row(
                   children: [
-                    sideNavigationBar ?? const SizedBox.shrink(),
+                    sideNavigationBar,
                     const Gap(12),
                     const VerticalDivider(),
                     const Gap(12),

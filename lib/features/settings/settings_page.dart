@@ -47,6 +47,7 @@ class SettingsPage extends ConsumerWidget {
             ),
             const Spacer(),
             const _Lecense(),
+            const Gap(40),
           ],
         ),
       ),
