@@ -43,6 +43,7 @@ class PackegeDetailsItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
+    const unkwnon = 'unkwnon';
 
     return SingleChildScrollView(
       child: Column(
@@ -63,13 +64,13 @@ class PackegeDetailsItem extends ConsumerWidget {
           const Gap(4),
           package.homepage != null
               ? LinkText(package.homepage!)
-              : const Text('unkwnon'),
+              : const Text(unkwnon),
           const Divider(),
           Text(translate.packageDetailsPage.repository),
           const Gap(4),
           package.repository != null
               ? LinkText(package.repository!)
-              : const Text('unkwon'),
+              : const Text(unkwnon),
           const Gap(40),
           const Row(
             children: [
@@ -96,6 +97,10 @@ class PackegeDetailsItem extends ConsumerWidget {
             children: List.generate(
                 package.keywords.length, (i) => Text(package.keywords[i])),
           ),
+          const Gap(20),
+          const Text('License'),
+          const Divider(),
+          Text(package.license ?? unkwnon)
         ],
       ),
     );
