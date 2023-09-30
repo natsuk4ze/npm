@@ -234,7 +234,7 @@ See:
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/localization.gif" width=200 alt="Localization"/>
 
-### 🪄 Responsive Design
+### 🪄 Responsive design
 Dynamic layouting for diffrent screen sizes.
 
 <details>
@@ -278,7 +278,7 @@ See: [language.dart](https://github.com/natsuk4ze/npm/blob/master/lib/widgets/re
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/responsive.gif" width=400 alt="Responsive"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/responsive.gif" width=200 alt="Responsive"/>
 
 ### ✅ Auto testing
 Auto testing with *github actions*.
