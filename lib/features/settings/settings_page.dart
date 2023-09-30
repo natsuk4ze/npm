@@ -47,7 +47,7 @@ class SettingsPage extends ConsumerWidget {
             ),
             const Spacer(),
             const _Lecense(),
-            const Gap(40),
+            const Gap(8),
           ],
         ),
       ),
@@ -145,12 +145,12 @@ class _Lecense extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(16),
+        const Gap(12),
         const LinkText(
           'https://github.com/natsuk4ze',
           text: 'Created by @natsuk4ze',
         ),
-        const Gap(16),
+        const Gap(12),
         const Text(
           'Midori Design Studio',
           style: TextStyle(color: Colors.grey),

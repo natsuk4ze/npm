@@ -42,8 +42,8 @@ class PackagesPage extends HookConsumerWidget {
         surfaceTintColor: Colors.transparent,
         toolbarHeight: 80,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            const Gap(20),
             GestureDetector(
               onTap: () => scrollController.jumpTo(0),
               child: SizedBox(
@@ -56,12 +56,13 @@ class PackagesPage extends HookConsumerWidget {
             ),
             const Gap(20),
             Flexible(
-                child: SearchBar(
-              hintText: translate.packagesPage.searchPackages,
-              focusNode: focus,
-              controller: textController,
-              onSubmitted: (_) => focus.unfocus(),
-            )),
+              child: SearchBar(
+                hintText: translate.packagesPage.searchPackages,
+                focusNode: focus,
+                controller: textController,
+                onSubmitted: (_) => focus.unfocus(),
+              ),
+            ),
           ],
         ),
       ),
@@ -87,39 +88,41 @@ class PackagesPage extends HookConsumerWidget {
       child: NestedScrollView(
         controller: scrollController,
         headerSliverBuilder: (_, __) => [const _SortPannel()],
-        body: packages.when(
-          data: (packages) {
-            if (packages.isEmpty) return const _EmptyItem();
-            List<Package>? sortedPackages;
-            if (sort != null) {
-              sortedPackages = List.of(packages);
-              sortedPackages.sort((a, b) {
-                switch (sort) {
-                  case ScoreType.maintenance:
-                    return b.score.maintenance.compareTo(a.score.maintenance);
-                  case ScoreType.popularity:
-                    return b.score.popularity.compareTo(a.score.popularity);
-                  case ScoreType.quality:
-                    return b.score.quality.compareTo(a.score.quality);
-                }
-              });
-            }
-            return RefreshIndicator(
-              onRefresh: () async {
-                ref.invalidate(packagesProvider);
-                await ref
-                    .read(packagesProvider(search: textController.text).future);
-              },
-              child: ListView.separated(
-                separatorBuilder: (_, __) => const Divider(),
-                itemCount: sortedPackages?.length ?? packages.length,
-                itemBuilder: (_, int i) =>
-                    PackageItem(sortedPackages?[i] ?? packages[i]),
-              ),
-            );
-          },
-          error: (e, _) => Center(child: Text(e.toString())),
-          loading: () => const Center(child: CircularProgressIndicator()),
+        body: Center(
+          child: packages.when(
+            data: (packages) {
+              if (packages.isEmpty) return const _EmptyItem();
+              List<Package>? sortedPackages;
+              if (sort != null) {
+                sortedPackages = List.of(packages);
+                sortedPackages.sort((a, b) {
+                  switch (sort) {
+                    case ScoreType.maintenance:
+                      return b.score.maintenance.compareTo(a.score.maintenance);
+                    case ScoreType.popularity:
+                      return b.score.popularity.compareTo(a.score.popularity);
+                    case ScoreType.quality:
+                      return b.score.quality.compareTo(a.score.quality);
+                  }
+                });
+              }
+              return RefreshIndicator(
+                onRefresh: () async {
+                  ref.invalidate(packagesProvider);
+                  await ref.read(
+                      packagesProvider(search: textController.text).future);
+                },
+                child: ListView.separated(
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemCount: sortedPackages?.length ?? packages.length,
+                  itemBuilder: (_, int i) =>
+                      PackageItem(sortedPackages?[i] ?? packages[i]),
+                ),
+              );
+            },
+            error: (e, _) => Text(e.toString()),
+            loading: () => const CircularProgressIndicator(),
+          ),
         ),
       ),
     );
@@ -266,16 +269,19 @@ class _EmptyItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          'assets/app/empty.png',
-          width: 200,
-        ),
-        const Gap(20),
-        Text(translate.packagesPage.packageNotFound)
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'assets/app/empty.png',
+            width: 200,
+          ),
+          const Gap(20),
+          Text(translate.packagesPage.packageNotFound)
+        ],
+      ),
     );
   }
 }
