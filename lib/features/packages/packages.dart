@@ -9,7 +9,10 @@ part 'packages.freezed.dart';
 @riverpod
 Future<List<Package>> packages(PackagesRef ref,
         {required String search}) async =>
-    ref.watch(repositoryProvider).getPackges(search: search);
+    ref.watch(repositoryProvider).getPackges(
+          search: search,
+          cancelToken: ref.cancelToken,
+        );
 
 @freezed
 class Package with _$Package {

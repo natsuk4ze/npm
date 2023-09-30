@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -28,7 +29,11 @@ class MockRepository implements Repository {
   );
 
   @override
-  Future<List<Package>> getPackges({required String search}) async => packages;
+  Future<List<Package>> getPackges({
+    required String search,
+    required CancelToken cancelToken,
+  }) async =>
+      packages;
   @override
   Future<PackageDetails> getPackageDetails({required String id}) async =>
       packageDetils;
