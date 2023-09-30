@@ -17,8 +17,10 @@ class Repository {
     required String search,
     required CancelToken cancelToken,
   }) async {
-    final response = await _dio.get('$_baseUrl/-/v1/search?text=$search',
-        cancelToken: cancelToken);
+    final response = await _dio.get(
+      '$_baseUrl/-/v1/search?text=$search',
+      cancelToken: cancelToken,
+    );
     final List packages = response.data['objects'];
     return packages
         .map((package) => Package.fromJson(package as Map<String, dynamic>))
