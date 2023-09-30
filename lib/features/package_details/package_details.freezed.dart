@@ -23,8 +23,8 @@ mixin _$PackageDetails {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get keywords => throw _privateConstructorUsedError;
-  String get license => throw _privateConstructorUsedError;
   String get readme => throw _privateConstructorUsedError;
+  String? get license => throw _privateConstructorUsedError;
   String? get homepage => throw _privateConstructorUsedError;
   @JsonKey(readValue: _repositoryReadValue)
   String? get repository => throw _privateConstructorUsedError;
@@ -45,8 +45,8 @@ abstract class $PackageDetailsCopyWith<$Res> {
       {String name,
       String description,
       List<String> keywords,
-      String license,
       String readme,
+      String? license,
       String? homepage,
       @JsonKey(readValue: _repositoryReadValue) String? repository});
 }
@@ -67,8 +67,8 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
-    Object? license = null,
     Object? readme = null,
+    Object? license = freezed,
     Object? homepage = freezed,
     Object? repository = freezed,
   }) {
@@ -85,14 +85,14 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
           ? _value.keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      license: null == license
-          ? _value.license
-          : license // ignore: cast_nullable_to_non_nullable
-              as String,
       readme: null == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
               as String,
+      license: freezed == license
+          ? _value.license
+          : license // ignore: cast_nullable_to_non_nullable
+              as String?,
       homepage: freezed == homepage
           ? _value.homepage
           : homepage // ignore: cast_nullable_to_non_nullable
@@ -117,8 +117,8 @@ abstract class _$$_PackageDetailsCopyWith<$Res>
       {String name,
       String description,
       List<String> keywords,
-      String license,
       String readme,
+      String? license,
       String? homepage,
       @JsonKey(readValue: _repositoryReadValue) String? repository});
 }
@@ -137,8 +137,8 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? keywords = null,
-    Object? license = null,
     Object? readme = null,
+    Object? license = freezed,
     Object? homepage = freezed,
     Object? repository = freezed,
   }) {
@@ -155,14 +155,14 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
           ? _value._keywords
           : keywords // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      license: null == license
-          ? _value.license
-          : license // ignore: cast_nullable_to_non_nullable
-              as String,
       readme: null == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
               as String,
+      license: freezed == license
+          ? _value.license
+          : license // ignore: cast_nullable_to_non_nullable
+              as String?,
       homepage: freezed == homepage
           ? _value.homepage
           : homepage // ignore: cast_nullable_to_non_nullable
@@ -182,8 +182,8 @@ class _$_PackageDetails extends _PackageDetails {
       {required this.name,
       this.description = '',
       final List<String> keywords = const [],
-      required this.license,
       required this.readme,
+      required this.license,
       required this.homepage,
       @JsonKey(readValue: _repositoryReadValue) required this.repository})
       : _keywords = keywords,
@@ -207,9 +207,9 @@ class _$_PackageDetails extends _PackageDetails {
   }
 
   @override
-  final String license;
-  @override
   final String readme;
+  @override
+  final String? license;
   @override
   final String? homepage;
   @override
@@ -218,7 +218,7 @@ class _$_PackageDetails extends _PackageDetails {
 
   @override
   String toString() {
-    return 'PackageDetails(name: $name, description: $description, keywords: $keywords, license: $license, readme: $readme, homepage: $homepage, repository: $repository)';
+    return 'PackageDetails(name: $name, description: $description, keywords: $keywords, readme: $readme, license: $license, homepage: $homepage, repository: $repository)';
   }
 
   @override
@@ -230,8 +230,8 @@ class _$_PackageDetails extends _PackageDetails {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._keywords, _keywords) &&
-            (identical(other.license, license) || other.license == license) &&
             (identical(other.readme, readme) || other.readme == readme) &&
+            (identical(other.license, license) || other.license == license) &&
             (identical(other.homepage, homepage) ||
                 other.homepage == homepage) &&
             (identical(other.repository, repository) ||
@@ -245,8 +245,8 @@ class _$_PackageDetails extends _PackageDetails {
       name,
       description,
       const DeepCollectionEquality().hash(_keywords),
-      license,
       readme,
+      license,
       homepage,
       repository);
 
@@ -269,8 +269,8 @@ abstract class _PackageDetails extends PackageDetails {
       {required final String name,
       final String description,
       final List<String> keywords,
-      required final String license,
       required final String readme,
+      required final String? license,
       required final String? homepage,
       @JsonKey(readValue: _repositoryReadValue)
       required final String? repository}) = _$_PackageDetails;
@@ -286,9 +286,9 @@ abstract class _PackageDetails extends PackageDetails {
   @override
   List<String> get keywords;
   @override
-  String get license;
-  @override
   String get readme;
+  @override
+  String? get license;
   @override
   String? get homepage;
   @override

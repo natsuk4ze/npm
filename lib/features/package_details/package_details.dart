@@ -18,8 +18,8 @@ class PackageDetails with _$PackageDetails {
     required final String name,
     @Default('') final String description,
     @Default([]) final List<String> keywords,
-    required final String license,
     required final String readme,
+    required final String? license,
     required final String? homepage,
     @JsonKey(readValue: _repositoryReadValue) required final String? repository,
   }) = _PackageDetails;

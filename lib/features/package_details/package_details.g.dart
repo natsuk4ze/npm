@@ -14,8 +14,8 @@ _$_PackageDetails _$$_PackageDetailsFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      license: json['license'] as String,
       readme: json['readme'] as String,
+      license: json['license'] as String?,
       homepage: json['homepage'] as String?,
       repository: _repositoryReadValue(json, 'repository') as String?,
     );
@@ -25,8 +25,8 @@ Map<String, dynamic> _$$_PackageDetailsToJson(_$_PackageDetails instance) =>
       'name': instance.name,
       'description': instance.description,
       'keywords': instance.keywords,
-      'license': instance.license,
       'readme': instance.readme,
+      'license': instance.license,
       'homepage': instance.homepage,
       'repository': instance.repository,
     };
