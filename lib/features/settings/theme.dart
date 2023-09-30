@@ -14,40 +14,19 @@ class DarkMode extends _$DarkMode {
 @riverpod
 ThemeData theme(ThemeRef ref) {
   final darkMode = ref.watch(darkModeProvider);
+  final appBarTheme = AppBarTheme(
+    elevation: 4,
+    titleTextStyle: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: darkMode ? null : Colors.black,
+    ),
+  );
+
   return darkMode
-      ? ThemeData.dark().copyWith(
-          appBarTheme: _CustomTheme.appBarTheme(darkMode),
-          pageTransitionsTheme: _CustomTheme.pageTransitionsTheme,
-        )
+      ? ThemeData.dark().copyWith(appBarTheme: appBarTheme)
       : ThemeData(
-          appBarTheme: _CustomTheme.appBarTheme(darkMode),
-          pageTransitionsTheme: _CustomTheme.pageTransitionsTheme,
+          appBarTheme: appBarTheme,
           colorSchemeSeed: Colors.black,
         );
-}
-
-class _CustomTheme {
-  static PageTransitionsTheme get pageTransitionsTheme =>
-      const PageTransitionsTheme(
-        builders: {
-          TargetPlatform.android: _NoTransitionsBuilder(),
-          TargetPlatform.iOS: _NoTransitionsBuilder(),
-        },
-      );
-
-  static AppBarTheme appBarTheme(bool darkMode) => AppBarTheme(
-        elevation: 4,
-        titleTextStyle: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: darkMode ? null : Colors.black,
-        ),
-      );
-}
-
-class _NoTransitionsBuilder extends PageTransitionsBuilder {
-  const _NoTransitionsBuilder();
-
-  @override
-  Widget buildTransitions<T>(_, __, ___, ____, Widget child) => child;
 }
