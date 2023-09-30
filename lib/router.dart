@@ -24,6 +24,7 @@ Raw<GoRouter> router(RouterRef ref) {
     path: 'settings',
   ),
 ])
+
 @immutable
 class PackagesRoute extends GoRouteData {
   const PackagesRoute();
