@@ -15,9 +15,6 @@ migration:
     - platform: root
       create_revision: 0d074ced6cd64f39f586aaa115b2e4c993d74cb7
       base_revision: 0d074ced6cd64f39f586aaa115b2e4c993d74cb7
-    - platform: web
-      create_revision: 0d074ced6cd64f39f586aaa115b2e4c993d74cb7
-      base_revision: 0d074ced6cd64f39f586aaa115b2e4c993d74cb7
 
   # User provided section
 
