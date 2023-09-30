@@ -17,10 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Package {
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<String> get keywords => throw _privateConstructorUsedError;
   String get version => throw _privateConstructorUsedError;
   Score get score => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  List<String>? get keywords => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
@@ -33,10 +33,10 @@ abstract class $PackageCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      String description,
-      List<String> keywords,
       String version,
-      Score score});
+      Score score,
+      String? description,
+      List<String>? keywords});
 
   $ScoreCopyWith<$Res> get score;
 }
@@ -55,24 +55,16 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
   @override
   $Res call({
     Object? name = null,
-    Object? description = null,
-    Object? keywords = null,
     Object? version = null,
     Object? score = null,
+    Object? description = freezed,
+    Object? keywords = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      keywords: null == keywords
-          ? _value.keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -81,6 +73,14 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as Score,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      keywords: freezed == keywords
+          ? _value.keywords
+          : keywords // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 
@@ -102,10 +102,10 @@ abstract class _$$_PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      String description,
-      List<String> keywords,
       String version,
-      Score score});
+      Score score,
+      String? description,
+      List<String>? keywords});
 
   @override
   $ScoreCopyWith<$Res> get score;
@@ -122,24 +122,16 @@ class __$$_PackageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? description = null,
-    Object? keywords = null,
     Object? version = null,
     Object? score = null,
+    Object? description = freezed,
+    Object? keywords = freezed,
   }) {
     return _then(_$_Package(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      keywords: null == keywords
-          ? _value._keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       version: null == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -148,6 +140,14 @@ class __$$_PackageCopyWithImpl<$Res>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as Score,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      keywords: freezed == keywords
+          ? _value._keywords
+          : keywords // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -157,33 +157,34 @@ class __$$_PackageCopyWithImpl<$Res>
 class _$_Package extends _Package {
   const _$_Package(
       {required this.name,
-      required this.description,
-      required final List<String> keywords,
       required this.version,
-      required this.score})
+      required this.score,
+      this.description,
+      final List<String>? keywords})
       : _keywords = keywords,
         super._();
 
   @override
   final String name;
   @override
-  final String description;
-  final List<String> _keywords;
-  @override
-  List<String> get keywords {
-    if (_keywords is EqualUnmodifiableListView) return _keywords;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_keywords);
-  }
-
-  @override
   final String version;
   @override
   final Score score;
+  @override
+  final String? description;
+  final List<String>? _keywords;
+  @override
+  List<String>? get keywords {
+    final value = _keywords;
+    if (value == null) return null;
+    if (_keywords is EqualUnmodifiableListView) return _keywords;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Package(name: $name, description: $description, keywords: $keywords, version: $version, score: $score)';
+    return 'Package(name: $name, version: $version, score: $score, description: $description, keywords: $keywords)';
   }
 
   @override
@@ -192,16 +193,16 @@ class _$_Package extends _Package {
         (other.runtimeType == runtimeType &&
             other is _$_Package &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.score, score) || other.score == score) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._keywords, _keywords) &&
-            (identical(other.version, version) || other.version == version) &&
-            (identical(other.score, score) || other.score == score));
+            const DeepCollectionEquality().equals(other._keywords, _keywords));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, description,
-      const DeepCollectionEquality().hash(_keywords), version, score);
+  int get hashCode => Object.hash(runtimeType, name, version, score,
+      description, const DeepCollectionEquality().hash(_keywords));
 
   @JsonKey(ignore: true)
   @override
@@ -213,22 +214,22 @@ class _$_Package extends _Package {
 abstract class _Package extends Package {
   const factory _Package(
       {required final String name,
-      required final String description,
-      required final List<String> keywords,
       required final String version,
-      required final Score score}) = _$_Package;
+      required final Score score,
+      final String? description,
+      final List<String>? keywords}) = _$_Package;
   const _Package._() : super._();
 
   @override
   String get name;
   @override
-  String get description;
-  @override
-  List<String> get keywords;
-  @override
   String get version;
   @override
   Score get score;
+  @override
+  String? get description;
+  @override
+  List<String>? get keywords;
   @override
   @JsonKey(ignore: true)
   _$$_PackageCopyWith<_$_Package> get copyWith =>

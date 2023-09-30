@@ -230,26 +230,26 @@ class PackageItem extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              package.description,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            package.keywords.isEmpty
-                ? const SizedBox.shrink()
-                : SizedBox(
-                    height: 60,
-                    child: ListView.separated(
-                      separatorBuilder: (_, __) => const Gap(8),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: package.keywords.length,
-                      itemBuilder: (_, int i) => Chip(
-                        label: Text(package.keywords[i]),
-                        backgroundColor: Theme.of(context).hoverColor,
-                        side: BorderSide.none,
-                      ),
-                    ),
+            if (package.description != null)
+              Text(
+                package.description!,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            if (package.keywords != null)
+              SizedBox(
+                height: 60,
+                child: ListView.separated(
+                  separatorBuilder: (_, __) => const Gap(8),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: package.keywords!.length,
+                  itemBuilder: (_, int i) => Chip(
+                    label: Text(package.keywords![i]),
+                    backgroundColor: Theme.of(context).hoverColor,
+                    side: BorderSide.none,
                   ),
+                ),
+              ),
             for (var score in scoreTypes)
               ScoreBar(
                 type: score,

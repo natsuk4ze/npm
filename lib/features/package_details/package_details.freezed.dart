@@ -21,12 +21,12 @@ PackageDetails _$PackageDetailsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PackageDetails {
   String get name => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<String> get keywords => throw _privateConstructorUsedError;
-  String get readme => throw _privateConstructorUsedError;
+  String? get readme => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  List<String>? get keywords => throw _privateConstructorUsedError;
   String? get license => throw _privateConstructorUsedError;
   String? get homepage => throw _privateConstructorUsedError;
-  @JsonKey(readValue: _repositoryReadValue)
+  @JsonKey(readValue: _toRepository)
   String? get repository => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,12 +43,12 @@ abstract class $PackageDetailsCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      String description,
-      List<String> keywords,
-      String readme,
+      String? readme,
+      String? description,
+      List<String>? keywords,
       String? license,
       String? homepage,
-      @JsonKey(readValue: _repositoryReadValue) String? repository});
+      @JsonKey(readValue: _toRepository) String? repository});
 }
 
 /// @nodoc
@@ -65,9 +65,9 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
   @override
   $Res call({
     Object? name = null,
-    Object? description = null,
-    Object? keywords = null,
-    Object? readme = null,
+    Object? readme = freezed,
+    Object? description = freezed,
+    Object? keywords = freezed,
     Object? license = freezed,
     Object? homepage = freezed,
     Object? repository = freezed,
@@ -77,18 +77,18 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      keywords: null == keywords
-          ? _value.keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      readme: null == readme
+      readme: freezed == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      keywords: freezed == keywords
+          ? _value.keywords
+          : keywords // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       license: freezed == license
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
@@ -115,12 +115,12 @@ abstract class _$$_PackageDetailsCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      String description,
-      List<String> keywords,
-      String readme,
+      String? readme,
+      String? description,
+      List<String>? keywords,
       String? license,
       String? homepage,
-      @JsonKey(readValue: _repositoryReadValue) String? repository});
+      @JsonKey(readValue: _toRepository) String? repository});
 }
 
 /// @nodoc
@@ -135,9 +135,9 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? description = null,
-    Object? keywords = null,
-    Object? readme = null,
+    Object? readme = freezed,
+    Object? description = freezed,
+    Object? keywords = freezed,
     Object? license = freezed,
     Object? homepage = freezed,
     Object? repository = freezed,
@@ -147,18 +147,18 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      keywords: null == keywords
-          ? _value._keywords
-          : keywords // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      readme: null == readme
+      readme: freezed == readme
           ? _value.readme
           : readme // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      keywords: freezed == keywords
+          ? _value._keywords
+          : keywords // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       license: freezed == license
           ? _value.license
           : license // ignore: cast_nullable_to_non_nullable
@@ -180,12 +180,12 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
 class _$_PackageDetails extends _PackageDetails {
   const _$_PackageDetails(
       {required this.name,
-      this.description = '',
-      final List<String> keywords = const [],
-      required this.readme,
-      required this.license,
-      required this.homepage,
-      @JsonKey(readValue: _repositoryReadValue) required this.repository})
+      this.readme,
+      this.description,
+      final List<String>? keywords,
+      this.license,
+      this.homepage,
+      @JsonKey(readValue: _toRepository) required this.repository})
       : _keywords = keywords,
         super._();
 
@@ -195,30 +195,30 @@ class _$_PackageDetails extends _PackageDetails {
   @override
   final String name;
   @override
-  @JsonKey()
-  final String description;
-  final List<String> _keywords;
+  final String? readme;
   @override
-  @JsonKey()
-  List<String> get keywords {
+  final String? description;
+  final List<String>? _keywords;
+  @override
+  List<String>? get keywords {
+    final value = _keywords;
+    if (value == null) return null;
     if (_keywords is EqualUnmodifiableListView) return _keywords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_keywords);
+    return EqualUnmodifiableListView(value);
   }
 
-  @override
-  final String readme;
   @override
   final String? license;
   @override
   final String? homepage;
   @override
-  @JsonKey(readValue: _repositoryReadValue)
+  @JsonKey(readValue: _toRepository)
   final String? repository;
 
   @override
   String toString() {
-    return 'PackageDetails(name: $name, description: $description, keywords: $keywords, readme: $readme, license: $license, homepage: $homepage, repository: $repository)';
+    return 'PackageDetails(name: $name, readme: $readme, description: $description, keywords: $keywords, license: $license, homepage: $homepage, repository: $repository)';
   }
 
   @override
@@ -227,10 +227,10 @@ class _$_PackageDetails extends _PackageDetails {
         (other.runtimeType == runtimeType &&
             other is _$_PackageDetails &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.readme, readme) || other.readme == readme) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._keywords, _keywords) &&
-            (identical(other.readme, readme) || other.readme == readme) &&
             (identical(other.license, license) || other.license == license) &&
             (identical(other.homepage, homepage) ||
                 other.homepage == homepage) &&
@@ -243,9 +243,9 @@ class _$_PackageDetails extends _PackageDetails {
   int get hashCode => Object.hash(
       runtimeType,
       name,
+      readme,
       description,
       const DeepCollectionEquality().hash(_keywords),
-      readme,
       license,
       homepage,
       repository);
@@ -267,12 +267,12 @@ class _$_PackageDetails extends _PackageDetails {
 abstract class _PackageDetails extends PackageDetails {
   const factory _PackageDetails(
       {required final String name,
-      final String description,
-      final List<String> keywords,
-      required final String readme,
-      required final String? license,
-      required final String? homepage,
-      @JsonKey(readValue: _repositoryReadValue)
+      final String? readme,
+      final String? description,
+      final List<String>? keywords,
+      final String? license,
+      final String? homepage,
+      @JsonKey(readValue: _toRepository)
       required final String? repository}) = _$_PackageDetails;
   const _PackageDetails._() : super._();
 
@@ -282,17 +282,17 @@ abstract class _PackageDetails extends PackageDetails {
   @override
   String get name;
   @override
-  String get description;
+  String? get readme;
   @override
-  List<String> get keywords;
+  String? get description;
   @override
-  String get readme;
+  List<String>? get keywords;
   @override
   String? get license;
   @override
   String? get homepage;
   @override
-  @JsonKey(readValue: _repositoryReadValue)
+  @JsonKey(readValue: _toRepository)
   String? get repository;
   @override
   @JsonKey(ignore: true)

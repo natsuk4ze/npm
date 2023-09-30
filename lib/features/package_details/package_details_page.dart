@@ -56,9 +56,7 @@ class PackegeDetailsItem extends ConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(
-            package.description,
-          ),
+          if (package.description != null) Text(package.description!),
           const Gap(20),
           Text(translate.packageDetailsPage.homepage),
           const Gap(4),
@@ -80,23 +78,26 @@ class PackegeDetailsItem extends ConsumerWidget {
             ],
           ),
           const Divider(),
-          MarkdownWidget(
-            config: darkMode
-                ? MarkdownConfig.darkConfig
-                : MarkdownConfig.defaultConfig,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            data: package.readme,
-          ),
+          package.readme != null
+              ? MarkdownWidget(
+                  config: darkMode
+                      ? MarkdownConfig.darkConfig
+                      : MarkdownConfig.defaultConfig,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  data: package.readme!,
+                )
+              : const Text(unkwnon),
           const Gap(20),
           const Text('Keywords'),
           const Divider(),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: List.generate(
-                package.keywords.length, (i) => Text(package.keywords[i])),
-          ),
+          if (package.keywords != null)
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: List.generate(
+                  package.keywords!.length, (i) => Text(package.keywords![i])),
+            ),
           const Gap(20),
           const Text('License'),
           const Divider(),

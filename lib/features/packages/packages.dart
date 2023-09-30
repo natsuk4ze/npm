@@ -19,21 +19,22 @@ class Package with _$Package {
   const Package._();
   const factory Package({
     required final String name,
-    required final String description,
-    required final List<String> keywords,
     required final String version,
     required final Score score,
+    final String? description,
+    final List<String>? keywords,
   }) = _Package;
   factory Package.fromJson(Map<String, dynamic> json) {
     final package = json['package'];
     final score = json['score']['detail'];
-    
+
     return Package(
       name: package['name'],
-      description: package['description'] ?? '',
+      description: package['description'],
       version: package['version'],
-      keywords: List<String>.from(
-          package['keywords']?.map((e) => e.toString()) ?? []),
+      keywords: package['keywords'] != null
+          ? List<String>.from(package['keywords'])
+          : null,
       score: Score.fromJson(score),
     );
   }

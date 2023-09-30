@@ -9,23 +9,22 @@ part of 'package_details.dart';
 _$_PackageDetails _$$_PackageDetailsFromJson(Map<String, dynamic> json) =>
     _$_PackageDetails(
       name: json['name'] as String,
-      description: json['description'] as String? ?? '',
+      readme: json['readme'] as String?,
+      description: json['description'] as String?,
       keywords: (json['keywords'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      readme: json['readme'] as String,
+          ?.map((e) => e as String)
+          .toList(),
       license: json['license'] as String?,
       homepage: json['homepage'] as String?,
-      repository: _repositoryReadValue(json, 'repository') as String?,
+      repository: _toRepository(json, 'repository') as String?,
     );
 
 Map<String, dynamic> _$$_PackageDetailsToJson(_$_PackageDetails instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'readme': instance.readme,
       'description': instance.description,
       'keywords': instance.keywords,
-      'readme': instance.readme,
       'license': instance.license,
       'homepage': instance.homepage,
       'repository': instance.repository,

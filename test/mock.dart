@@ -34,6 +34,7 @@ class MockRepository implements Repository {
     required CancelToken cancelToken,
   }) async =>
       packages;
+
   @override
   Future<PackageDetails> getPackageDetails({required String id}) async =>
       packageDetils;
