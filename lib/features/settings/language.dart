@@ -5,8 +5,8 @@ part 'language.g.dart';
 
 @riverpod
 StringsEn translation(TranslationRef ref) {
-  final lan = ref.watch(languageProvider);
-  switch (lan) {
+  final lang = ref.watch(languageProvider);
+  switch (lang) {
     case LanguageType.ja:
       return AppLocale.ja.build();
     default:

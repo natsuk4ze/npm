@@ -43,7 +43,7 @@ class PackegeDetailsItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
-    const unkwnon = 'unkwnon';
+    const unknown = 'unknown';
 
     return SingleChildScrollView(
       child: Column(
@@ -62,13 +62,13 @@ class PackegeDetailsItem extends ConsumerWidget {
           const Gap(4),
           package.homepage != null
               ? LinkText(package.homepage!)
-              : const Text(unkwnon),
+              : const Text(unknown),
           const Divider(),
           Text(translate.packageDetailsPage.repository),
           const Gap(4),
           package.repository != null
               ? LinkText(package.repository!)
-              : const Text(unkwnon),
+              : const Text(unknown),
           const Gap(40),
           const Row(
             children: [
@@ -87,7 +87,7 @@ class PackegeDetailsItem extends ConsumerWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   data: package.readme!,
                 )
-              : const Text(unkwnon),
+              : const Text(unknown),
           const Gap(20),
           const Text('Keywords'),
           const Divider(),
@@ -101,7 +101,7 @@ class PackegeDetailsItem extends ConsumerWidget {
           const Gap(20),
           const Text('License'),
           const Divider(),
-          Text(package.license ?? unkwnon)
+          Text(package.license ?? unknown)
         ],
       ),
     );
