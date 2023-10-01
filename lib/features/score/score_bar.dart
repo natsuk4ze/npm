@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/score/score.dart';
+import 'package:npm/features/settings/language.dart';
 
 class ScoreBar extends ConsumerWidget {
   const ScoreBar({
@@ -15,6 +16,8 @@ class ScoreBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -22,7 +25,7 @@ class ScoreBar extends ConsumerWidget {
         SizedBox(
           width: 12,
           child: Text(
-            type.transltate(ref)[0],
+            type.transltate(translate)[0],
             style: const TextStyle(
               fontSize: 12,
             ),

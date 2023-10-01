@@ -75,7 +75,7 @@ class PackagesPage extends HookConsumerWidget {
             builder: (context) => Dialog(
               child: SearchBar(
                 hintText: translate.packagesPage.searchPackages,
-                focusNode: FocusNode()..requestFocus(),
+                focusNode: focus..requestFocus(),
                 controller: textController,
                 leading: const Icon(Icons.search),
                 onSubmitted: (_) => context.pop(),
@@ -176,7 +176,7 @@ class _SortPannel extends ConsumerWidget {
                         ),
                         const Gap(12),
                         Text(
-                          score.transltate(ref),
+                          score.transltate(translate),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,

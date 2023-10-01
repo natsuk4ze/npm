@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:npm/features/settings/language.dart';
+import 'package:npm/i18n/strings.g.dart';
 
 part 'score.freezed.dart';
 part 'score.g.dart';
@@ -33,12 +32,9 @@ enum ScoreType {
         maintenance => score.maintenance,
       };
 
-  String transltate(WidgetRef ref) {
-    final translate = ref.read(translationProvider);
-    return switch (this) {
-      popularity => translate.packagesPage.score.popularity,
-      quality => translate.packagesPage.score.quality,
-      maintenance => translate.packagesPage.score.maintenance,
-    };
-  }
+  String transltate(StringsEn translate) => switch (this) {
+        popularity => translate.packagesPage.score.popularity,
+        quality => translate.packagesPage.score.quality,
+        maintenance => translate.packagesPage.score.maintenance,
+      };
 }

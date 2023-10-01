@@ -4,7 +4,23 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
+import 'package:npm/i18n/strings.g.dart';
 import 'package:npm/router.dart';
+
+enum _Items {
+  packages,
+  settings;
+
+  Icon get icon => switch (this) {
+        packages => const Icon(Icons.search),
+        settings => const Icon(Icons.settings),
+      };
+
+  String label(StringsEn translate) => switch (this) {
+        packages => translate.naviBar.search,
+        settings => translate.naviBar.settings,
+      };
+}
 
 class BottomNaviBar extends ConsumerWidget {
   const BottomNaviBar({super.key});
@@ -21,22 +37,23 @@ class BottomNaviBar extends ConsumerWidget {
       ),
       child: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            label: translate.naviBar.search,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.settings),
-            label: translate.naviBar.settings,
-          ),
+          for (var item in _Items.values)
+            BottomNavigationBarItem(
+              icon: item.icon,
+              label: item.label(translate),
+            )
         ],
-        onTap: (index) => switch (index) {
-          1 => const SettingsRoute().go(context),
-          _ => const PackagesRoute().go(context)
+        onTap: (index) {
+          switch (index) {
+            case _ when index == _Items.settings.index:
+              const SettingsRoute().go(context);
+            default:
+              const PackagesRoute().go(context);
+          }
         },
         currentIndex: switch (path) {
-          SettingsRoute.path => 1,
-          _ => 0,
+          SettingsRoute.path => _Items.settings.index,
+          _ => _Items.packages.index,
         },
       ),
     );
@@ -63,8 +80,8 @@ class SideNaviBar extends ConsumerWidget {
         groupAlignment: 1.0,
         labelType: NavigationRailLabelType.all,
         selectedIndex: switch (path) {
-          PackagesRoute.path => 0,
-          SettingsRoute.path => 1,
+          PackagesRoute.path => _Items.packages.index,
+          SettingsRoute.path => _Items.settings.index,
           _ => null,
         },
         leading: Column(
@@ -83,24 +100,25 @@ class SideNaviBar extends ConsumerWidget {
             floatingActionButton ?? const SizedBox.shrink(),
           ],
         ),
-        onDestinationSelected: (index) => switch (index) {
-          1 => const SettingsRoute().go(context),
-          _ => const PackagesRoute().go(context)
+        onDestinationSelected: (index) {
+          switch (index) {
+            case _ when index == _Items.settings.index:
+              const SettingsRoute().go(context);
+            default:
+              const PackagesRoute().go(context);
+          }
         },
         destinations: [
-          path == PackagesRoute.path
-              ? NavigationRailDestination(
-                  icon: const Icon(Icons.list),
-                  label: Text(translate.naviBar.packages),
-                )
-              : NavigationRailDestination(
-                  icon: const Icon(Icons.search),
-                  label: Text(translate.naviBar.search),
-                ),
-          NavigationRailDestination(
-            icon: const Icon(Icons.settings),
-            label: Text(translate.naviBar.settings),
-          ),
+          for (var item in _Items.values)
+            (path == PackagesRoute.path && item == _Items.packages)
+                ? NavigationRailDestination(
+                    icon: const Icon(Icons.list),
+                    label: Text(translate.naviBar.packages),
+                  )
+                : NavigationRailDestination(
+                    icon: item.icon,
+                    label: Text(item.label(translate)),
+                  )
         ],
       ),
     );
