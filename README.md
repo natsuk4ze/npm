@@ -208,8 +208,8 @@ Dynamic localization with *slang* and *riverpod*.
 ```dart
 @riverpod
 StringsEn translation(TranslationRef ref) {
-  final lan = ref.watch(languageProvider);
-  switch (lan) {
+  final lang = ref.watch(languageProvider);
+  switch (lang) {
     case LanguageType.ja:
       return AppLocale.ja.build();
     default:
@@ -331,10 +331,6 @@ jobs:
       - name: Build Android
         timeout-minutes: 10
         run: flutter build appbundle
-
-      - name: Build Web
-        timeout-minutes: 10
-        run: flutter build web
 ```
 
 See:
