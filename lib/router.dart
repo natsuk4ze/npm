@@ -16,18 +16,19 @@ Raw<GoRouter> router(RouterRef ref) {
   return router;
 }
 
-@TypedGoRoute<PackagesRoute>(path: '/', routes: [
+@TypedGoRoute<PackagesRoute>(path: PackagesRoute.path, routes: [
   TypedGoRoute<PackageDetailsRoute>(
-    path: 'details/:id',
+    path: '${PackageDetailsRoute.path}/:id',
   ),
   TypedGoRoute<SettingsRoute>(
-    path: 'settings',
+    path: SettingsRoute.path,
   ),
 ])
-
 @immutable
 class PackagesRoute extends GoRouteData {
   const PackagesRoute();
+
+  static const String path = '/';
 
   @override
   Widget build(context, state) => const PackagesPage();
@@ -39,6 +40,8 @@ class PackageDetailsRoute extends GoRouteData {
 
   final String id;
 
+  static const String path = 'details';
+
   @override
   Widget build(context, state) => PackageDetailsPage(id: id);
 }
@@ -46,6 +49,8 @@ class PackageDetailsRoute extends GoRouteData {
 @immutable
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
+
+  static const String path = 'settings';
 
   @override
   NoTransitionPage<void> buildPage(context, state) => const NoTransitionPage(

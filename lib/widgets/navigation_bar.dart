@@ -35,7 +35,7 @@ class BottomNaviBar extends ConsumerWidget {
           _ => const PackagesRoute().go(context)
         },
         currentIndex: switch (path) {
-          'settings' => 1,
+          SettingsRoute.path => 1,
           _ => 0,
         },
       ),
@@ -63,8 +63,8 @@ class SideNaviBar extends ConsumerWidget {
         groupAlignment: 1.0,
         labelType: NavigationRailLabelType.all,
         selectedIndex: switch (path) {
-          '/' => 0,
-          'settings' => 1,
+          PackagesRoute.path => 0,
+          SettingsRoute.path => 1,
           _ => null,
         },
         leading: Column(
@@ -88,7 +88,7 @@ class SideNaviBar extends ConsumerWidget {
           _ => const PackagesRoute().go(context)
         },
         destinations: [
-          path == '/'
+          path == PackagesRoute.path
               ? NavigationRailDestination(
                   icon: const Icon(Icons.list),
                   label: Text(translate.naviBar.packages),
