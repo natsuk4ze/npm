@@ -29,8 +29,8 @@ class PackagesPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textController = useTextEditingController(text: 'color');
-    final scrollController = useScrollController();
     useListenable(textController);
+    final scrollController = useScrollController();
     final packages = ref.watch(packagesProvider(search: textController.text));
     final translate = ref.watch(translationProvider);
     final darkMode = ref.watch(darkModeProvider);
@@ -196,22 +196,23 @@ class _SortPannel extends ConsumerWidget {
 }
 
 @visibleForTesting
-class PackageItem extends ConsumerWidget {
+class PackageItem extends HookConsumerWidget {
   const PackageItem(this.package, {super.key});
 
   final Package package;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sort = ref.watch(sortProvider);
-    List<ScoreType> scoreTypes = ScoreType.values.toList();
-    if (sort != null) {
-      scoreTypes.sort((a, b) {
-        if (a == sort) return -1;
-        if (b == sort) return 1;
-        return 0;
-      });
-    }
+    final scores = useState(ScoreType.values.toList());
+    ref.listen(sortProvider, (_, sort) {
+      if (sort == null) return;
+      scores.value = List.from(scores.value)
+        ..sort((a, b) {
+          if (a == sort) return -1;
+          if (b == sort) return 1;
+          return 0;
+        });
+    });
 
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
@@ -250,7 +251,7 @@ class PackageItem extends ConsumerWidget {
                   ),
                 ),
               ),
-            for (var score in scoreTypes)
+            for (var score in scores.value)
               ScoreBar(
                 type: score,
                 value: score.getValue(package.score),
