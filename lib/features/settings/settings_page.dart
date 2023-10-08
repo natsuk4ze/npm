@@ -93,15 +93,15 @@ class _DarkModeItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
-    final darkMode = ref.watch(darkModeProvider);
+    final isDarkMode = ref.watch(isDarkModeProvider);
 
     return _Item(
       icon: Icons.light_mode,
       leading: translate.settingsPage.darkMode,
       trailing: Switch(
-          value: darkMode,
-          onChanged: (_) => ref.read(darkModeProvider.notifier).swich()),
-      onTap: () => ref.read(darkModeProvider.notifier).swich(),
+          value: isDarkMode,
+          onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich()),
+      onTap: () => ref.read(isDarkModeProvider.notifier).swich(),
     );
   }
 }

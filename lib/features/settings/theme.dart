@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'theme.g.dart';
 
 @riverpod
-class DarkMode extends _$DarkMode {
+class IsDarkMode extends _$IsDarkMode {
   @override
   bool build() => true;
 
@@ -13,17 +13,17 @@ class DarkMode extends _$DarkMode {
 
 @riverpod
 ThemeData theme(ThemeRef ref) {
-  final darkMode = ref.watch(darkModeProvider);
+  final isDarkMode = ref.watch(isDarkModeProvider);
   final appBarTheme = AppBarTheme(
     elevation: 4,
     titleTextStyle: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
-      color: darkMode ? null : Colors.black,
+      color: isDarkMode ? null : Colors.black,
     ),
   );
 
-  return darkMode
+  return isDarkMode
       ? ThemeData.dark().copyWith(appBarTheme: appBarTheme)
       : ThemeData(
           appBarTheme: appBarTheme,

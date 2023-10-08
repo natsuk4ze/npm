@@ -42,7 +42,7 @@ class PackegeDetailsItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final translate = ref.watch(translationProvider);
-    final darkMode = ref.watch(darkModeProvider);
+    final isDarkMode = ref.watch(isDarkModeProvider);
     const unknown = 'unknown';
 
     return SingleChildScrollView(
@@ -80,7 +80,7 @@ class PackegeDetailsItem extends ConsumerWidget {
           const Divider(),
           package.readme != null
               ? MarkdownWidget(
-                  config: darkMode
+                  config: isDarkMode
                       ? MarkdownConfig.darkConfig
                       : MarkdownConfig.defaultConfig,
                   shrinkWrap: true,

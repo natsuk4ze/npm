@@ -6,7 +6,7 @@ part of 'theme.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeHash() => r'80352cac42ffb0ebb8eb4e84c662a9c769ba85c7';
+String _$themeHash() => r'5e4b1ed6b5cdf4d5e734ddac26fee87563ba7584';
 
 /// See also [theme].
 @ProviderFor(theme)
@@ -20,19 +20,20 @@ final themeProvider = AutoDisposeProvider<ThemeData>.internal(
 );
 
 typedef ThemeRef = AutoDisposeProviderRef<ThemeData>;
-String _$darkModeHash() => r'7ccb506ee4cd2ad2a3803bce6b803ed078bbe1f4';
+String _$isDarkModeHash() => r'beaa1c5e38ffb42da25843bdb7f7f64a7fd45bce';
 
-/// See also [DarkMode].
-@ProviderFor(DarkMode)
-final darkModeProvider = AutoDisposeNotifierProvider<DarkMode, bool>.internal(
-  DarkMode.new,
-  name: r'darkModeProvider',
+/// See also [IsDarkMode].
+@ProviderFor(IsDarkMode)
+final isDarkModeProvider =
+    AutoDisposeNotifierProvider<IsDarkMode, bool>.internal(
+  IsDarkMode.new,
+  name: r'isDarkModeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$darkModeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$isDarkModeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$DarkMode = AutoDisposeNotifier<bool>;
+typedef _$IsDarkMode = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

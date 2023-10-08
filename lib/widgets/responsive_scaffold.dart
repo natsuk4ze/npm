@@ -17,9 +17,9 @@ class ResponsiveScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final largeScreen = MediaQuery.of(context).size.width > 600;
+    final isLargeScreen = MediaQuery.of(context).size.width > 600;
 
-    return largeScreen
+    return isLargeScreen
         ? Scaffold(
             resizeToAvoidBottomInset: false,
             body: SafeArea(

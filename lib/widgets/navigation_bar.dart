@@ -71,7 +71,7 @@ class SideNaviBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final path = GoRouterState.of(context).path;
-    final darkMode = ref.watch(darkModeProvider);
+    final isDarkMode = ref.watch(isDarkModeProvider);
     final translate = ref.watch(translationProvider);
 
     return SizedBox(
@@ -92,7 +92,7 @@ class SideNaviBar extends ConsumerWidget {
                 width: 80,
                 child: Image.asset(
                   'assets/app/npm.png',
-                  color: darkMode ? Colors.white : null,
+                  color: isDarkMode ? Colors.white : null,
                 ),
               ),
             ),

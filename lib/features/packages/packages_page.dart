@@ -33,7 +33,7 @@ class PackagesPage extends HookConsumerWidget {
     final scrollController = useScrollController();
     final packages = ref.watch(packagesProvider(search: textController.text));
     final translate = ref.watch(translationProvider);
-    final darkMode = ref.watch(darkModeProvider);
+    final isDarkMode = ref.watch(isDarkModeProvider);
     final sort = ref.watch(sortProvider);
     final focus = FocusNode();
 
@@ -50,7 +50,7 @@ class PackagesPage extends HookConsumerWidget {
                 width: 60,
                 child: Image.asset(
                   'assets/app/npm.png',
-                  color: darkMode ? Colors.white : null,
+                  color: isDarkMode ? Colors.white : null,
                 ),
               ),
             ),
