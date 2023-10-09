@@ -26,6 +26,12 @@ enum _Items {
         packages => const PackagesRoute().location,
         settings => const SettingsRoute().location,
       };
+
+  static void go(BuildContext context, int index) =>
+      context.go(values[index].location);
+
+  static _Items? fromLocation(String location) =>
+      _Items.values.firstWhereOrNull((item) => item.location == location);
 }
 
 class BottomNaviBar extends ConsumerWidget {
@@ -49,11 +55,8 @@ class BottomNaviBar extends ConsumerWidget {
               label: item.label(translate),
             )
         ],
-        onTap: (index) => context.go(_Items.values[index].location),
-        currentIndex: _Items.values
-            .firstWhere((item) => item.location == location,
-                orElse: () => _Items.packages)
-            .index,
+        onTap: (index) => _Items.go(context, index),
+        currentIndex: (_Items.fromLocation(location!) ?? _Items.packages).index,
       ),
     );
   }
@@ -78,9 +81,7 @@ class SideNaviBar extends ConsumerWidget {
       child: NavigationRail(
         groupAlignment: 1.0,
         labelType: NavigationRailLabelType.all,
-        selectedIndex: _Items.values
-            .firstWhereOrNull((item) => item.location == location)
-            ?.index,
+        selectedIndex: _Items.fromLocation(location!)?.index,
         leading: Column(
           children: [
             GestureDetector(
@@ -97,8 +98,7 @@ class SideNaviBar extends ConsumerWidget {
             floatingActionButton ?? const SizedBox.shrink(),
           ],
         ),
-        onDestinationSelected: (index) =>
-            context.go(_Items.values[index].location),
+        onDestinationSelected: (index) => _Items.go(context, index),
         destinations: [
           for (var item in _Items.values)
             (location == _Items.packages.location && item == _Items.packages)
