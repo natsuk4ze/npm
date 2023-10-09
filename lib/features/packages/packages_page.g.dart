@@ -6,11 +6,11 @@ part of 'packages_page.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sortHash() => r'4ca523dde06657a0c81cd848697feeb3bb648089';
+String _$sortHash() => r'0e39309c3109d3dbd35deaaf10c62dde6de29523';
 
 /// See also [Sort].
 @ProviderFor(Sort)
-final sortProvider = AutoDisposeNotifierProvider<Sort, Scores?>.internal(
+final sortProvider = AutoDisposeNotifierProvider<Sort, ScoreType?>.internal(
   Sort.new,
   name: r'sortProvider',
   debugGetCreateSourceHash:
@@ -19,6 +19,6 @@ final sortProvider = AutoDisposeNotifierProvider<Sort, Scores?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$Sort = AutoDisposeNotifier<Scores?>;
+typedef _$Sort = AutoDisposeNotifier<ScoreType?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

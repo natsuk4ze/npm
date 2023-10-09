@@ -15,7 +15,7 @@ abstract class Score with _$Score {
   factory Score.fromJson(Map<String, dynamic> json) => _$ScoreFromJson(json);
 }
 
-enum Scores {
+enum ScoreType {
   popularity,
   quality,
   maintenance;

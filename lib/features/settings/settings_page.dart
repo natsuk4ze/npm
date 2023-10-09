@@ -66,7 +66,7 @@ class _LanguageItem extends ConsumerWidget {
       showDialog(
         context: context,
         builder: (context) => SimpleDialog(children: [
-          for (var lang in Languages.values)
+          for (var lang in LanguageType.values)
             RadioListTile(
               title: Text(lang.toString()),
               value: lang,

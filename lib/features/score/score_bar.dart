@@ -11,7 +11,7 @@ class ScoreBar extends ConsumerWidget {
     super.key,
   });
 
-  final Scores type;
+  final ScoreType type;
   final double value;
 
   @override

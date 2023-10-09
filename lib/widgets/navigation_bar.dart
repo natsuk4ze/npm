@@ -8,7 +8,7 @@ import 'package:npm/i18n/strings.g.dart';
 import 'package:npm/router.dart';
 import 'package:npm/widgets/logo.dart';
 
-enum _Items {
+enum _Item {
   packages,
   settings;
 
@@ -30,8 +30,8 @@ enum _Items {
   static void go(BuildContext context, int index) =>
       context.go(values[index].location);
 
-  static _Items? fromLocation(String location) =>
-      _Items.values.firstWhereOrNull((item) => item.location == location);
+  static _Item? fromLocation(String location) =>
+      _Item.values.firstWhereOrNull((item) => item.location == location);
 }
 
 class BottomNaviBar extends ConsumerWidget {
@@ -44,14 +44,14 @@ class BottomNaviBar extends ConsumerWidget {
 
     return BottomNavigationBar(
       items: [
-        for (var item in _Items.values)
+        for (var item in _Item.values)
           BottomNavigationBarItem(
             icon: item.icon,
             label: item.label(translate),
           )
       ],
-      onTap: (index) => _Items.go(context, index),
-      currentIndex: (_Items.fromLocation(location!) ?? _Items.packages).index,
+      onTap: (index) => _Item.go(context, index),
+      currentIndex: (_Item.fromLocation(location!) ?? _Item.packages).index,
     );
   }
 }
@@ -74,7 +74,7 @@ class SideNaviBar extends ConsumerWidget {
       child: NavigationRail(
         groupAlignment: 1.0,
         labelType: NavigationRailLabelType.all,
-        selectedIndex: _Items.fromLocation(location!)?.index,
+        selectedIndex: _Item.fromLocation(location!)?.index,
         leading: Column(
           children: [
             GestureDetector(
@@ -85,11 +85,11 @@ class SideNaviBar extends ConsumerWidget {
             floatingActionButton ?? const SizedBox.shrink(),
           ],
         ),
-        onDestinationSelected: (index) => _Items.go(context, index),
+        onDestinationSelected: (index) => _Item.go(context, index),
         destinations: [
           //TODO: Refactor
-          for (var item in _Items.values)
-            (location == _Items.packages.location && item == _Items.packages)
+          for (var item in _Item.values)
+            (location == _Item.packages.location && item == _Item.packages)
                 ? NavigationRailDestination(
                     icon: const Icon(Icons.list),
                     label: Text(translate.naviBar.packages),
