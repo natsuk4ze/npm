@@ -8,7 +8,6 @@ import 'package:npm/features/settings/theme.dart';
 import 'package:npm/widgets/navigation_bar.dart';
 import 'package:npm/widgets/link_text.dart';
 import 'package:npm/widgets/responsive_scaffold.dart';
-import 'package:npm/widgets/widget_or_empty.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({
@@ -45,6 +44,7 @@ class PackegeDetailsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,10 +91,9 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetOrEmpty(
-      shouldEmpty: description == null,
-      child: Text(description!),
-    );
+    if (description == null) return const SizedBox.shrink();
+
+    return Text(description!);
   }
 }
 
@@ -105,19 +104,17 @@ class _HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (homepage == null) return const SizedBox.shrink();
     final translate = ref.watch(translationProvider);
 
-    return WidgetOrEmpty(
-      shouldEmpty: homepage == null,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(translate.packageDetailsPage.homepage),
-          const Gap(4),
-          LinkText(homepage!)
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(translate.packageDetailsPage.homepage),
+        const Gap(4),
+        LinkText(homepage!)
+      ],
     );
   }
 }
@@ -129,19 +126,17 @@ class _Repository extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (repository == null) return const SizedBox.shrink();
     final translate = ref.watch(translationProvider);
 
-    return WidgetOrEmpty(
-      shouldEmpty: repository == null,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(translate.packageDetailsPage.repository),
-          const Gap(4),
-          LinkText(repository!)
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(translate.packageDetailsPage.repository),
+        const Gap(4),
+        LinkText(repository!)
+      ],
     );
   }
 }
@@ -153,32 +148,30 @@ class _Readme extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (readme == null) return const SizedBox.shrink();
     final isDarkMode = ref.watch(isDarkModeProvider);
 
-    return WidgetOrEmpty(
-      shouldEmpty: readme == null,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Icon(Icons.description_outlined),
-              Gap(8),
-              Text('Readme'),
-            ],
-          ),
-          const Divider(),
-          MarkdownWidget(
-            config: isDarkMode
-                ? MarkdownConfig.darkConfig
-                : MarkdownConfig.defaultConfig,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            data: readme!,
-          )
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Row(
+          children: [
+            Icon(Icons.description_outlined),
+            Gap(8),
+            Text('Readme'),
+          ],
+        ),
+        const Divider(),
+        MarkdownWidget(
+          config: isDarkMode
+              ? MarkdownConfig.darkConfig
+              : MarkdownConfig.defaultConfig,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          data: readme!,
+        )
+      ],
     );
   }
 }
@@ -189,22 +182,20 @@ class _Keywords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (keywords == null) return const SizedBox.shrink();
 
-    return WidgetOrEmpty(
-      shouldEmpty: keywords == null,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Keywords'),
-          const Divider(),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: List.generate(keywords!.length, (i) => Text(keywords![i])),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Keywords'),
+        const Divider(),
+        Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: List.generate(keywords!.length, (i) => Text(keywords![i])),
+        ),
+      ],
     );
   }
 }
@@ -216,18 +207,16 @@ class _License extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (license == null) return const SizedBox.shrink();
 
-    return WidgetOrEmpty(
-      shouldEmpty: license == null,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('License'),
-          const Divider(),
-          Text(license!),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('License'),
+        const Divider(),
+        Text(license!),
+      ],
     );
   }
 }
