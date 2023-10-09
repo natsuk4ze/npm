@@ -19,6 +19,8 @@ A [npm](https://www.npmjs.com) client app with modern flutter coding style.
 6. run `dart run slang`
 7. run `flutter run`
 
+New to flutter? See: [How to install flutter app on your device](https://www.youtube.com/watch?v=aohkII1C4JY)
+
 ## Features
 
 ### 🛜 Real time fetch
