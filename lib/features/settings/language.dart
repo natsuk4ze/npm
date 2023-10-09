@@ -5,10 +5,7 @@ part 'language.g.dart';
 
 @riverpod
 StringsEn translation(TranslationRef ref) =>
-    switch (ref.watch(languageProvider)) {
-      LanguageType.ja => AppLocale.ja.build(),
-      LanguageType.en => AppLocale.en.build(),
-    };
+    ref.watch(languageProvider).stringsEn;
 
 @riverpod
 class Language extends _$Language {
@@ -21,6 +18,11 @@ class Language extends _$Language {
 enum LanguageType {
   en,
   ja;
+
+  StringsEn get stringsEn => switch (this) {
+        ja => AppLocale.ja.build(),
+        en => AppLocale.en.build(),
+      };
 
   @override
   String toString() => switch (this) {
