@@ -18,9 +18,9 @@ part 'packages_page.g.dart';
 @riverpod
 class Sort extends _$Sort {
   @override
-  ScoreType? build() => null;
+  Scores? build() => null;
 
-  void update(ScoreType type) => state = type;
+  void update(Scores score) => state = score;
 }
 
 class PackagesPage extends HookConsumerWidget {
@@ -91,11 +91,11 @@ class PackagesPage extends HookConsumerWidget {
                 sortedPackages = List.of(packages);
                 sortedPackages.sort((a, b) {
                   switch (sort) {
-                    case ScoreType.maintenance:
+                    case Scores.maintenance:
                       return b.score.maintenance.compareTo(a.score.maintenance);
-                    case ScoreType.popularity:
+                    case Scores.popularity:
                       return b.score.popularity.compareTo(a.score.popularity);
-                    case ScoreType.quality:
+                    case Scores.quality:
                       return b.score.quality.compareTo(a.score.quality);
                   }
                 });
@@ -144,7 +144,7 @@ class _SortPannel extends ConsumerWidget {
               style: const TextStyle(fontSize: 14),
             ),
             const Gap(8),
-            for (var score in ScoreType.values)
+            for (var score in Scores.values)
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () => sort == score
@@ -197,7 +197,7 @@ class PackageItem extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scores = useState(ScoreType.values.toList());
+    final scores = useState(Scores.values.toList());
     ref.listen(sortProvider, (_, sort) {
       if (sort == null) return;
       scores.value = List.from(scores.value)

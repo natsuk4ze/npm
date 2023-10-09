@@ -20,12 +20,12 @@ final translationProvider = AutoDisposeProvider<StringsEn>.internal(
 );
 
 typedef TranslationRef = AutoDisposeProviderRef<StringsEn>;
-String _$languageHash() => r'fffeb41dad0fe8e0e076261ae6f919921eb94529';
+String _$languageHash() => r'5d372b8205ccfc13c9491ef49a60bc7567456648';
 
 /// See also [Language].
 @ProviderFor(Language)
 final languageProvider =
-    AutoDisposeNotifierProvider<Language, LanguageType>.internal(
+    AutoDisposeNotifierProvider<Language, Languages>.internal(
   Language.new,
   name: r'languageProvider',
   debugGetCreateSourceHash:
@@ -34,6 +34,6 @@ final languageProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$Language = AutoDisposeNotifier<LanguageType>;
+typedef _$Language = AutoDisposeNotifier<Languages>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

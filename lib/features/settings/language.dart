@@ -10,12 +10,12 @@ StringsEn translation(TranslationRef ref) =>
 @riverpod
 class Language extends _$Language {
   @override
-  LanguageType build() => LanguageType.en;
+  Languages build() => Languages.en;
 
-  void update(LanguageType type) => state = type;
+  void update(Languages language) => state = language;
 }
 
-enum LanguageType {
+enum Languages {
   en,
   ja;
 
