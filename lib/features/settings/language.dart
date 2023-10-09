@@ -4,15 +4,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'language.g.dart';
 
 @riverpod
-StringsEn translation(TranslationRef ref) {
-  final lang = ref.watch(languageProvider);
-  switch (lang) {
-    case LanguageType.ja:
-      return AppLocale.ja.build();
-    default:
-      return AppLocale.en.build();
-  }
-}
+StringsEn translation(TranslationRef ref) =>
+    switch (ref.watch(languageProvider)) {
+      LanguageType.ja => AppLocale.ja.build(),
+      LanguageType.en => AppLocale.en.build(),
+    };
 
 @riverpod
 class Language extends _$Language {
