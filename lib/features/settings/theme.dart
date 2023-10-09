@@ -14,19 +14,25 @@ class IsDarkMode extends _$IsDarkMode {
 @riverpod
 ThemeData theme(ThemeRef ref) {
   final isDarkMode = ref.watch(isDarkModeProvider);
-  final appBarTheme = AppBarTheme(
-    elevation: 4,
-    titleTextStyle: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      color: isDarkMode ? null : Colors.black,
+  final defaultTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      elevation: 4,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: isDarkMode ? null : Colors.black,
+      ),
     ),
+    colorSchemeSeed: Colors.black,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
   );
 
   return isDarkMode
-      ? ThemeData.dark().copyWith(appBarTheme: appBarTheme)
-      : ThemeData(
-          appBarTheme: appBarTheme,
-          colorSchemeSeed: Colors.black,
-        );
+      ? ThemeData.dark().copyWith(
+          appBarTheme: defaultTheme.appBarTheme,
+          splashColor: defaultTheme.splashColor,
+          highlightColor: defaultTheme.highlightColor,
+        )
+      : defaultTheme;
 }

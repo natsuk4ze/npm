@@ -42,22 +42,16 @@ class BottomNaviBar extends ConsumerWidget {
     final location = GoRouterState.of(context).fullPath;
     final translate = ref.watch(translationProvider);
 
-    return Theme(
-      data: Theme.of(context).copyWith(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-      ),
-      child: BottomNavigationBar(
-        items: [
-          for (var item in _Items.values)
-            BottomNavigationBarItem(
-              icon: item.icon,
-              label: item.label(translate),
-            )
-        ],
-        onTap: (index) => _Items.go(context, index),
-        currentIndex: (_Items.fromLocation(location!) ?? _Items.packages).index,
-      ),
+    return BottomNavigationBar(
+      items: [
+        for (var item in _Items.values)
+          BottomNavigationBarItem(
+            icon: item.icon,
+            label: item.label(translate),
+          )
+      ],
+      onTap: (index) => _Items.go(context, index),
+      currentIndex: (_Items.fromLocation(location!) ?? _Items.packages).index,
     );
   }
 }

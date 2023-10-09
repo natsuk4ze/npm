@@ -31,11 +31,11 @@ class SettingsPage extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: Theme.of(context).hoverColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: const [
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                     _LanguageItem(),
                     Divider(),
                     _DarkModeItem(),
@@ -68,23 +68,26 @@ class _LanguageItem extends ConsumerWidget {
       leading: translate.settingsPage.language,
       title: currentLang.toString(),
       trailing: const Icon(Icons.arrow_forward),
-      onTap: () => showDialog(
+      onTap: () async => _showDialog(context, ref),
+    );
+  }
+
+  Future<void> _showDialog(BuildContext context, WidgetRef ref) async =>
+      showDialog(
         context: context,
         builder: (context) => SimpleDialog(children: [
           for (var lang in LanguageType.values)
             RadioListTile(
               title: Text(lang.toString()),
               value: lang,
-              groupValue: currentLang,
+              groupValue: ref.watch(languageProvider),
               onChanged: (value) {
                 ref.read(languageProvider.notifier).update(value!);
                 context.pop();
               },
             )
         ]),
-      ),
-    );
-  }
+      );
 }
 
 class _DarkModeItem extends ConsumerWidget {
@@ -99,8 +102,9 @@ class _DarkModeItem extends ConsumerWidget {
       icon: Icons.light_mode,
       leading: translate.settingsPage.darkMode,
       trailing: Switch(
-          value: isDarkMode,
-          onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich()),
+        value: isDarkMode,
+        onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich(),
+      ),
       onTap: () => ref.read(isDarkModeProvider.notifier).swich(),
     );
   }
