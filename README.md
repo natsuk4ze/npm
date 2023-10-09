@@ -11,11 +11,12 @@ A [npm](https://www.npmjs.com) client app with modern flutter coding style.
 
 ## How to install
 
-1. install [flutter](https://docs.flutter.dev/get-started/install)
+1. install [flutter](https://docs.flutter.dev/get-started/install) *should beta version
 2. clone this repository
-3. run `flutter pub get`
-4. run `dart run build_runner build`
-5. run `dart run slang`
+3. run `cd $PATH_TO_REPOSITORY`
+4. run `flutter pub get`
+5. run `dart run build_runner build`
+6. run `dart run slang`
 7. run `flutter run`
 
 ## Features
