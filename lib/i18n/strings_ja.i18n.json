@@ -18,7 +18,8 @@
     "title": "設定",
     "language": "言語",
     "darkMode": "ダークモード",
-    "report": "問題を報告"
+    "report": "問題を報告",
+    "license": "ライセンス"
   },
   "naviBar": {
     "search": "探す",

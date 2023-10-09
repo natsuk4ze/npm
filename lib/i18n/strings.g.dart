@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 32 (16 per locale)
+/// Strings: 34 (17 per locale)
 ///
-/// Built on 2023-10-08 at 13:58 UTC
+/// Built on 2023-10-09 at 12:42 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -119,6 +119,7 @@ class StringsSettingsPageEn {
 	String get language => 'Language';
 	String get darkMode => 'Dark Mode';
 	String get report => 'Report issues';
+	String get license => 'License';
 }
 
 // Path: naviBar
@@ -212,6 +213,7 @@ class StringsSettingsPageJa implements StringsSettingsPageEn {
 	@override String get language => '言語';
 	@override String get darkMode => 'ダークモード';
 	@override String get report => '問題を報告';
+	@override String get license => 'ライセンス';
 }
 
 // Path: naviBar
@@ -257,6 +259,7 @@ extension on StringsEn {
 			case 'settingsPage.language': return 'Language';
 			case 'settingsPage.darkMode': return 'Dark Mode';
 			case 'settingsPage.report': return 'Report issues';
+			case 'settingsPage.license': return 'License';
 			case 'naviBar.search': return 'Search';
 			case 'naviBar.packages': return 'Packages';
 			case 'naviBar.settings': return 'Settings';
@@ -281,6 +284,7 @@ extension on StringsJa {
 			case 'settingsPage.language': return '言語';
 			case 'settingsPage.darkMode': return 'ダークモード';
 			case 'settingsPage.report': return '問題を報告';
+			case 'settingsPage.license': return 'ライセンス';
 			case 'naviBar.search': return '探す';
 			case 'naviBar.packages': return 'パッケージ一覧';
 			case 'naviBar.settings': return '設定';

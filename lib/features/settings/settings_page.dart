@@ -22,42 +22,28 @@ class SettingsPage extends ConsumerWidget {
       ),
       sideNavigationBar: const SideNaviBar(),
       bottomNavigationBar: const BottomNaviBar(),
-      child: const Align(
+      child: Align(
         alignment: Alignment.topCenter,
-        child: Column(
-          children: [
-            _SettingsItems(),
-            Spacer(),
-            _Lecense(),
-            Gap(8),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SettingsItems extends StatelessWidget {
-  const _SettingsItems();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).hoverColor,
-      ),
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _LanguageItem(),
-            Divider(),
-            _DarkModeItem(),
-            Divider(),
-            _ReportItem(),
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Theme.of(context).hoverColor,
+          ),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _LanguageItem(),
+                Divider(),
+                _DarkModeItem(),
+                Divider(),
+                _ReportItem(),
+                Divider(),
+                _LicenseItem(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -69,13 +55,11 @@ class _LanguageItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentLang = ref.watch(languageProvider);
     final translate = ref.watch(translationProvider);
 
     return _Item(
       icon: Icons.language,
       leading: translate.settingsPage.language,
-      title: currentLang.toString(),
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async => _showDialog(context, ref),
     );
@@ -136,18 +120,71 @@ class _ReportItem extends ConsumerWidget {
   }
 }
 
+class _LicenseItem extends ConsumerWidget {
+  const _LicenseItem();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final translate = ref.watch(translationProvider);
+
+    return _Item(
+      icon: Icons.star,
+      leading: translate.settingsPage.license,
+      trailing: const Icon(Icons.arrow_forward),
+      onTap: () async => _showDialog(context, ref),
+    );
+  }
+
+  Future<void> _showDialog(BuildContext context, WidgetRef ref) async =>
+      showDialog(
+        context: context,
+        builder: (context) => Dialog(
+            child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).dividerColor,
+                    width: 4,
+                  ),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: Image.asset('assets/app/owner.png').image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const Gap(12),
+              const LinkText(
+                'https://github.com/natsuk4ze',
+                text: 'Created by @natsuk4ze',
+              ),
+              const Gap(12),
+              const Text(
+                'Midori Design Studio',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+        )),
+      );
+}
+
 class _Item extends StatelessWidget {
   const _Item({
     required this.icon,
     required this.leading,
-    this.title,
     required this.trailing,
     required this.onTap,
   });
 
   final IconData icon;
   final String leading;
-  final String? title;
   final Widget trailing;
   final void Function() onTap;
 
@@ -166,50 +203,12 @@ class _Item extends StatelessWidget {
               const Gap(20),
               Text(leading),
               const Spacer(),
-              if (title != null) Text(title!),
               const Gap(20),
               trailing,
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _Lecense extends StatelessWidget {
-  const _Lecense();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Theme.of(context).dividerColor,
-              width: 4,
-            ),
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: Image.asset('assets/app/owner.png').image,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        const Gap(12),
-        const LinkText(
-          'https://github.com/natsuk4ze',
-          text: 'Created by @natsuk4ze',
-        ),
-        const Gap(12),
-        const Text(
-          'Midori Design Studio',
-          style: TextStyle(color: Colors.grey),
-        ),
-      ],
     );
   }
 }
