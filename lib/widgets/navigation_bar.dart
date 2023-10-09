@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,11 @@ enum _Items {
         packages => translate.naviBar.search,
         settings => translate.naviBar.settings,
       };
+
+  String get location => switch (this) {
+        packages => const PackagesRoute().location,
+        settings => const SettingsRoute().location,
+      };
 }
 
 class BottomNaviBar extends ConsumerWidget {
@@ -27,7 +33,7 @@ class BottomNaviBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final path = GoRouterState.of(context).path;
+    final location = GoRouterState.of(context).fullPath;
     final translate = ref.watch(translationProvider);
 
     return Theme(
@@ -43,18 +49,11 @@ class BottomNaviBar extends ConsumerWidget {
               label: item.label(translate),
             )
         ],
-        onTap: (index) {
-          switch (index) {
-            case _ when index == _Items.settings.index:
-              const SettingsRoute().go(context);
-            default:
-              const PackagesRoute().go(context);
-          }
-        },
-        currentIndex: switch (path) {
-          SettingsRoute.path => _Items.settings.index,
-          _ => _Items.packages.index,
-        },
+        onTap: (index) => context.go(_Items.values[index].location),
+        currentIndex: _Items.values
+            .firstWhere((item) => item.location == location,
+                orElse: () => _Items.packages)
+            .index,
       ),
     );
   }
@@ -70,7 +69,7 @@ class SideNaviBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final path = GoRouterState.of(context).path;
+    final location = GoRouterState.of(context).fullPath;
     final isDarkMode = ref.watch(isDarkModeProvider);
     final translate = ref.watch(translationProvider);
 
@@ -79,11 +78,9 @@ class SideNaviBar extends ConsumerWidget {
       child: NavigationRail(
         groupAlignment: 1.0,
         labelType: NavigationRailLabelType.all,
-        selectedIndex: switch (path) {
-          PackagesRoute.path => _Items.packages.index,
-          SettingsRoute.path => _Items.settings.index,
-          _ => null,
-        },
+        selectedIndex: _Items.values
+            .firstWhereOrNull((item) => item.location == location)
+            ?.index,
         leading: Column(
           children: [
             GestureDetector(
@@ -100,17 +97,11 @@ class SideNaviBar extends ConsumerWidget {
             floatingActionButton ?? const SizedBox.shrink(),
           ],
         ),
-        onDestinationSelected: (index) {
-          switch (index) {
-            case _ when index == _Items.settings.index:
-              const SettingsRoute().go(context);
-            default:
-              const PackagesRoute().go(context);
-          }
-        },
+        onDestinationSelected: (index) =>
+            context.go(_Items.values[index].location),
         destinations: [
           for (var item in _Items.values)
-            (path == PackagesRoute.path && item == _Items.packages)
+            (location == _Items.packages.location && item == _Items.packages)
                 ? NavigationRailDestination(
                     icon: const Icon(Icons.list),
                     label: Text(translate.naviBar.packages),
