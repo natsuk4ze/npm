@@ -244,7 +244,9 @@ Dynamic layouting for diffrent screen sizes.
 ```dart
 isLargeScreen
         ? _LargeScreenScaffold(
-            sideNavigationBar: sideNavigationBar, child: child)
+            sideNavigationBar: sideNavigationBar,
+            child: child,
+          )
         : _SmallScreenScaffold(
             appBar: appBar,
             bottomNavigationBar: bottomNavigationBar,

@@ -21,7 +21,9 @@ class ResponsiveScaffold extends StatelessWidget {
 
     return isLargeScreen
         ? _LargeScreenScaffold(
-            sideNavigationBar: sideNavigationBar, child: child)
+            sideNavigationBar: sideNavigationBar,
+            child: child,
+          )
         : _SmallScreenScaffold(
             appBar: appBar,
             bottomNavigationBar: bottomNavigationBar,
@@ -63,13 +65,14 @@ class _LargeScreenScaffold extends StatelessWidget {
 
 class _SmallScreenScaffold extends StatelessWidget {
   const _SmallScreenScaffold({
-    required this.child,
     required this.appBar,
     required this.bottomNavigationBar,
+    required this.child,
   });
-  final Widget child;
+
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigationBar;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
