@@ -7,8 +7,8 @@ import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/features/settings/theme.dart';
 import 'package:npm/router.dart';
+import 'package:npm/widgets/logo.dart';
 import 'package:npm/widgets/navigation_bar.dart';
 import 'package:npm/widgets/responsive_scaffold.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -33,7 +33,6 @@ class PackagesPage extends HookConsumerWidget {
     final scrollController = useScrollController();
     final packages = ref.watch(packagesProvider(search: textController.text));
     final translate = ref.watch(translationProvider);
-    final isDarkMode = ref.watch(isDarkModeProvider);
     final sort = ref.watch(sortProvider);
     final focus = FocusNode();
 
@@ -46,13 +45,7 @@ class PackagesPage extends HookConsumerWidget {
             const Gap(20),
             GestureDetector(
               onTap: () => scrollController.jumpTo(0),
-              child: SizedBox(
-                width: 60,
-                child: Image.asset(
-                  'assets/app/npm.png',
-                  color: isDarkMode ? Colors.white : null,
-                ),
-              ),
+              child: const Logo(width: 60),
             ),
             const Gap(20),
             Flexible(
@@ -92,6 +85,7 @@ class PackagesPage extends HookConsumerWidget {
           child: packages.when(
             data: (packages) {
               if (packages.isEmpty) return const _EmptyItem();
+
               List<Package>? sortedPackages;
               if (sort != null) {
                 sortedPackages = List.of(packages);

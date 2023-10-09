@@ -4,9 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/features/settings/theme.dart';
 import 'package:npm/i18n/strings.g.dart';
 import 'package:npm/router.dart';
+import 'package:npm/widgets/logo.dart';
 
 enum _Items {
   packages,
@@ -67,7 +67,6 @@ class SideNaviBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final location = GoRouterState.of(context).fullPath;
-    final isDarkMode = ref.watch(isDarkModeProvider);
     final translate = ref.watch(translationProvider);
 
     return SizedBox(
@@ -80,13 +79,7 @@ class SideNaviBar extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () => const PackagesRoute().go(context),
-              child: SizedBox(
-                width: 80,
-                child: Image.asset(
-                  'assets/app/npm.png',
-                  color: isDarkMode ? Colors.white : null,
-                ),
-              ),
+              child: const Logo(width: 80),
             ),
             const Gap(20),
             floatingActionButton ?? const SizedBox.shrink(),

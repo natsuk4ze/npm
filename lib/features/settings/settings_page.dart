@@ -22,32 +22,41 @@ class SettingsPage extends ConsumerWidget {
       ),
       sideNavigationBar: const SideNaviBar(),
       bottomNavigationBar: const BottomNaviBar(),
-      child: Align(
+      child: const Align(
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).hoverColor,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _LanguageItem(),
-                    Divider(),
-                    _DarkModeItem(),
-                    Divider(),
-                    _ReportItem(),
-                  ],
-                ),
-              ),
-            ),
-            const Spacer(),
-            const _Lecense(),
-            const Gap(8),
+            _SettingsItems(),
+            Spacer(),
+            _Lecense(),
+            Gap(8),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingsItems extends StatelessWidget {
+  const _SettingsItems();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).hoverColor,
+      ),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _LanguageItem(),
+            Divider(),
+            _DarkModeItem(),
+            Divider(),
+            _ReportItem(),
           ],
         ),
       ),
@@ -127,43 +136,6 @@ class _ReportItem extends ConsumerWidget {
   }
 }
 
-class _Lecense extends StatelessWidget {
-  const _Lecense();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Theme.of(context).dividerColor,
-              width: 4,
-            ),
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: Image.asset('assets/app/owner.png').image,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        const Gap(12),
-        const LinkText(
-          'https://github.com/natsuk4ze',
-          text: 'Created by @natsuk4ze',
-        ),
-        const Gap(12),
-        const Text(
-          'Midori Design Studio',
-          style: TextStyle(color: Colors.grey),
-        ),
-      ],
-    );
-  }
-}
-
 class _Item extends StatelessWidget {
   const _Item({
     required this.icon,
@@ -201,6 +173,43 @@ class _Item extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Lecense extends StatelessWidget {
+  const _Lecense();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).dividerColor,
+              width: 4,
+            ),
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: Image.asset('assets/app/owner.png').image,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const Gap(12),
+        const LinkText(
+          'https://github.com/natsuk4ze',
+          text: 'Created by @natsuk4ze',
+        ),
+        const Gap(12),
+        const Text(
+          'Midori Design Studio',
+          style: TextStyle(color: Colors.grey),
+        ),
+      ],
     );
   }
 }

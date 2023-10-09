@@ -24,6 +24,7 @@ class Package with _$Package {
     final String? description,
     final List<String>? keywords,
   }) = _Package;
+  
   factory Package.fromJson(Map<String, dynamic> json) {
     final package = json['package'];
     final score = json['score']['detail'];

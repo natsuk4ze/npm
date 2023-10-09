@@ -44,15 +44,15 @@ class PackegeDetailsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _Name(package.name),
+          const Gap(4),
           _Description(package.description),
           const Gap(20),
-          _HomePage(package.homepage),
+          _Homepage(package.homepage),
           const Divider(),
           _Repository(package.repository),
           const Gap(40),
@@ -97,8 +97,8 @@ class _Description extends StatelessWidget {
   }
 }
 
-class _HomePage extends ConsumerWidget {
-  const _HomePage(this.homepage);
+class _Homepage extends ConsumerWidget {
+  const _Homepage(this.homepage);
 
   final String? homepage;
 
