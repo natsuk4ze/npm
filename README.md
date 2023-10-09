@@ -242,36 +242,13 @@ Dynamic layouting for diffrent screen sizes.
 <summary>Show codes</summary>
 
 ```dart
-largeScreen
-        ? Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
-                child: Row(
-                  children: [
-                    sideNavigationBar ?? const SizedBox.shrink(),
-                    const Gap(12),
-                    const VerticalDivider(),
-                    const Gap(12),
-                    Expanded(child: child),
-                  ],
-                ),
-              ),
-            ),
-          )
-        : Scaffold(
-            resizeToAvoidBottomInset: false,
+isLargeScreen
+        ? _LargeScreenScaffold(
+            sideNavigationBar: sideNavigationBar, child: child)
+        : _SmallScreenScaffold(
             appBar: appBar,
             bottomNavigationBar: bottomNavigationBar,
-            body: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
-                child: child,
-              ),
-            ),
+            child: child,
           )
 ```
 

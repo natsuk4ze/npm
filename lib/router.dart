@@ -9,9 +9,7 @@ part 'router.g.dart';
 
 @riverpod
 Raw<GoRouter> router(RouterRef ref) {
-  final router = GoRouter(
-    routes: $appRoutes,
-  );
+  final router = GoRouter(routes: $appRoutes);
   ref.onDispose(router.dispose);
   return router;
 }
