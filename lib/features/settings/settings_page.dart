@@ -22,27 +22,24 @@ class SettingsPage extends ConsumerWidget {
       ),
       sideNavigationBar: const SideNaviBar(),
       bottomNavigationBar: const BottomNaviBar(),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Theme.of(context).hoverColor,
-          ),
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _LanguageItem(),
-                Divider(),
-                _DarkModeItem(),
-                Divider(),
-                _ReportItem(),
-                Divider(),
-                _LicenseItem(),
-              ],
-            ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).hoverColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            shrinkWrap: true,
+            children: const [
+              _LanguageItem(),
+              Divider(),
+              _DarkModeItem(),
+              Divider(),
+              _ReportItem(),
+              Divider(),
+              _LicenseItem(),
+            ],
           ),
         ),
       ),
@@ -59,7 +56,7 @@ class _LanguageItem extends ConsumerWidget {
 
     return _Item(
       icon: Icons.language,
-      leading: translate.settingsPage.language,
+      title: translate.settingsPage.language,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async => _showDialog(context, ref),
     );
@@ -93,7 +90,7 @@ class _DarkModeItem extends ConsumerWidget {
 
     return _Item(
       icon: Icons.light_mode,
-      leading: translate.settingsPage.darkMode,
+      title: translate.settingsPage.darkMode,
       trailing: Switch(
         value: isDarkMode,
         onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich(),
@@ -112,7 +109,7 @@ class _ReportItem extends ConsumerWidget {
 
     return _Item(
       icon: Icons.report,
-      leading: translate.settingsPage.report,
+      title: translate.settingsPage.report,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async =>
           launchUrl(Uri.parse('https://github.com/natsuk4ze/npm/issues')),
@@ -129,7 +126,7 @@ class _LicenseItem extends ConsumerWidget {
 
     return _Item(
       icon: Icons.star,
-      leading: translate.settingsPage.license,
+      title: translate.settingsPage.license,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async => _showDialog(context, ref),
     );
@@ -178,13 +175,13 @@ class _LicenseItem extends ConsumerWidget {
 class _Item extends StatelessWidget {
   const _Item({
     required this.icon,
-    required this.leading,
+    required this.title,
     required this.trailing,
     required this.onTap,
   });
 
   final IconData icon;
-  final String leading;
+  final String title;
   final Widget trailing;
   final void Function() onTap;
 
@@ -201,7 +198,7 @@ class _Item extends StatelessWidget {
             children: [
               Icon(icon),
               const Gap(20),
-              Text(leading),
+              Text(title),
               const Spacer(),
               const Gap(20),
               trailing,
