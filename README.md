@@ -95,25 +95,14 @@ Switching widget according to status with `AsyncValue`.
 <summary>Show codes</summary>
 
 ```dart
-child: packages.when(
-  data: (packages) {
-    if (packages.isEmpty) return const _EmptyItem();
-    return RefreshIndicator(
-      onRefresh: () async {
-        ref.invalidate(packagesProvider);
-        await ref.read(
-            packagesProvider(search: controller.text).future);
-      },
-      child: ListView.separated(
-        separatorBuilder: (_, __) => const Divider(),
-        itemCount: packages.length,
-        itemBuilder: (_, int i) => PackageItem(packages[i]),
-      ),
-    );
-  },
-  error: (e, _) => Center(child: Text(e.toString())),
-  loading: () =>
-      const Center(child: CircularProgressIndicator()),
+body: Center(
+  child: packages.when(
+    data: (packages) => packages.isEmpty
+        ? const _EmptyItem()
+        : _PackageItems(packages: packages),
+    error: (e, _) => Text(e.toString()),
+    loading: () => const CircularProgressIndicator(),
+  ),
 ),
 ```
 See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
@@ -211,15 +200,7 @@ Dynamic localization with *slang* and *riverpod*.
 
 ```dart
 @riverpod
-StringsEn translation(TranslationRef ref) {
-  final lang = ref.watch(languageProvider);
-  switch (lang) {
-    case LanguageType.ja:
-      return AppLocale.ja.build();
-    default:
-      return AppLocale.en.build();
-  }
-}
+StringsEn l10n(L10nRef ref) => ref.watch(languageProvider).stringsEn;
 
 @riverpod
 class Language extends _$Language {
@@ -227,6 +208,22 @@ class Language extends _$Language {
   LanguageType build() => LanguageType.en;
 
   void update(LanguageType type) => state = type;
+}
+
+enum LanguageType {
+  en,
+  ja;
+
+  StringsEn get stringsEn => switch (this) {
+        ja => AppLocale.ja.build(),
+        en => AppLocale.en.build(),
+      };
+
+  @override
+  String toString() => switch (this) {
+        en => 'English',
+        ja => '日本語',
+      };
 }
 ```
 
