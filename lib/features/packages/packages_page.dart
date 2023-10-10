@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -179,8 +177,10 @@ class _PackageItems extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = ref.watch(searchControllerProvider);
     final sort = ref.watch(sortProvider);
-    final sortedPackages =
-        sort == null ? List.of(packages) : ScoreType.sort(packages, sort);
+    final sortedPackages = sort == null
+        ? List.of(packages)
+        : packages.sortedByCompare((package) => sort.getValue(package.score),
+            (a, b) => b.compareTo(a));
 
     return RefreshIndicator(
       onRefresh: () async {
