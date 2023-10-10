@@ -6,20 +6,20 @@ part of 'language.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$translationHash() => r'8134751eed77d48d504b5f82895014716315c3d2';
+String _$l10nHash() => r'62e1f8756e43cb317f401389e06798f99805b3fd';
 
-/// See also [translation].
-@ProviderFor(translation)
-final translationProvider = AutoDisposeProvider<StringsEn>.internal(
-  translation,
-  name: r'translationProvider',
+/// See also [l10n].
+@ProviderFor(l10n)
+final l10nProvider = AutoDisposeProvider<StringsEn>.internal(
+  l10n,
+  name: r'l10nProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$translationHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$l10nHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef TranslationRef = AutoDisposeProviderRef<StringsEn>;
+typedef L10nRef = AutoDisposeProviderRef<StringsEn>;
 String _$languageHash() => r'fffeb41dad0fe8e0e076261ae6f919921eb94529';
 
 /// See also [Language].

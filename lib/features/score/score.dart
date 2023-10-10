@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:npm/i18n/strings.g.dart';
+import 'package:npm/l10n/strings.g.dart';
 
 part 'score.freezed.dart';
 part 'score.g.dart';
@@ -32,9 +32,9 @@ enum ScoreType {
         maintenance => score.maintenance,
       };
 
-  String transltate(StringsEn translate) => switch (this) {
-        popularity => translate.packagesPage.score.popularity,
-        quality => translate.packagesPage.score.quality,
-        maintenance => translate.packagesPage.score.maintenance,
+  String transltate(StringsEn l10n) => switch (this) {
+        popularity => l10n.packagesPage.score.popularity,
+        quality => l10n.packagesPage.score.quality,
+        maintenance => l10n.packagesPage.score.maintenance,
       };
 }

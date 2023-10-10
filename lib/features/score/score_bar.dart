@@ -16,7 +16,7 @@ class ScoreBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -25,7 +25,7 @@ class ScoreBar extends ConsumerWidget {
         SizedBox(
           width: 12,
           child: Text(
-            type.transltate(translate)[0],
+            type.transltate(l10n)[0],
             style: const TextStyle(
               fontSize: 12,
             ),

@@ -1,11 +1,10 @@
-import 'package:npm/i18n/strings.g.dart';
+import 'package:npm/l10n/strings.g.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'language.g.dart';
 
 @riverpod
-StringsEn translation(TranslationRef ref) =>
-    ref.watch(languageProvider).stringsEn;
+StringsEn l10n(L10nRef ref) => ref.watch(languageProvider).stringsEn;
 
 @riverpod
 class Language extends _$Language {

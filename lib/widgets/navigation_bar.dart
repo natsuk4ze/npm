@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/i18n/strings.g.dart';
+import 'package:npm/l10n/strings.g.dart';
 import 'package:npm/router.dart';
 import 'package:npm/widgets/logo.dart';
 
@@ -17,9 +17,9 @@ enum _Item {
         settings => const Icon(Icons.settings),
       };
 
-  String label(StringsEn translate) => switch (this) {
-        packages => translate.naviBar.search,
-        settings => translate.naviBar.settings,
+  String label(StringsEn l10n) => switch (this) {
+        packages => l10n.naviBar.search,
+        settings => l10n.naviBar.settings,
       };
 
   String get location => switch (this) {
@@ -40,14 +40,14 @@ class BottomNaviBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final location = GoRouterState.of(context).fullPath;
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return BottomNavigationBar(
       items: [
         for (var item in _Item.values)
           BottomNavigationBarItem(
             icon: item.icon,
-            label: item.label(translate),
+            label: item.label(l10n),
           )
       ],
       onTap: (index) => _Item.go(context, index),
@@ -67,7 +67,7 @@ class SideNaviBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final location = GoRouterState.of(context).fullPath;
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return SizedBox(
       width: 104,
@@ -91,11 +91,11 @@ class SideNaviBar extends ConsumerWidget {
             (location == _Item.packages.location && item == _Item.packages)
                 ? NavigationRailDestination(
                     icon: const Icon(Icons.list),
-                    label: Text(translate.naviBar.packages),
+                    label: Text(l10n.naviBar.packages),
                   )
                 : NavigationRailDestination(
                     icon: item.icon,
-                    label: Text(item.label(translate)),
+                    label: Text(item.label(l10n)),
                   )
         ],
       ),

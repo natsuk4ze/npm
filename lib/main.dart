@@ -14,7 +14,7 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final theme = ref.watch(themeProvider);
-    final locale = ref.watch(translationProvider).$meta.locale.flutterLocale;
+    final locale = ref.watch(l10nProvider).$meta.locale.flutterLocale;
 
     return MaterialApp.router(
       locale: locale,

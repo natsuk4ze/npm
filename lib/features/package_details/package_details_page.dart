@@ -20,11 +20,11 @@ class PackageDetailsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final package = ref.watch(packageDetailsProvider(id: id));
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return ResponsiveScaffold(
       appBar: AppBar(
-        title: Text(translate.packageDetailsPage.title),
+        title: Text(l10n.packageDetailsPage.title),
       ),
       sideNavigationBar: const SideNaviBar(),
       child: package.when(
@@ -105,13 +105,13 @@ class _Homepage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (homepage == null) return const SizedBox.shrink();
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(translate.packageDetailsPage.homepage),
+        Text(l10n.packageDetailsPage.homepage),
         const Gap(4),
         LinkText(homepage!)
       ],
@@ -127,13 +127,13 @@ class _Repository extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (repository == null) return const SizedBox.shrink();
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(translate.packageDetailsPage.repository),
+        Text(l10n.packageDetailsPage.repository),
         const Gap(4),
         LinkText(repository!)
       ],

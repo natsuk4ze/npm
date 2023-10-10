@@ -14,11 +14,11 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return ResponsiveScaffold(
       appBar: AppBar(
-        title: Text(translate.settingsPage.title),
+        title: Text(l10n.settingsPage.title),
       ),
       sideNavigationBar: const SideNaviBar(),
       bottomNavigationBar: const BottomNaviBar(),
@@ -52,11 +52,11 @@ class _LanguageItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return _Item(
       icon: Icons.language,
-      title: translate.settingsPage.language,
+      title: l10n.settingsPage.language,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async => _showDialog(context, ref),
     );
@@ -85,12 +85,12 @@ class _DarkModeItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
     final isDarkMode = ref.watch(isDarkModeProvider);
 
     return _Item(
       icon: Icons.light_mode,
-      title: translate.settingsPage.darkMode,
+      title: l10n.settingsPage.darkMode,
       trailing: Switch(
         value: isDarkMode,
         onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich(),
@@ -105,11 +105,11 @@ class _ReportItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return _Item(
       icon: Icons.report,
-      title: translate.settingsPage.report,
+      title: l10n.settingsPage.report,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async =>
           launchUrl(Uri.parse('https://github.com/natsuk4ze/npm/issues')),
@@ -122,11 +122,11 @@ class _LicenseItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return _Item(
       icon: Icons.star,
-      title: translate.settingsPage.license,
+      title: l10n.settingsPage.license,
       trailing: const Icon(Icons.arrow_forward),
       onTap: () async => _showDialog(context, ref),
     );

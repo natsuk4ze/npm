@@ -40,7 +40,7 @@ class PackagesPage extends HookConsumerWidget {
     useListenable(searchController);
     final scrollController = useScrollController();
     final packages = ref.watch(packagesProvider(search: searchController.text));
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
     final focus = useFocusNode();
 
     return ResponsiveScaffold(
@@ -57,7 +57,7 @@ class PackagesPage extends HookConsumerWidget {
             const Gap(20),
             Flexible(
               child: SearchBar(
-                hintText: translate.packagesPage.searchPackages,
+                hintText: l10n.packagesPage.searchPackages,
                 focusNode: focus,
                 controller: searchController,
                 onSubmitted: (_) => focus.unfocus(),
@@ -74,7 +74,7 @@ class PackagesPage extends HookConsumerWidget {
             context: context,
             builder: (context) => Dialog(
               child: SearchBar(
-                hintText: translate.packagesPage.searchPackages,
+                hintText: l10n.packagesPage.searchPackages,
                 focusNode: focus..requestFocus(),
                 controller: searchController,
                 leading: const Icon(Icons.search),
@@ -107,7 +107,7 @@ class _SortPannel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
     final sort = ref.watch(sortProvider);
 
     return SliverAppBar(
@@ -119,7 +119,7 @@ class _SortPannel extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              translate.packagesPage.sortPackages,
+              l10n.packagesPage.sortPackages,
               style: const TextStyle(fontSize: 14),
             ),
             const Gap(8),
@@ -149,7 +149,7 @@ class _SortPannel extends ConsumerWidget {
                         ),
                         const Gap(12),
                         Text(
-                          score.transltate(translate),
+                          score.transltate(l10n),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
@@ -264,7 +264,7 @@ class _EmptyItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translate = ref.watch(translationProvider);
+    final l10n = ref.watch(l10nProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -276,7 +276,7 @@ class _EmptyItem extends ConsumerWidget {
             width: 200,
           ),
           const Gap(20),
-          Text(translate.packagesPage.packageNotFound)
+          Text(l10n.packagesPage.packageNotFound)
         ],
       ),
     );
