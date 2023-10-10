@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -23,18 +26,24 @@ class Sort extends _$Sort {
   void update(ScoreType type) => state = type;
 }
 
+@riverpod
+Raw<TextEditingController> searchController(SearchControllerRef ref) {
+  final controller = TextEditingController(text: 'color');
+  ref.onDispose(controller.dispose);
+  return controller;
+}
+
 class PackagesPage extends HookConsumerWidget {
   const PackagesPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textController = useTextEditingController(text: 'color');
-    useListenable(textController);
+    final searchController = ref.watch(searchControllerProvider);
+    useListenable(searchController);
     final scrollController = useScrollController();
-    final packages = ref.watch(packagesProvider(search: textController.text));
+    final packages = ref.watch(packagesProvider(search: searchController.text));
     final translate = ref.watch(translationProvider);
-    final sort = ref.watch(sortProvider);
-    final focus = FocusNode();
+    final focus = useFocusNode();
 
     return ResponsiveScaffold(
       appBar: AppBar(
@@ -52,7 +61,7 @@ class PackagesPage extends HookConsumerWidget {
               child: SearchBar(
                 hintText: translate.packagesPage.searchPackages,
                 focusNode: focus,
-                controller: textController,
+                controller: searchController,
                 onSubmitted: (_) => focus.unfocus(),
               ),
             ),
@@ -69,7 +78,7 @@ class PackagesPage extends HookConsumerWidget {
               child: SearchBar(
                 hintText: translate.packagesPage.searchPackages,
                 focusNode: focus..requestFocus(),
-                controller: textController,
+                controller: searchController,
                 leading: const Icon(Icons.search),
                 onSubmitted: (_) => context.pop(),
               ),
@@ -83,37 +92,9 @@ class PackagesPage extends HookConsumerWidget {
         headerSliverBuilder: (_, __) => [const _SortPannel()],
         body: Center(
           child: packages.when(
-            data: (packages) {
-              if (packages.isEmpty) return const _EmptyItem();
-
-              List<Package>? sortedPackages;
-              if (sort != null) {
-                sortedPackages = List.of(packages);
-                sortedPackages.sort((a, b) {
-                  switch (sort) {
-                    case ScoreType.maintenance:
-                      return b.score.maintenance.compareTo(a.score.maintenance);
-                    case ScoreType.popularity:
-                      return b.score.popularity.compareTo(a.score.popularity);
-                    case ScoreType.quality:
-                      return b.score.quality.compareTo(a.score.quality);
-                  }
-                });
-              }
-              return RefreshIndicator(
-                onRefresh: () async {
-                  ref.invalidate(packagesProvider);
-                  await ref.read(
-                      packagesProvider(search: textController.text).future);
-                },
-                child: ListView.separated(
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemCount: sortedPackages?.length ?? packages.length,
-                  itemBuilder: (_, int i) =>
-                      PackageItem(sortedPackages?[i] ?? packages[i]),
-                ),
-              );
-            },
+            data: (packages) => packages.isEmpty
+                ? const _EmptyItem()
+                : _PackageItems(packages: packages),
             error: (e, _) => Text(e.toString()),
             loading: () => const CircularProgressIndicator(),
           ),
@@ -189,6 +170,32 @@ class _SortPannel extends ConsumerWidget {
   }
 }
 
+class _PackageItems extends HookConsumerWidget {
+  const _PackageItems({required this.packages});
+
+  final List<Package> packages;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchController = ref.watch(searchControllerProvider);
+    final sort = ref.watch(sortProvider);
+    final sortedPackages =
+        sort == null ? List.of(packages) : ScoreType.sort(packages, sort);
+
+    return RefreshIndicator(
+      onRefresh: () async {
+        ref.invalidate(packagesProvider);
+        await ref.read(packagesProvider(search: searchController.text).future);
+      },
+      child: ListView.separated(
+        separatorBuilder: (_, __) => const Divider(),
+        itemCount: sortedPackages.length,
+        itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
+      ),
+    );
+  }
+}
+
 @visibleForTesting
 class PackageItem extends HookConsumerWidget {
   const PackageItem(this.package, {super.key});
@@ -197,16 +204,11 @@ class PackageItem extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scores = useState(ScoreType.values.toList());
-    ref.listen(sortProvider, (_, sort) {
-      if (sort == null) return;
-      scores.value = List.from(scores.value)
-        ..sort((a, b) {
-          if (a == sort) return -1;
-          if (b == sort) return 1;
-          return 0;
-        });
-    });
+    final sort = ref.watch(sortProvider);
+    final scores = sort == null
+        ? ScoreType.values
+        : (List.of(ScoreType.values)
+          ..swap(0, ScoreType.values.indexWhere((score) => score == sort)));
 
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
@@ -245,7 +247,7 @@ class PackageItem extends HookConsumerWidget {
                   ),
                 ),
               ),
-            for (var score in scores.value)
+            for (var score in scores)
               ScoreBar(
                 type: score,
                 value: score.getValue(package.score),

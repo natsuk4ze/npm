@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:npm/features/packages/packages.dart';
 import 'package:npm/i18n/strings.g.dart';
 
 part 'score.freezed.dart';
@@ -37,4 +38,12 @@ enum ScoreType {
         quality => translate.packagesPage.score.quality,
         maintenance => translate.packagesPage.score.maintenance,
       };
+
+  static List<Package> sort(List<Package> packages, ScoreType type) =>
+      List.of(packages)
+        ..sort((a, b) => switch (type) {
+              maintenance => b.score.maintenance.compareTo(a.score.maintenance),
+              popularity => b.score.popularity.compareTo(a.score.popularity),
+              quality => b.score.quality.compareTo(a.score.quality),
+            });
 }

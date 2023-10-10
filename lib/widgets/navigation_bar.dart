@@ -87,7 +87,6 @@ class SideNaviBar extends ConsumerWidget {
         ),
         onDestinationSelected: (index) => _Item.go(context, index),
         destinations: [
-          //TODO: Refactor
           for (var item in _Item.values)
             (location == _Item.packages.location && item == _Item.packages)
                 ? NavigationRailDestination(
