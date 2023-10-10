@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
 import 'package:npm/widgets/navigation_bar.dart';
-import 'package:npm/widgets/link_text.dart';
 import 'package:npm/widgets/responsive_scaffold.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -128,48 +127,10 @@ class _LicenseItem extends ConsumerWidget {
       icon: Icons.star,
       title: l10n.settingsPage.license,
       trailing: const Icon(Icons.arrow_forward),
-      onTap: () async => _showDialog(context, ref),
+      onTap: () async => launchUrl(
+          Uri.parse('https://github.com/natsuk4ze/npm/blob/master/LICENSE')),
     );
   }
-
-  Future<void> _showDialog(BuildContext context, WidgetRef ref) async =>
-      showDialog(
-        context: context,
-        builder: (context) => Dialog(
-            child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).dividerColor,
-                    width: 4,
-                  ),
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: Image.asset('assets/app/owner.png').image,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              const Gap(12),
-              const LinkText(
-                'https://github.com/natsuk4ze',
-                text: 'Created by @natsuk4ze',
-              ),
-              const Gap(12),
-              const Text(
-                'Midori Design Studio',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          ),
-        )),
-      );
 }
 
 class _Item extends StatelessWidget {
