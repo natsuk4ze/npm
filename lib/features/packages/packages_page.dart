@@ -168,7 +168,7 @@ class _SortPannel extends ConsumerWidget {
   }
 }
 
-class _PackageItems extends HookConsumerWidget {
+class _PackageItems extends ConsumerWidget {
   const _PackageItems({required this.packages});
 
   final List<Package> packages;
@@ -197,7 +197,7 @@ class _PackageItems extends HookConsumerWidget {
 }
 
 @visibleForTesting
-class PackageItem extends HookConsumerWidget {
+class PackageItem extends ConsumerWidget {
   const PackageItem(this.package, {super.key});
 
   final Package package;
