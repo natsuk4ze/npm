@@ -492,10 +492,10 @@ packages:
     dependency: "direct main"
     description:
       name: markdown_widget
-      sha256: "088feae6be2dd527c7dd54e06ad104a3e70505aff2ce14a3b464482551a0e273"
+      sha256: b69334a1dd633c32d688735d771ebaf5490f713cd00917cb52b53c14c2c09d81
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.1"
   matcher:
     dependency: transitive
     description:

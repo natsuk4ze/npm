@@ -17,7 +17,7 @@ dependencies:
   go_router: ^12.1.1
   hooks_riverpod: ^2.4.0
   json_annotation: ^4.8.1
-  markdown_widget: ^2.2.0
+  markdown_widget: ^2.3.1
   riverpod_annotation: ^2.3.1
   slang: ^3.23.0
   slang_flutter: ^3.25.0
