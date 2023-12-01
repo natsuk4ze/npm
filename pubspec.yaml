@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   collection: ^1.18.0
-  dio: ^5.3.4
+  dio: ^5.4.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.3
