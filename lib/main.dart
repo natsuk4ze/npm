@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/features/settings/theme.dart';
+import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/router.dart';
 import 'package:slang_flutter/slang_flutter.dart';
 

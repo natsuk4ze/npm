@@ -14,7 +14,7 @@ class LinkText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => launchUrl(Uri.parse(url)),
+      onTap: () async => launchUrl(Uri.parse(url)),
       child: Text(
         text ?? url,
         style: const TextStyle(

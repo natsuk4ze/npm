@@ -45,10 +45,15 @@ class Package with _$Package {
       name: package['name'],
       description: package['description'],
       version: package['version'],
-      keywords: package['keywords'] != null
-          ? List<String>.from(package['keywords'])
-          : null,
+      keywords: ListX.fromOrNull<String>(package['keywords']),
       score: Score.fromJson(score),
     );
+  }
+}
+
+extension ListX on List {
+  static List<T>? fromOrNull<T>(dynamic source) {
+    if (source == null) return null;
+    return List<T>.from(source as Iterable);
   }
 }

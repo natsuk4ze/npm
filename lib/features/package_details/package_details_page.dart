@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/features/settings/theme.dart';
+import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/widgets/link_text.dart';
 
 class PackageDetailsPage extends ConsumerWidget {

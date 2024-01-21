@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'theme.g.dart';
+part 'dark_mode.g.dart';
 
 @riverpod
 class IsDarkMode extends _$IsDarkMode {

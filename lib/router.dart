@@ -51,7 +51,5 @@ class SettingsRoute extends GoRouteData {
   static const String path = 'settings';
 
   @override
-  NoTransitionPage<void> buildPage(context, state) => const NoTransitionPage(
-        child: SettingsPage(),
-      );
+  Widget build(context, state) => const SettingsPage();
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:npm/features/settings/theme.dart';
+import 'package:npm/features/settings/dark_mode.dart';
 
 class Logo extends ConsumerWidget {
   const Logo({
