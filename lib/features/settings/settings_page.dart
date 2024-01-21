@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/dark_mode.dart';
+import 'package:npm/widgets/title_app_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -14,9 +15,7 @@ class SettingsPage extends ConsumerWidget {
     final l10n = ref.watch(l10nProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.settingsPage.title),
-      ),
+      appBar: TitleAppBar(title: l10n.settingsPage.title),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Container(
