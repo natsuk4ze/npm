@@ -23,7 +23,7 @@ void main() {
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await tester.pump();
+      await tester.pumpAndSettle(const Duration(seconds: 5));
 
       expect(find.byType(CircularProgressIndicator), findsNothing);
 
