@@ -7,10 +7,13 @@ part 'packages.g.dart';
 part 'packages.freezed.dart';
 
 @riverpod
-Future<List<Package>> packages(PackagesRef ref,
-    {required String search}) async {
+Future<List<Package>> packages(
+  PackagesRef ref, {
+  required String search,
+  bool debounce = true,
+}) async {
   final cancelToken = ref.cancelToken;
-  await Future.delayed(const Duration(milliseconds: 500));
+  if (debounce) await Future.delayed(const Duration(milliseconds: 500));
   if (cancelToken.isCancelled) throw Exception('Cancelled');
   final packages = await ref.watch(repositoryProvider).getPackges(
         search: search,

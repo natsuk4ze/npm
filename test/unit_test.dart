@@ -14,11 +14,11 @@ void main() {
       );
       const search = FakeRepository.packageName;
       expect(
-        container.read(packagesProvider(search: search)),
+        container.read(packagesProvider(search: search, debounce: false)),
         const AsyncValue<List<Package>>.loading(),
       );
-      final packages =
-          await container.read(packagesProvider(search: search).future);
+      final packages = await container
+          .read(packagesProvider(search: search, debounce: false).future);
       expect(
         packages,
         FakeRepository.packages,

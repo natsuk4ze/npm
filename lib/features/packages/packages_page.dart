@@ -173,8 +173,10 @@ class _PackageItems extends ConsumerWidget {
         return sortedPackages.isEmpty
             ? const _EmptyItem()
             : RefreshIndicator(
-                onRefresh: () async =>
-                    ref.refresh(packagesProvider(search: searchText).future),
+                onRefresh: () async => ref.refresh(packagesProvider(
+                  search: searchText,
+                  debounce: false,
+                ).future),
                 child: ListView.separated(
                   separatorBuilder: (_, __) => const Divider(),
                   itemCount: sortedPackages.length,

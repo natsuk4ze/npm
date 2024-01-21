@@ -6,7 +6,7 @@ part of 'packages.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$packagesHash() => r'46285702dec6e601251cd6c047eb95c3e01904e4';
+String _$packagesHash() => r'82941abad681639f68c0b9ca1d7fdc1e3e1f0cdf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -41,9 +41,11 @@ class PackagesFamily extends Family<AsyncValue<List<Package>>> {
   /// See also [packages].
   PackagesProvider call({
     required String search,
+    bool debounce = true,
   }) {
     return PackagesProvider(
       search: search,
+      debounce: debounce,
     );
   }
 
@@ -53,6 +55,7 @@ class PackagesFamily extends Family<AsyncValue<List<Package>>> {
   ) {
     return call(
       search: provider.search,
+      debounce: provider.debounce,
     );
   }
 
@@ -76,10 +79,12 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
   /// See also [packages].
   PackagesProvider({
     required String search,
+    bool debounce = true,
   }) : this._internal(
           (ref) => packages(
             ref as PackagesRef,
             search: search,
+            debounce: debounce,
           ),
           from: packagesProvider,
           name: r'packagesProvider',
@@ -90,6 +95,7 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
           dependencies: PackagesFamily._dependencies,
           allTransitiveDependencies: PackagesFamily._allTransitiveDependencies,
           search: search,
+          debounce: debounce,
         );
 
   PackagesProvider._internal(
@@ -100,9 +106,11 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.search,
+    required this.debounce,
   }) : super.internal();
 
   final String search;
+  final bool debounce;
 
   @override
   Override overrideWith(
@@ -118,6 +126,7 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         search: search,
+        debounce: debounce,
       ),
     );
   }
@@ -129,13 +138,16 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
 
   @override
   bool operator ==(Object other) {
-    return other is PackagesProvider && other.search == search;
+    return other is PackagesProvider &&
+        other.search == search &&
+        other.debounce == debounce;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, search.hashCode);
+    hash = _SystemHash.combine(hash, debounce.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -144,6 +156,9 @@ class PackagesProvider extends AutoDisposeFutureProvider<List<Package>> {
 mixin PackagesRef on AutoDisposeFutureProviderRef<List<Package>> {
   /// The parameter `search` of this provider.
   String get search;
+
+  /// The parameter `debounce` of this provider.
+  bool get debounce;
 }
 
 class _PackagesProviderElement
@@ -152,6 +167,8 @@ class _PackagesProviderElement
 
   @override
   String get search => (origin as PackagesProvider).search;
+  @override
+  bool get debounce => (origin as PackagesProvider).debounce;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
