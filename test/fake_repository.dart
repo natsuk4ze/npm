@@ -31,7 +31,7 @@ class FakeRepository implements Repository {
   @override
   Future<List<Package>> getPackges({
     required String search,
-    required CancelToken cancelToken,
+    CancelToken? cancelToken,
   }) async =>
       packages;
 

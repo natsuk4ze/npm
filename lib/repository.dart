@@ -15,7 +15,7 @@ class Repository {
 
   Future<List<Package>> getPackges({
     required String search,
-    required CancelToken cancelToken,
+    CancelToken? cancelToken,
   }) async {
     final response = await _dio.get(
       '$_baseUrl/-/v1/search?text=$search',

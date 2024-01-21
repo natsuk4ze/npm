@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/repository.dart';
@@ -12,9 +13,12 @@ Future<List<Package>> packages(
   required String search,
   bool debounce = true,
 }) async {
-  final cancelToken = ref.cancelToken;
-  if (debounce) await Future.delayed(const Duration(milliseconds: 500));
-  if (cancelToken.isCancelled) throw Exception('Cancelled');
+  CancelToken? cancelToken;
+  if (debounce) {
+    cancelToken = ref.cancelToken;
+    if (debounce) await Future.delayed(const Duration(milliseconds: 500));
+    if (cancelToken.isCancelled) throw Exception('Cancelled');
+  }
   final packages = await ref.watch(repositoryProvider).getPackges(
         search: search,
         cancelToken: cancelToken,
