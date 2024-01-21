@@ -6,8 +6,8 @@ part of 'package_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PackageDetails _$$_PackageDetailsFromJson(Map<String, dynamic> json) =>
-    _$_PackageDetails(
+_$PackageDetailsImpl _$$PackageDetailsImplFromJson(Map<String, dynamic> json) =>
+    _$PackageDetailsImpl(
       name: json['name'] as String,
       readme: json['readme'] as String?,
       description: json['description'] as String?,
@@ -19,7 +19,8 @@ _$_PackageDetails _$$_PackageDetailsFromJson(Map<String, dynamic> json) =>
       repository: _toRepository(json, 'repository') as String?,
     );
 
-Map<String, dynamic> _$$_PackageDetailsToJson(_$_PackageDetails instance) =>
+Map<String, dynamic> _$$PackageDetailsImplToJson(
+        _$PackageDetailsImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'readme': instance.readme,

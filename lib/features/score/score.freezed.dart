@@ -72,18 +72,21 @@ class _$ScoreCopyWithImpl<$Res, $Val extends Score>
 }
 
 /// @nodoc
-abstract class _$$_ScoreCopyWith<$Res> implements $ScoreCopyWith<$Res> {
-  factory _$$_ScoreCopyWith(_$_Score value, $Res Function(_$_Score) then) =
-      __$$_ScoreCopyWithImpl<$Res>;
+abstract class _$$ScoreImplCopyWith<$Res> implements $ScoreCopyWith<$Res> {
+  factory _$$ScoreImplCopyWith(
+          _$ScoreImpl value, $Res Function(_$ScoreImpl) then) =
+      __$$ScoreImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double popularity, double quality, double maintenance});
 }
 
 /// @nodoc
-class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
-    implements _$$_ScoreCopyWith<$Res> {
-  __$$_ScoreCopyWithImpl(_$_Score _value, $Res Function(_$_Score) _then)
+class __$$ScoreImplCopyWithImpl<$Res>
+    extends _$ScoreCopyWithImpl<$Res, _$ScoreImpl>
+    implements _$$ScoreImplCopyWith<$Res> {
+  __$$ScoreImplCopyWithImpl(
+      _$ScoreImpl _value, $Res Function(_$ScoreImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +96,7 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
     Object? quality = null,
     Object? maintenance = null,
   }) {
-    return _then(_$_Score(
+    return _then(_$ScoreImpl(
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -112,14 +115,14 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Score implements _Score {
-  _$_Score(
+class _$ScoreImpl implements _Score {
+  _$ScoreImpl(
       {required this.popularity,
       required this.quality,
       required this.maintenance});
 
-  factory _$_Score.fromJson(Map<String, dynamic> json) =>
-      _$$_ScoreFromJson(json);
+  factory _$ScoreImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScoreImplFromJson(json);
 
   @override
   final double popularity;
@@ -134,10 +137,10 @@ class _$_Score implements _Score {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Score &&
+            other is _$ScoreImpl &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
             (identical(other.quality, quality) || other.quality == quality) &&
@@ -153,12 +156,12 @@ class _$_Score implements _Score {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ScoreCopyWith<_$_Score> get copyWith =>
-      __$$_ScoreCopyWithImpl<_$_Score>(this, _$identity);
+  _$$ScoreImplCopyWith<_$ScoreImpl> get copyWith =>
+      __$$ScoreImplCopyWithImpl<_$ScoreImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScoreToJson(
+    return _$$ScoreImplToJson(
       this,
     );
   }
@@ -168,9 +171,9 @@ abstract class _Score implements Score {
   factory _Score(
       {required final double popularity,
       required final double quality,
-      required final double maintenance}) = _$_Score;
+      required final double maintenance}) = _$ScoreImpl;
 
-  factory _Score.fromJson(Map<String, dynamic> json) = _$_Score.fromJson;
+  factory _Score.fromJson(Map<String, dynamic> json) = _$ScoreImpl.fromJson;
 
   @override
   double get popularity;
@@ -180,6 +183,6 @@ abstract class _Score implements Score {
   double get maintenance;
   @override
   @JsonKey(ignore: true)
-  _$$_ScoreCopyWith<_$_Score> get copyWith =>
+  _$$ScoreImplCopyWith<_$ScoreImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

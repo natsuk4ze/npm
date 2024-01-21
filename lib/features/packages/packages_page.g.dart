@@ -11,7 +11,7 @@ String _$searchControllerHash() => r'373ca7c3f17a77b62a9e574314712eb14ff38fc8';
 /// See also [searchController].
 @ProviderFor(searchController)
 final searchControllerProvider =
-    AutoDisposeProvider<TextEditingController>.internal(
+    AutoDisposeProvider<Raw<TextEditingController>>.internal(
   searchController,
   name: r'searchControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,7 +21,8 @@ final searchControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef SearchControllerRef = AutoDisposeProviderRef<TextEditingController>;
+typedef SearchControllerRef
+    = AutoDisposeProviderRef<Raw<TextEditingController>>;
 String _$sortHash() => r'0e39309c3109d3dbd35deaaf10c62dde6de29523';
 
 /// See also [Sort].

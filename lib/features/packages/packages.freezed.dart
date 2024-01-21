@@ -94,10 +94,10 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
 }
 
 /// @nodoc
-abstract class _$$_PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
-  factory _$$_PackageCopyWith(
-          _$_Package value, $Res Function(_$_Package) then) =
-      __$$_PackageCopyWithImpl<$Res>;
+abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
+  factory _$$PackageImplCopyWith(
+          _$PackageImpl value, $Res Function(_$PackageImpl) then) =
+      __$$PackageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,10 +112,11 @@ abstract class _$$_PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PackageCopyWithImpl<$Res>
-    extends _$PackageCopyWithImpl<$Res, _$_Package>
-    implements _$$_PackageCopyWith<$Res> {
-  __$$_PackageCopyWithImpl(_$_Package _value, $Res Function(_$_Package) _then)
+class __$$PackageImplCopyWithImpl<$Res>
+    extends _$PackageCopyWithImpl<$Res, _$PackageImpl>
+    implements _$$PackageImplCopyWith<$Res> {
+  __$$PackageImplCopyWithImpl(
+      _$PackageImpl _value, $Res Function(_$PackageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -127,7 +128,7 @@ class __$$_PackageCopyWithImpl<$Res>
     Object? description = freezed,
     Object? keywords = freezed,
   }) {
-    return _then(_$_Package(
+    return _then(_$PackageImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -154,8 +155,8 @@ class __$$_PackageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Package extends _Package {
-  const _$_Package(
+class _$PackageImpl extends _Package {
+  const _$PackageImpl(
       {required this.name,
       required this.version,
       required this.score,
@@ -188,10 +189,10 @@ class _$_Package extends _Package {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Package &&
+            other is _$PackageImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.version, version) || other.version == version) &&
             (identical(other.score, score) || other.score == score) &&
@@ -207,8 +208,8 @@ class _$_Package extends _Package {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PackageCopyWith<_$_Package> get copyWith =>
-      __$$_PackageCopyWithImpl<_$_Package>(this, _$identity);
+  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
+      __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
 }
 
 abstract class _Package extends Package {
@@ -217,7 +218,7 @@ abstract class _Package extends Package {
       required final String version,
       required final Score score,
       final String? description,
-      final List<String>? keywords}) = _$_Package;
+      final List<String>? keywords}) = _$PackageImpl;
   const _Package._() : super._();
 
   @override
@@ -232,6 +233,6 @@ abstract class _Package extends Package {
   List<String>? get keywords;
   @override
   @JsonKey(ignore: true)
-  _$$_PackageCopyWith<_$_Package> get copyWith =>
+  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

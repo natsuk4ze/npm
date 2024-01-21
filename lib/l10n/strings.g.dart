@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 34 (17 per locale)
 ///
-/// Built on 2023-10-10 at 11:53 UTC
+/// Built on 2024-01-21 at 08:23 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -24,8 +24,8 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - LocaleSettings.setLocale(AppLocale.en) // set locale
 /// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
-enum AppLocale with BaseAppLocale<AppLocale, StringsEn> {
-	en(languageCode: 'en', build: StringsEn.build),
+enum AppLocale with BaseAppLocale<AppLocale, Translations> {
+	en(languageCode: 'en', build: Translations.build),
 	ja(languageCode: 'ja', build: StringsJa.build);
 
 	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
@@ -33,11 +33,11 @@ enum AppLocale with BaseAppLocale<AppLocale, StringsEn> {
 	@override final String languageCode;
 	@override final String? scriptCode;
 	@override final String? countryCode;
-	@override final TranslationBuilder<AppLocale, StringsEn> build;
+	@override final TranslationBuilder<AppLocale, Translations> build;
 }
 
 /// Provides utility functions without any side effects.
-class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, StringsEn> {
+class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Translations> {
 	AppLocaleUtils._() : super(baseLocale: _baseLocale, locales: AppLocale.values);
 
 	static final instance = AppLocaleUtils._();
@@ -53,11 +53,11 @@ class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, StringsEn> {
 // translations
 
 // Path: <root>
-class StringsEn implements BaseTranslations<AppLocale, StringsEn> {
-
+typedef StringsEn = Translations; // ignore: unused_element
+class Translations implements BaseTranslations<AppLocale, Translations> {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
-	StringsEn.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+	Translations.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
 		  $meta = TranslationMetadata(
 		    locale: AppLocale.en,
@@ -69,12 +69,12 @@ class StringsEn implements BaseTranslations<AppLocale, StringsEn> {
 	}
 
 	/// Metadata for the translations of <en>.
-	@override final TranslationMetadata<AppLocale, StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
 	dynamic operator[](String key) => $meta.getTranslation(key);
 
-	late final StringsEn _root = this; // ignore: unused_field
+	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
 	late final StringsPackagesPageEn packagesPage = StringsPackagesPageEn._(_root);
@@ -87,7 +87,7 @@ class StringsEn implements BaseTranslations<AppLocale, StringsEn> {
 class StringsPackagesPageEn {
 	StringsPackagesPageEn._(this._root);
 
-	final StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get searchPackages => 'Search Packages';
@@ -100,7 +100,7 @@ class StringsPackagesPageEn {
 class StringsPackageDetailsPageEn {
 	StringsPackageDetailsPageEn._(this._root);
 
-	final StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Details';
@@ -112,7 +112,7 @@ class StringsPackageDetailsPageEn {
 class StringsSettingsPageEn {
 	StringsSettingsPageEn._(this._root);
 
-	final StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get title => 'Settings';
@@ -126,7 +126,7 @@ class StringsSettingsPageEn {
 class StringsNaviBarEn {
 	StringsNaviBarEn._(this._root);
 
-	final StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get search => 'Search';
@@ -138,7 +138,7 @@ class StringsNaviBarEn {
 class StringsPackagesPageScoreEn {
 	StringsPackagesPageScoreEn._(this._root);
 
-	final StringsEn _root; // ignore: unused_field
+	final Translations _root; // ignore: unused_field
 
 	// Translations
 	String get popularity => 'Popularity';
@@ -147,8 +147,7 @@ class StringsPackagesPageScoreEn {
 }
 
 // Path: <root>
-class StringsJa implements StringsEn {
-
+class StringsJa implements Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	StringsJa.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -163,7 +162,7 @@ class StringsJa implements StringsEn {
 	}
 
 	/// Metadata for the translations of <ja>.
-	@override final TranslationMetadata<AppLocale, StringsEn> $meta;
+	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
 	@override dynamic operator[](String key) => $meta.getTranslation(key);
@@ -243,7 +242,7 @@ class StringsPackagesPageScoreJa implements StringsPackagesPageScoreEn {
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
-extension on StringsEn {
+extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'packagesPage.searchPackages': return 'Search Packages';

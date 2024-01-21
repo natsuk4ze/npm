@@ -106,11 +106,11 @@ class _$PackageDetailsCopyWithImpl<$Res, $Val extends PackageDetails>
 }
 
 /// @nodoc
-abstract class _$$_PackageDetailsCopyWith<$Res>
+abstract class _$$PackageDetailsImplCopyWith<$Res>
     implements $PackageDetailsCopyWith<$Res> {
-  factory _$$_PackageDetailsCopyWith(
-          _$_PackageDetails value, $Res Function(_$_PackageDetails) then) =
-      __$$_PackageDetailsCopyWithImpl<$Res>;
+  factory _$$PackageDetailsImplCopyWith(_$PackageDetailsImpl value,
+          $Res Function(_$PackageDetailsImpl) then) =
+      __$$PackageDetailsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -124,11 +124,11 @@ abstract class _$$_PackageDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PackageDetailsCopyWithImpl<$Res>
-    extends _$PackageDetailsCopyWithImpl<$Res, _$_PackageDetails>
-    implements _$$_PackageDetailsCopyWith<$Res> {
-  __$$_PackageDetailsCopyWithImpl(
-      _$_PackageDetails _value, $Res Function(_$_PackageDetails) _then)
+class __$$PackageDetailsImplCopyWithImpl<$Res>
+    extends _$PackageDetailsCopyWithImpl<$Res, _$PackageDetailsImpl>
+    implements _$$PackageDetailsImplCopyWith<$Res> {
+  __$$PackageDetailsImplCopyWithImpl(
+      _$PackageDetailsImpl _value, $Res Function(_$PackageDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -142,7 +142,7 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
     Object? homepage = freezed,
     Object? repository = freezed,
   }) {
-    return _then(_$_PackageDetails(
+    return _then(_$PackageDetailsImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -177,8 +177,8 @@ class __$$_PackageDetailsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PackageDetails extends _PackageDetails {
-  const _$_PackageDetails(
+class _$PackageDetailsImpl extends _PackageDetails {
+  const _$PackageDetailsImpl(
       {required this.name,
       this.readme,
       this.description,
@@ -189,8 +189,8 @@ class _$_PackageDetails extends _PackageDetails {
       : _keywords = keywords,
         super._();
 
-  factory _$_PackageDetails.fromJson(Map<String, dynamic> json) =>
-      _$$_PackageDetailsFromJson(json);
+  factory _$PackageDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PackageDetailsImplFromJson(json);
 
   @override
   final String name;
@@ -222,10 +222,10 @@ class _$_PackageDetails extends _PackageDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PackageDetails &&
+            other is _$PackageDetailsImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.readme, readme) || other.readme == readme) &&
             (identical(other.description, description) ||
@@ -253,12 +253,13 @@ class _$_PackageDetails extends _PackageDetails {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PackageDetailsCopyWith<_$_PackageDetails> get copyWith =>
-      __$$_PackageDetailsCopyWithImpl<_$_PackageDetails>(this, _$identity);
+  _$$PackageDetailsImplCopyWith<_$PackageDetailsImpl> get copyWith =>
+      __$$PackageDetailsImplCopyWithImpl<_$PackageDetailsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PackageDetailsToJson(
+    return _$$PackageDetailsImplToJson(
       this,
     );
   }
@@ -273,11 +274,11 @@ abstract class _PackageDetails extends PackageDetails {
       final String? license,
       final String? homepage,
       @JsonKey(readValue: _toRepository)
-      required final String? repository}) = _$_PackageDetails;
+      required final String? repository}) = _$PackageDetailsImpl;
   const _PackageDetails._() : super._();
 
   factory _PackageDetails.fromJson(Map<String, dynamic> json) =
-      _$_PackageDetails.fromJson;
+      _$PackageDetailsImpl.fromJson;
 
   @override
   String get name;
@@ -296,6 +297,6 @@ abstract class _PackageDetails extends PackageDetails {
   String? get repository;
   @override
   @JsonKey(ignore: true)
-  _$$_PackageDetailsCopyWith<_$_PackageDetails> get copyWith =>
+  _$$PackageDetailsImplCopyWith<_$PackageDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
