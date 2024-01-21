@@ -12,7 +12,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
       );
-      const search = FakeRepository.name;
+      const search = FakeRepository.packageName;
       expect(
         container.read(packagesProvider(search: search)),
         const AsyncValue<List<Package>>.loading(),
@@ -29,7 +29,7 @@ void main() {
       final container = ProviderContainer(
         overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
       );
-      const id = FakeRepository.name;
+      const id = FakeRepository.packageName;
       expect(
         container.read(packageDetailsProvider(id: id)),
         const AsyncValue<PackageDetails>.loading(),

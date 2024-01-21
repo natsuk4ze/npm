@@ -5,14 +5,14 @@ import 'package:npm/features/score/score.dart';
 import 'package:npm/repository.dart';
 
 class FakeRepository implements Repository {
-  static const name = 'package';
+  static const packageName = 'package';
   static final packages = List.generate(
     10,
     (i) => Package(
-      name: '$name $i',
+      name: '$packageName $i',
       version: '$i',
-      description: '',
-      keywords: [],
+      description: 'description',
+      keywords: ['keyword'],
       score: Score(
         popularity: i.toDouble(),
         quality: i.toDouble(),
@@ -21,7 +21,7 @@ class FakeRepository implements Repository {
     ),
   );
   static const packageDetils = PackageDetails(
-    name: name,
+    name: packageName,
     license: 'MIT',
     homepage: 'https://homepage',
     readme: 'readme',
