@@ -9,14 +9,14 @@ import 'package:npm/main.dart' as app;
 import 'package:npm/repository.dart';
 import 'package:npm/router.dart';
 
-import 'mock.dart';
+import 'fake_repository.dart';
 
 void main() {
   group('[Widget Test]', () {
     testWidgets('PackagesPage', (tester) async {
       await tester.pumpWidget(
         ProviderScope(
-          overrides: [repositoryProvider.overrideWithValue(MockRepository())],
+          overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
           child: const app.App(),
         ),
       );
@@ -29,7 +29,7 @@ void main() {
 
       expect(
         tester.widget<PackageItem>(find.byType(PackageItem).first).package ==
-            MockRepository.packages.first,
+            FakeRepository.packages.first,
         true,
       );
     });
@@ -39,12 +39,12 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             overrides: [
-              repositoryProvider.overrideWithValue(MockRepository()),
+              repositoryProvider.overrideWithValue(FakeRepository()),
               routerProvider.overrideWithValue(
                 GoRouter(
                     routes: $appRoutes,
                     initialLocation: PackageDetailsRoute(
-                            id: MockRepository.packageDetils.name)
+                            id: FakeRepository.packageDetils.name)
                         .location),
               ),
             ],
@@ -62,7 +62,7 @@ void main() {
           tester
                   .widget<PackegeDetailsItem>(find.byType(PackegeDetailsItem))
                   .package ==
-              MockRepository.packageDetils,
+              FakeRepository.packageDetils,
           true,
         );
       });

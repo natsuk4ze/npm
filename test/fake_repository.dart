@@ -4,7 +4,7 @@ import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/repository.dart';
 
-class MockRepository implements Repository {
+class FakeRepository implements Repository {
   static const name = 'package';
   static final packages = List.generate(
     10,

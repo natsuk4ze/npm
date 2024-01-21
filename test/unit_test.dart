@@ -4,39 +4,41 @@ import 'package:npm/features/packages/packages.dart';
 import 'package:npm/repository.dart';
 import 'package:test/test.dart';
 
-import 'mock.dart';
+import 'fake_repository.dart';
 
 void main() {
   group('[Unit Test]', () {
     test('getPackages()', () async {
       final container = ProviderContainer(
-        overrides: [repositoryProvider.overrideWithValue(MockRepository())],
+        overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
       );
-      const search = MockRepository.name;
+      const search = FakeRepository.name;
       expect(
         container.read(packagesProvider(search: search)),
         const AsyncValue<List<Package>>.loading(),
       );
-      await container.read(packagesProvider(search: search).future);
+      final packages =
+          await container.read(packagesProvider(search: search).future);
       expect(
-        container.read(packagesProvider(search: search)).value,
-        MockRepository.packages,
+        packages,
+        FakeRepository.packages,
       );
     });
 
     test('getPackageDetails()', () async {
       final container = ProviderContainer(
-        overrides: [repositoryProvider.overrideWithValue(MockRepository())],
+        overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
       );
-      const id = MockRepository.name;
+      const id = FakeRepository.name;
       expect(
         container.read(packageDetailsProvider(id: id)),
         const AsyncValue<PackageDetails>.loading(),
       );
-      await container.read(packageDetailsProvider(id: id).future);
+      final packageDetails =
+          await container.read(packageDetailsProvider(id: id).future);
       expect(
-        container.read(packageDetailsProvider(id: id)).value,
-        MockRepository.packageDetils,
+        packageDetails,
+        FakeRepository.packageDetils,
       );
     });
   });
