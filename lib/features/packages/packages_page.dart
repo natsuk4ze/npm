@@ -29,9 +29,7 @@ class PackagesPage extends HookConsumerWidget {
     final searchController = useTextEditingController(text: 'color');
     useListenable(searchController);
     final scrollController = useScrollController();
-    final packages = ref.watch(packagesProvider(search: searchController.text));
     final l10n = ref.watch(l10nProvider);
-    final focus = useFocusNode();
     final isLargeScreen = MediaQuery.of(context).size.width > 600;
 
     return Scaffold(
@@ -58,9 +56,7 @@ class PackagesPage extends HookConsumerWidget {
             Flexible(
               child: SearchBar(
                 hintText: l10n.packagesPage.searchPackages,
-                focusNode: focus,
                 controller: searchController,
-                onSubmitted: (_) => focus.unfocus(),
               ),
             ),
           ],
@@ -74,15 +70,8 @@ class PackagesPage extends HookConsumerWidget {
                   const _SortPannel(),
                   const VerticalDivider(),
                   Expanded(
-                    child: packages.when(
-                      data: (packages) => packages.isEmpty
-                          ? const _EmptyItem()
-                          : _PackageItems(
-                              packages: packages,
-                              searchText: searchController.text,
-                            ),
-                      error: (e, _) => Text(e.toString()),
-                      loading: () => const CircularProgressIndicator(),
+                    child: _PackageItems(
+                      searchText: searchController.text,
                     ),
                   ),
                 ],
@@ -97,17 +86,7 @@ class PackagesPage extends HookConsumerWidget {
                           width: double.maxFinite, child: _SortPannel()))
                 ],
                 body: Center(
-                  child: packages.when(
-                    data: (packages) => packages.isEmpty
-                        ? const _EmptyItem()
-                        : _PackageItems(
-                            packages: packages,
-                            searchText: searchController.text,
-                          ),
-                    error: (e, _) => Text(e.toString()),
-                    loading: () => const CircularProgressIndicator(),
-                  ),
-                ),
+                    child: _PackageItems(searchText: searchController.text)),
               ),
       ),
     );
@@ -174,30 +153,37 @@ class _SortPannel extends ConsumerWidget {
 }
 
 class _PackageItems extends ConsumerWidget {
-  const _PackageItems({
-    required this.packages,
-    required this.searchText,
-  });
+  const _PackageItems({required this.searchText});
 
-  final List<Package> packages;
   final String searchText;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final packages = ref.watch(packagesProvider(search: searchText));
     final sort = ref.watch(sortProvider);
-    final sortedPackages = sort == null
-        ? List.of(packages)
-        : packages.sortedByCompare((package) => sort.getValue(package.score),
-            (a, b) => b.compareTo(a));
 
-    return RefreshIndicator(
-      onRefresh: () async =>
-          ref.refresh(packagesProvider(search: searchText).future),
-      child: ListView.separated(
-        separatorBuilder: (_, __) => const Divider(),
-        itemCount: sortedPackages.length,
-        itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
-      ),
+    return packages.when(
+      data: (packages) {
+        final sortedPackages = sort == null
+            ? List.of(packages)
+            : packages.sortedByCompare(
+                (package) => sort.getValue(package.score),
+                (a, b) => b.compareTo(a));
+
+        return sortedPackages.isEmpty
+            ? const _EmptyItem()
+            : RefreshIndicator(
+                onRefresh: () async =>
+                    ref.refresh(packagesProvider(search: searchText).future),
+                child: ListView.separated(
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemCount: sortedPackages.length,
+                  itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
+                ),
+              );
+      },
+      error: (e, _) => Text(e.toString()),
+      loading: () => const CircularProgressIndicator(),
     );
   }
 }
