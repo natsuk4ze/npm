@@ -8,11 +8,16 @@ part 'packages.freezed.dart';
 
 @riverpod
 Future<List<Package>> packages(PackagesRef ref,
-        {required String search}) async =>
-    ref.watch(repositoryProvider).getPackges(
-          search: search,
-          cancelToken: ref.cancelToken,
-        );
+    {required String search}) async {
+  final cancelToken = ref.cancelToken;
+  await Future.delayed(const Duration(milliseconds: 500));
+  if (cancelToken.isCancelled) throw Exception('Cancelled');
+  final packages = await ref.watch(repositoryProvider).getPackges(
+        search: search,
+        cancelToken: cancelToken,
+      );
+  return packages;
+}
 
 @freezed
 class Package with _$Package {
@@ -24,7 +29,7 @@ class Package with _$Package {
     final String? description,
     final List<String>? keywords,
   }) = _Package;
-  
+
   factory Package.fromJson(Map<String, dynamic> json) {
     final package = json['package'];
     final score = json['score']['detail'];
