@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
-import 'package:npm/widgets/navigation_bar.dart';
-import 'package:npm/widgets/responsive_scaffold.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -15,30 +13,31 @@ class SettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
 
-    return ResponsiveScaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(l10n.settingsPage.title),
       ),
-      sideNavigationBar: const SideNaviBar(),
-      bottomNavigationBar: const BottomNaviBar(),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).hoverColor,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            shrinkWrap: true,
-            children: const [
-              _LanguageItem(),
-              Divider(),
-              _DarkModeItem(),
-              Divider(),
-              _ReportItem(),
-              Divider(),
-              _LicenseItem(),
-            ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Theme.of(context).hoverColor,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              shrinkWrap: true,
+              children: const [
+                _LanguageItem(),
+                Divider(),
+                _DarkModeItem(),
+                Divider(),
+                _ReportItem(),
+                Divider(),
+                _LicenseItem(),
+              ],
+            ),
           ),
         ),
       ),

@@ -5,9 +5,7 @@ import 'package:markdown_widget/markdown_widget.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/theme.dart';
-import 'package:npm/widgets/navigation_bar.dart';
 import 'package:npm/widgets/link_text.dart';
-import 'package:npm/widgets/responsive_scaffold.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({
@@ -22,15 +20,17 @@ class PackageDetailsPage extends ConsumerWidget {
     final package = ref.watch(packageDetailsProvider(id: id));
     final l10n = ref.watch(l10nProvider);
 
-    return ResponsiveScaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(l10n.packageDetailsPage.title),
       ),
-      sideNavigationBar: const SideNaviBar(),
-      child: package.when(
-        data: (package) => PackegeDetailsItem(package),
-        error: (e, _) => Center(child: Text(e.toString())),
-        loading: () => const Center(child: CircularProgressIndicator()),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: package.when(
+          data: (package) => PackegeDetailsItem(package),
+          error: (e, _) => Center(child: Text(e.toString())),
+          loading: () => const Center(child: CircularProgressIndicator()),
+        ),
       ),
     );
   }
