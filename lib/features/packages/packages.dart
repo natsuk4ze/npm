@@ -16,7 +16,7 @@ Future<List<Package>> packages(
   CancelToken? cancelToken;
   if (debounce) {
     cancelToken = ref.cancelToken;
-    if (debounce) await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     if (cancelToken.isCancelled) throw Exception('Cancelled');
   }
   final packages = await ref.watch(repositoryProvider).getPackges(
