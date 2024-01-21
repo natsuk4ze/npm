@@ -13,14 +13,14 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final theme = ref.watch(themeProvider);
+    final isDarkMode = ref.watch(isDarkModeProvider);
     final locale = ref.watch(l10nProvider).$meta.locale.flutterLocale;
 
     return MaterialApp.router(
       locale: locale,
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: theme,
+      theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
     );
   }
 }

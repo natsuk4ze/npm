@@ -24,19 +24,12 @@ class Sort extends _$Sort {
   void update(ScoreType type) => state = type;
 }
 
-@riverpod
-Raw<TextEditingController> searchController(SearchControllerRef ref) {
-  final controller = TextEditingController(text: 'color');
-  ref.onDispose(controller.dispose);
-  return controller;
-}
-
 class PackagesPage extends HookConsumerWidget {
   const PackagesPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final searchController = ref.watch(searchControllerProvider);
+    final searchController = useTextEditingController(text: 'color');
     useListenable(searchController);
     final scrollController = useScrollController();
     final packages = ref.watch(packagesProvider(search: searchController.text));
@@ -92,7 +85,10 @@ class PackagesPage extends HookConsumerWidget {
           child: packages.when(
             data: (packages) => packages.isEmpty
                 ? const _EmptyItem()
-                : _PackageItems(packages: packages),
+                : _PackageItems(
+                    packages: packages,
+                    searchText: searchController.text,
+                  ),
             error: (e, _) => Text(e.toString()),
             loading: () => const CircularProgressIndicator(),
           ),
@@ -169,13 +165,16 @@ class _SortPannel extends ConsumerWidget {
 }
 
 class _PackageItems extends ConsumerWidget {
-  const _PackageItems({required this.packages});
+  const _PackageItems({
+    required this.packages,
+    required this.searchText,
+  });
 
   final List<Package> packages;
+  final String searchText;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final searchController = ref.watch(searchControllerProvider);
     final sort = ref.watch(sortProvider);
     final sortedPackages = sort == null
         ? List.of(packages)
@@ -183,10 +182,8 @@ class _PackageItems extends ConsumerWidget {
             (a, b) => b.compareTo(a));
 
     return RefreshIndicator(
-      onRefresh: () async {
-        ref.invalidate(packagesProvider);
-        await ref.read(packagesProvider(search: searchController.text).future);
-      },
+      onRefresh: () async =>
+          ref.refresh(packagesProvider(search: searchText).future),
       child: ListView.separated(
         separatorBuilder: (_, __) => const Divider(),
         itemCount: sortedPackages.length,

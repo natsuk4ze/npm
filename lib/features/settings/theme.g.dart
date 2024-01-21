@@ -6,20 +6,6 @@ part of 'theme.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeHash() => r'187a0fd1e90a3e57fdddf7b880657a21cf0de5e9';
-
-/// See also [theme].
-@ProviderFor(theme)
-final themeProvider = AutoDisposeProvider<ThemeData>.internal(
-  theme,
-  name: r'themeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$themeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef ThemeRef = AutoDisposeProviderRef<ThemeData>;
 String _$isDarkModeHash() => r'beaa1c5e38ffb42da25843bdb7f7f64a7fd45bce';
 
 /// See also [IsDarkMode].

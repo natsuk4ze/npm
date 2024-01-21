@@ -6,7 +6,7 @@ part 'score.freezed.dart';
 part 'score.g.dart';
 
 @freezed
-abstract class Score with _$Score {
+class Score with _$Score {
   factory Score({
     required final double popularity,
     required final double quality,
