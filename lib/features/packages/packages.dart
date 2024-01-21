@@ -52,8 +52,8 @@ class Package with _$Package {
 }
 
 extension ListX on List {
-  static List<T>? fromOrNull<T>(dynamic source) {
+  static List<T>? fromOrNull<T>(Iterable<dynamic>? source) {
     if (source == null) return null;
-    return List<T>.from(source as Iterable);
+    return List<T>.from(source);
   }
 }
