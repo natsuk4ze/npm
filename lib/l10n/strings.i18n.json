@@ -12,7 +12,9 @@
   "packageDetailsPage": {
     "title": "Details",
     "homepage": "Homepage",
-    "repository": "Repository"
+    "repository": "Repository",
+    "keywords": "Keywords",
+    "license": "License"
   },
   "settingsPage": {
     "title": "Settings",

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 34 (17 per locale)
+/// Strings: 38 (19 per locale)
 ///
-/// Built on 2024-01-21 at 14:57 UTC
+/// Built on 2024-01-22 at 14:15 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -106,6 +106,8 @@ class StringsPackageDetailsPageEn {
 	String get title => 'Details';
 	String get homepage => 'Homepage';
 	String get repository => 'Repository';
+	String get keywords => 'Keywords';
+	String get license => 'License';
 }
 
 // Path: settingsPage
@@ -199,6 +201,8 @@ class StringsPackageDetailsPageJa implements StringsPackageDetailsPageEn {
 	@override String get title => '詳細';
 	@override String get homepage => 'ホームページ';
 	@override String get repository => 'リポジトリ';
+	@override String get keywords => 'キーワード';
+	@override String get license => 'ライセンス';
 }
 
 // Path: settingsPage
@@ -254,6 +258,8 @@ extension on Translations {
 			case 'packageDetailsPage.title': return 'Details';
 			case 'packageDetailsPage.homepage': return 'Homepage';
 			case 'packageDetailsPage.repository': return 'Repository';
+			case 'packageDetailsPage.keywords': return 'Keywords';
+			case 'packageDetailsPage.license': return 'License';
 			case 'settingsPage.title': return 'Settings';
 			case 'settingsPage.language': return 'Language';
 			case 'settingsPage.darkMode': return 'Dark Mode';
@@ -279,6 +285,8 @@ extension on StringsJa {
 			case 'packageDetailsPage.title': return '詳細';
 			case 'packageDetailsPage.homepage': return 'ホームページ';
 			case 'packageDetailsPage.repository': return 'リポジトリ';
+			case 'packageDetailsPage.keywords': return 'キーワード';
+			case 'packageDetailsPage.license': return 'ライセンス';
 			case 'settingsPage.title': return '設定';
 			case 'settingsPage.language': return '言語';
 			case 'settingsPage.darkMode': return 'ダークモード';

@@ -12,7 +12,9 @@
   "packageDetailsPage": {
     "title": "詳細",
     "homepage": "ホームページ",
-    "repository": "リポジトリ"
+    "repository": "リポジトリ",
+    "keywords": "キーワード",
+    "license": "ライセンス"
   },
   "settingsPage": {
     "title": "設定",

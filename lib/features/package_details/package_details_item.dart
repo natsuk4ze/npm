@@ -128,14 +128,16 @@ class _Readme extends ConsumerWidget {
   }
 }
 
-class _Keywords extends StatelessWidget {
+class _Keywords extends ConsumerWidget {
   const _Keywords(this.keywords);
   final List<String>? keywords;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nProvider);
+
     return _InfoTile(
-      title: 'Keywords',
+      title: l10n.packageDetailsPage.keywords,
       icon: Icons.label_outline,
       data: keywords,
       contentBuilder: (keywords) => Wrap(
@@ -147,19 +149,19 @@ class _Keywords extends StatelessWidget {
   }
 }
 
-class _License extends StatelessWidget {
+class _License extends ConsumerWidget {
   const _License(this.license);
 
   final String? license;
 
   @override
-  Widget build(BuildContext context) {
-    if (license == null) return const SizedBox.shrink();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nProvider);
 
     return _InfoTile(
       data: license,
       contentBuilder: (license) => Text(license),
-      title: 'License',
+      title: l10n.packageDetailsPage.license,
       icon: Icons.star_border,
     );
   }
