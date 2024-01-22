@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class EmptyImage extends ConsumerWidget {
+class EmptyImage extends StatelessWidget {
   const EmptyImage({
     required this.text,
     super.key,
@@ -11,7 +10,7 @@ class EmptyImage extends ConsumerWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Flexible(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

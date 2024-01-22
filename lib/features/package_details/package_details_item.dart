@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:markdown_widget/config/configs.dart';
 import 'package:markdown_widget/widget/markdown.dart';
+import 'package:npm/common_widgets/widget_or_shrink.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
@@ -20,18 +21,15 @@ class PackegeDetailsItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _Name(package.name),
-          const Gap(4),
+          const Gap(12),
           _Description(package.description),
           const Gap(20),
           _Homepage(package.homepage),
-          const Divider(),
           _Repository(package.repository),
-          const Gap(40),
           _Readme(package.readme),
-          const Gap(20),
           _Keywords(package.keywords),
-          const Gap(20),
           _License(package.license),
+          const Gap(20),
         ],
       ),
     );
@@ -59,9 +57,13 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (description == null) return const SizedBox.shrink();
-
-    return Text(description!);
+    return WidgetOrShrink(
+      data: description,
+      builder: (description) => Text(
+        description,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+    );
   }
 }
 
@@ -72,17 +74,13 @@ class _Homepage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (homepage == null) return const SizedBox.shrink();
     final l10n = ref.watch(l10nProvider);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(l10n.packageDetailsPage.homepage),
-        const Gap(4),
-        LinkText(homepage!)
-      ],
+    return _InfoTile(
+      data: homepage,
+      title: l10n.packageDetailsPage.homepage,
+      icon: Icons.home_outlined,
+      contentBuilder: (homepage) => LinkText(homepage),
     );
   }
 }
@@ -94,17 +92,13 @@ class _Repository extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (repository == null) return const SizedBox.shrink();
     final l10n = ref.watch(l10nProvider);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(l10n.packageDetailsPage.repository),
-        const Gap(4),
-        LinkText(repository!)
-      ],
+    return _InfoTile(
+      data: repository,
+      title: l10n.packageDetailsPage.repository,
+      icon: Icons.source_outlined,
+      contentBuilder: (repository) => LinkText(repository),
     );
   }
 }
@@ -116,30 +110,20 @@ class _Readme extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (readme == null) return const SizedBox.shrink();
     final isDarkMode = ref.watch(isDarkModeProvider);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Row(
-          children: [
-            Icon(Icons.description_outlined),
-            Gap(8),
-            Text('Readme'),
-          ],
-        ),
-        const Divider(),
-        MarkdownWidget(
-          config: isDarkMode
-              ? MarkdownConfig.darkConfig
-              : MarkdownConfig.defaultConfig,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          data: readme!,
-        )
-      ],
+    return _InfoTile(
+      data: readme,
+      title: 'Readme',
+      icon: Icons.description_outlined,
+      contentBuilder: (readme) => MarkdownWidget(
+        config: isDarkMode
+            ? MarkdownConfig.darkConfig
+            : MarkdownConfig.defaultConfig,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        data: readme,
+      ),
     );
   }
 }
@@ -150,20 +134,15 @@ class _Keywords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (keywords == null) return const SizedBox.shrink();
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Keywords'),
-        const Divider(),
-        Wrap(
-          spacing: 8,
-          runSpacing: 4,
-          children: List.generate(keywords!.length, (i) => Text(keywords![i])),
-        ),
-      ],
+    return _InfoTile(
+      title: 'Keywords',
+      icon: Icons.label_outline,
+      data: keywords,
+      contentBuilder: (keywords) => Wrap(
+        spacing: 8,
+        runSpacing: 4,
+        children: List.generate(keywords.length, (i) => Text(keywords[i])),
+      ),
     );
   }
 }
@@ -177,14 +156,52 @@ class _License extends StatelessWidget {
   Widget build(BuildContext context) {
     if (license == null) return const SizedBox.shrink();
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('License'),
-        const Divider(),
-        Text(license!),
-      ],
+    return _InfoTile(
+      data: license,
+      contentBuilder: (license) => Text(license),
+      title: 'License',
+      icon: Icons.star_border,
+    );
+  }
+}
+
+class _InfoTile<T> extends StatelessWidget {
+  const _InfoTile({
+    required this.data,
+    required this.contentBuilder,
+    required this.title,
+    required this.icon,
+  });
+
+  final String title;
+  final IconData icon;
+  final T? data;
+  final Widget Function(T value) contentBuilder;
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetOrShrink(
+      data: data,
+      builder: (data) => Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon),
+              const Gap(8),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ],
+          ),
+          const Gap(6),
+          contentBuilder(data),
+          const Divider(),
+          const Gap(8),
+        ],
+      ),
     );
   }
 }

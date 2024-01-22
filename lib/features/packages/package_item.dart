@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
 import 'package:npm/router.dart';
 
-class PackageItem extends ConsumerWidget {
+class PackageItem extends StatelessWidget {
   const PackageItem(this.package, {super.key});
 
   final Package package;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () => PackageDetailsRoute(id: package.name).go(context),
       child: ListTile(
