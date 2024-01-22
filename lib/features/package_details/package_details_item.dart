@@ -21,9 +21,7 @@ class PackegeDetailsItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _Name(package.name),
-          const Gap(12),
           _Description(package.description),
-          const Gap(20),
           _Homepage(package.homepage),
           _Repository(package.repository),
           _Readme(package.readme),
@@ -43,9 +41,12 @@ class _Name extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      name,
-      style: Theme.of(context).textTheme.headlineLarge,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Text(
+        name,
+        style: Theme.of(context).textTheme.headlineLarge,
+      ),
     );
   }
 }
@@ -59,9 +60,12 @@ class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetOrShrink(
       data: description,
-      builder: (description) => Text(
-        description,
-        style: Theme.of(context).textTheme.bodyLarge,
+      builder: (description) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Text(
+          description,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
       ),
     );
   }
