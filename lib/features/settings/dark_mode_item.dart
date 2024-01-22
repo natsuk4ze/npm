@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/widgets/item_tile.dart';
+import 'package:npm/common_widgets/item_tile.dart';
 
 class DarkModeItem extends ConsumerWidget {
   const DarkModeItem({super.key});

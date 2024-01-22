@@ -8,7 +8,7 @@ import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/router.dart';
-import 'package:npm/widgets/logo.dart';
+import 'package:npm/common_widgets/logo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'packages_page.g.dart';

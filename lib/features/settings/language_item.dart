@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/widgets/item_tile.dart';
+import 'package:npm/common_widgets/item_tile.dart';
 
 class LanguageItem extends ConsumerWidget {
   const LanguageItem({super.key});

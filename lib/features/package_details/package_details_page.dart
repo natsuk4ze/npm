@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/package_details/package_details_item.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/widgets/title_app_bar.dart';
+import 'package:npm/common_widgets/title_app_bar.dart';
 
 class PackageDetailsPage extends ConsumerWidget {
   const PackageDetailsPage({

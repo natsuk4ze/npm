@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/dark_mode_item.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/language_item.dart';
-import 'package:npm/widgets/title_app_bar.dart';
+import 'package:npm/common_widgets/title_app_bar.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});

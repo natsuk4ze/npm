@@ -6,7 +6,7 @@ import 'package:markdown_widget/widget/markdown.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/widgets/link_text.dart';
+import 'package:npm/common_widgets/link_text.dart';
 
 class PackegeDetailsItem extends StatelessWidget {
   const PackegeDetailsItem(this.package, {super.key});
