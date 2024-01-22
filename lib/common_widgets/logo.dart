@@ -4,11 +4,11 @@ import 'package:npm/features/settings/dark_mode.dart';
 
 class Logo extends ConsumerWidget {
   const Logo({
-    required this.width,
+    this.width,
     super.key,
   });
 
-  final double width;
+  final double? width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +16,7 @@ class Logo extends ConsumerWidget {
 
     return Image.asset(
       'assets/app/npm.png',
-      width: width,
+      width: width ?? 60,
       color: isDarkMode ? Colors.white : null,
     );
   }
