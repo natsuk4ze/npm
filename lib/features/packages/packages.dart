@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:npm/extensions.dart';
+import 'package:npm/util/dio.dart';
+import 'package:npm/util/extensions.dart';
 import 'package:npm/features/score/score.dart';
-import 'package:npm/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'packages.g.dart';
@@ -20,11 +20,14 @@ Future<List<Package>> packages(
     await Future.delayed(const Duration(milliseconds: 500));
     if (cancelToken.isCancelled) throw Exception('Cancelled');
   }
-  final packages = await ref.watch(repositoryProvider).getPackges(
-        search: search,
+  final response = await ref.watch(dioProvider).get(
+        'https://registry.npmjs.org/-/v1/search?text=$search',
         cancelToken: cancelToken,
       );
-  return packages;
+  final List packages = response.data['objects'];
+  return packages
+      .map((package) => Package.fromJson(package as Map<String, dynamic>))
+      .toList();
 }
 
 @freezed

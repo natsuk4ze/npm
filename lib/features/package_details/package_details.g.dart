@@ -35,7 +35,7 @@ Map<String, dynamic> _$$PackageDetailsImplToJson(
 // RiverpodGenerator
 // **************************************************************************
 
-String _$packageDetailsHash() => r'5c922040fe6f945f121405739d7e068c7b06d76e';
+String _$packageDetailsHash() => r'13a5bae6eea978ca8dbceadf1cf8e31cb5eb9f96';
 
 /// Copied from Dart SDK
 class _SystemHash {

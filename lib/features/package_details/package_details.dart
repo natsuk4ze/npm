@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:npm/repository.dart';
+import 'package:npm/util/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'package_details.g.dart';
@@ -7,8 +7,11 @@ part 'package_details.freezed.dart';
 
 @riverpod
 Future<PackageDetails> packageDetails(PackageDetailsRef ref,
-        {required String id}) async =>
-    ref.watch(repositoryProvider).getPackageDetails(id: id);
+    {required String id}) async {
+  final response =
+      await ref.watch(dioProvider).get('https://registry.npmjs.org/$id');
+  return PackageDetails.fromJson(response.data);
+}
 
 @freezed
 class PackageDetails with _$PackageDetails {

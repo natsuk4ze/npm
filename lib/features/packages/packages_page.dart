@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/common_widgets/empty_image.dart';
-import 'package:npm/extensions.dart';
+import 'package:npm/util/extensions.dart';
 import 'package:npm/features/packages/package_item.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
