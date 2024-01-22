@@ -26,9 +26,7 @@ class ScoreBar extends ConsumerWidget {
           width: 12,
           child: Text(
             type.transltate(l10n)[0],
-            style: const TextStyle(
-              fontSize: 12,
-            ),
+            style: Theme.of(context).textTheme.labelMedium,
           ),
         ),
         const Gap(8),

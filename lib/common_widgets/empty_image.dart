@@ -11,19 +11,17 @@ class EmptyImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            'assets/app/empty.png',
-            width: 200,
-          ),
-          const Gap(20),
-          Text(text)
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset(
+          'assets/app/empty.png',
+          width: 200,
+        ),
+        const Gap(20),
+        Text(text)
+      ],
     );
   }
 }
