@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -30,13 +29,5 @@ class Repository {
   Future<PackageDetails> getPackageDetails({required String id}) async {
     final response = await _dio.get('$_baseUrl/$id');
     return PackageDetails.fromJson(response.data);
-  }
-}
-
-extension CancelTokenX on Ref {
-  CancelToken get cancelToken {
-    final cT = CancelToken();
-    onDispose(cT.cancel);
-    return cT;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:npm/extensions.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -48,12 +49,5 @@ class Package with _$Package {
       keywords: ListX.fromOrNull<String>(package['keywords']),
       score: Score.fromJson(score),
     );
-  }
-}
-
-extension ListX on List {
-  static List<T>? fromOrNull<T>(Iterable<dynamic>? source) {
-    if (source == null) return null;
-    return List<T>.from(source);
   }
 }

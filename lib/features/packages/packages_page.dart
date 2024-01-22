@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/common_widgets/empty_image.dart';
+import 'package:npm/extensions.dart';
 import 'package:npm/features/packages/package_item.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -31,7 +32,6 @@ class PackagesPage extends HookConsumerWidget {
     final searchController = useTextEditingController(text: 'color');
     useListenable(searchController);
     final l10n = ref.watch(l10nProvider);
-    final isLargeScreen = MediaQuery.of(context).size.width > 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,28 +60,30 @@ class PackagesPage extends HookConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: isLargeScreen
+        child: context.isLargeScreen
             ? Row(
                 children: [
                   const _SortPannel(),
                   const VerticalDivider(),
                   Expanded(
-                    child: _PackageItems(
-                      searchText: searchController.text,
-                    ),
+                    child: _PackageItems(searchText: searchController.text),
                   ),
                 ],
               )
             : NestedScrollView(
                 headerSliverBuilder: (_, __) => [
                   const SliverAppBar(
-                      surfaceTintColor: Colors.transparent,
-                      toolbarHeight: 200,
-                      title: SizedBox(
-                          width: double.maxFinite, child: _SortPannel()))
+                    surfaceTintColor: Colors.transparent,
+                    toolbarHeight: 200,
+                    title: SizedBox(
+                      width: double.maxFinite,
+                      child: _SortPannel(),
+                    ),
+                  )
                 ],
                 body: Center(
-                    child: _PackageItems(searchText: searchController.text)),
+                  child: _PackageItems(searchText: searchController.text),
+                ),
               ),
       ),
     );
