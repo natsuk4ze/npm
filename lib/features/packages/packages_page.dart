@@ -51,11 +51,9 @@ class PackagesPage extends HookConsumerWidget {
             ),
           ),
         ],
-        title: Flexible(
-          child: SearchBar(
-            hintText: l10n.packagesPage.searchPackages,
-            controller: searchController,
-          ),
+        title: SearchBar(
+          hintText: l10n.packagesPage.searchPackages,
+          controller: searchController,
         ),
       ),
       body: Padding(
