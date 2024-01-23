@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:npm/util/dio.dart';
+import 'package:npm/util/typedefs.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'package_details.g.dart';
@@ -8,9 +9,10 @@ part 'package_details.freezed.dart';
 @riverpod
 Future<PackageDetails> packageDetails(PackageDetailsRef ref,
     {required String id}) async {
-  final response =
-      await ref.watch(dioProvider).get('https://registry.npmjs.org/$id');
-  return PackageDetails.fromJson(response.data);
+  final response = await ref.watch(dioProvider).getUri<Json>(
+        Uri.parse('https://registry.npmjs.org/$id'),
+      );
+  return PackageDetails.fromJson(response.data!);
 }
 
 @freezed
@@ -26,8 +28,7 @@ class PackageDetails with _$PackageDetails {
     final String? homepage,
     @JsonKey(readValue: _toRepository) required final String? repository,
   }) = _PackageDetails;
-  factory PackageDetails.fromJson(Map<String, dynamic> json) =>
-      _$PackageDetailsFromJson(json);
+  factory PackageDetails.fromJson(Json json) => _$PackageDetailsFromJson(json);
 }
 
 String? _toRepository(Map json, String _) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:npm/l10n/strings.g.dart';
+import 'package:npm/util/typedefs.dart';
 
 part 'score.freezed.dart';
 part 'score.g.dart';
@@ -12,7 +13,7 @@ class Score with _$Score {
     required final double quality,
     required final double maintenance,
   }) = _Score;
-  factory Score.fromJson(Map<String, dynamic> json) => _$ScoreFromJson(json);
+  factory Score.fromJson(Json json) => _$ScoreFromJson(json);
 }
 
 enum ScoreType {
