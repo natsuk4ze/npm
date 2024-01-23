@@ -17,9 +17,9 @@ class DarkModeItem extends ConsumerWidget {
       title: l10n.settingsPage.darkMode,
       trailing: Switch(
         value: isDarkMode,
-        onChanged: (_) => ref.read(isDarkModeProvider.notifier).swich(),
+        onChanged: (_) => ref.read(isDarkModeProvider.notifier).toggle(),
       ),
-      onTap: () => ref.read(isDarkModeProvider.notifier).swich(),
+      onTap: () => ref.read(isDarkModeProvider.notifier).toggle(),
     );
   }
 }
