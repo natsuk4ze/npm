@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/common_widgets/item_tile.dart';
+import 'package:npm/common_widgets/item_list_tile.dart';
 
 class DarkModeItem extends ConsumerWidget {
   const DarkModeItem({super.key});
@@ -12,7 +12,7 @@ class DarkModeItem extends ConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final isDarkMode = ref.watch(isDarkModeProvider);
 
-    return ItemTile(
+    return ItemListTile(
       icon: Icons.light_mode,
       title: l10n.settingsPage.darkMode,
       trailing: IgnorePointer(
@@ -21,7 +21,7 @@ class DarkModeItem extends ConsumerWidget {
           onChanged: (_) {},
         ),
       ),
-      onTap: () => ref.read(isDarkModeProvider.notifier).toggle(),
+      onTap: () async => ref.read(isDarkModeProvider.notifier).toggle(),
     );
   }
 }

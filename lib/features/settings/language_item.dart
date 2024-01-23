@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
-import 'package:npm/common_widgets/item_tile.dart';
+import 'package:npm/common_widgets/item_list_tile.dart';
 
 class LanguageItem extends ConsumerWidget {
   const LanguageItem({super.key});
@@ -11,7 +11,7 @@ class LanguageItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
 
-    return ItemTile(
+    return ItemListTile(
       icon: Icons.language,
       title: l10n.settingsPage.language,
       trailing: const Icon(Icons.arrow_forward),

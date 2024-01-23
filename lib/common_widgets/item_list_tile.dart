@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class ItemTile extends StatelessWidget {
-  const ItemTile({
+class ItemListTile extends StatelessWidget {
+  const ItemListTile({
     super.key,
     required this.icon,
     required this.title,
