@@ -20,7 +20,7 @@ final l10nProvider = AutoDisposeProvider<StringsEn>.internal(
 );
 
 typedef L10nRef = AutoDisposeProviderRef<StringsEn>;
-String _$languageHash() => r'fffeb41dad0fe8e0e076261ae6f919921eb94529';
+String _$languageHash() => r'f11d1e62eee3e60c4d833191745adb73b6a69fd8';
 
 /// See also [Language].
 @ProviderFor(Language)

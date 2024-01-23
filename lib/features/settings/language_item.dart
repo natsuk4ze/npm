@@ -36,9 +36,9 @@ class _SelectionDialog extends ConsumerWidget {
           title: Text(lang.toString()),
           value: lang,
           groupValue: ref.watch(languageProvider),
-          onChanged: (value) {
-            ref.read(languageProvider.notifier).update(value!);
-            context.pop();
+          onChanged: (value) async {
+            await ref.read(languageProvider.notifier).update(value!);
+            if (context.mounted) context.pop();
           },
         )
     ]);
