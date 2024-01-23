@@ -29,12 +29,14 @@ class ScoreRadioTile extends ConsumerWidget {
             children: [
               SizedBox(
                 width: 16,
-                child: Radio(
-                  activeColor: type.color,
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: type,
-                  groupValue: groupeType,
-                  onChanged: (_) {},
+                child: IgnorePointer(
+                  child: Radio(
+                    activeColor: type.color,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: type,
+                    groupValue: groupeType,
+                    onChanged: (_) {},
+                  ),
                 ),
               ),
               const Gap(12),
