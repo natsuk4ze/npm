@@ -3,9 +3,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/router.dart';
+import 'package:npm/util/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:slang_flutter/slang_flutter.dart';
 
-void main() => runApp(const ProviderScope(child: App()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  runApp(ProviderScope(overrides: [
+    sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+  ], child: const App()));
+}
 
 class App extends ConsumerWidget {
   const App({super.key});
