@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:npm/util/dio.dart';
 import 'package:npm/util/extensions.dart';
 import 'package:npm/util/format.dart';
-import 'package:npm/util/typedefs.dart';
+import 'package:npm/util/json.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'package_details.g.dart';

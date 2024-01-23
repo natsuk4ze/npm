@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:npm/l10n/strings.g.dart';
-import 'package:npm/util/typedefs.dart';
+import 'package:npm/util/json.dart';
 
 part 'score.freezed.dart';
 part 'score.g.dart';
