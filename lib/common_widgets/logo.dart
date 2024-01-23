@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:npm/features/settings/dark_mode.dart';
 
-class Logo extends ConsumerWidget {
+class Logo extends StatelessWidget {
   const Logo({
     this.width,
     super.key,
@@ -11,13 +9,11 @@ class Logo extends ConsumerWidget {
   final double? width;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
-
+  Widget build(BuildContext context) {
     return Image.asset(
       'assets/app/npm.png',
       width: width ?? 60,
-      color: isDarkMode ? Colors.white : null,
+      color: Theme.of(context).textTheme.titleLarge!.color,
     );
   }
 }
