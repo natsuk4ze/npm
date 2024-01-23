@@ -3,35 +3,6 @@
 part of 'package_details.dart';
 
 // **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-_$PackageDetailsImpl _$$PackageDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$PackageDetailsImpl(
-      name: json['name'] as String,
-      readme: json['readme'] as String?,
-      description: json['description'] as String?,
-      keywords: (json['keywords'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      license: json['license'] as String?,
-      homepage: json['homepage'] as String?,
-      repository: _toRepository(json, 'repository') as String?,
-    );
-
-Map<String, dynamic> _$$PackageDetailsImplToJson(
-        _$PackageDetailsImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'readme': instance.readme,
-      'description': instance.description,
-      'keywords': instance.keywords,
-      'license': instance.license,
-      'homepage': instance.homepage,
-      'repository': instance.repository,
-    };
-
-// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
