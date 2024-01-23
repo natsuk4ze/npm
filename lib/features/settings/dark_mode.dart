@@ -12,9 +12,9 @@ class IsDarkMode extends _$IsDarkMode {
     return prefs.getBool(_key) ?? false;
   }
 
-  void toggle() {
+  Future<void> toggle() async {
     final prefs = ref.read(sharedPreferencesProvider);
-    prefs.setBool(_key, !state);
+    await prefs.setBool(_key, !state);
     ref.invalidateSelf();
   }
 }
