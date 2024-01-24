@@ -5,7 +5,13 @@
 
 ## Push ⭐️ if you like, Thank you シ
 
-A [npm](https://www.npmjs.com) client app with modern flutter coding style.
+### A [npm](https://www.npmjs.com) client app with modern flutter coding style.
+
+### Using
+-  *hooks_riverpod* for state management
+-  *freezed* for serializing (deserializing) json objects
+-  *dio* for network request
+-  *shared_preferences* for local database
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/example.gif" width=280 alt="example"/>
 
