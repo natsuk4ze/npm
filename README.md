@@ -5,7 +5,7 @@
 
 ## Push ⭐️ if you like, Thank you シ
 
-### A [npm](https://www.npmjs.com) client app with modern flutter coding style.
+### A [npm](https://www.npmjs.com) client app as minimal project example with modern flutter coding style
 
 ### Using
 -  *hooks_riverpod* for state management
