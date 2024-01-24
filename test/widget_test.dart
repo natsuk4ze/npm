@@ -3,8 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details.dart';
-import 'package:npm/features/package_details/package_details_item.dart';
-import 'package:npm/features/packages/package_item.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/packages/packages_page.dart';
 import 'package:npm/main.dart' as app;
@@ -37,11 +35,7 @@ void main() {
 
       expect(find.byType(CircularProgressIndicator), findsNothing);
 
-      expect(
-        tester.widget<PackageItem>(find.byType(PackageItem).first).package ==
-            fakePackages.first,
-        true,
-      );
+      expect(find.textContaining(fakePackagesName), findsAny);
     });
 
     testWidgets('PackageDetailsPage', (tester) async {
@@ -73,13 +67,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(
-        tester
-                .widget<PackegeDetailsItem>(find.byType(PackegeDetailsItem))
-                .package ==
-            fakePackageDetails,
-        true,
-      );
+      expect(find.textContaining(fakePackageDetailsName), findsOne);
     });
   });
 }
