@@ -12,6 +12,7 @@
 -  *freezed* for serializing (deserializing) json objects
 -  *dio* for network request
 -  *shared_preferences* for local database
+-  *slang* for localization
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/example.gif" width=280 alt="example"/>
 
