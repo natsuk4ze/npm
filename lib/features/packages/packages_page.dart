@@ -16,6 +16,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'packages_page.g.dart';
 
+@visibleForTesting
+const initialSearchText = 'color';
+
 @riverpod
 class Sort extends _$Sort {
   @override
@@ -29,7 +32,7 @@ class PackagesPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final searchController = useTextEditingController(text: 'color');
+    final searchController = useTextEditingController(text: initialSearchText);
     useListenable(searchController);
     final l10n = ref.watch(l10nProvider);
 
