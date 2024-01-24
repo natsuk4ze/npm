@@ -5,4 +5,4 @@ part 'shared_preferences.g.dart';
 
 @Riverpod(keepAlive: true)
 SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
-    throw UnimplementedError();
+    throw UnimplementedError('SharedPreferences is not overridden.');
