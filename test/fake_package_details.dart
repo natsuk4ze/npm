@@ -7,7 +7,7 @@ PackageDetails fakePackageDetails = const PackageDetails(
   name: fakePackageDetailsName,
   license: 'MIT',
   homepage: 'https://homepage',
-  readme: 'readme',
+  readme: null,
   repository: 'git+https://repository',
 );
 
