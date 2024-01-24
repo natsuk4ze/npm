@@ -1,48 +1,50 @@
-//TODO
-
-/* import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/packages/packages.dart';
-import 'package:npm/repository.dart';
 import 'package:test/test.dart';
 
-import 'fake_repository.dart';
+import 'fake_package_details.dart';
+import 'fake_packages.dart';
+import 'util.dart';
 
 void main() {
   group('[Unit Test]', () {
     test('getPackages()', () async {
-      final container = ProviderContainer(
-        overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
+      final container = createContainer(
+        overrides: [
+          packagesProvider(search: fakePackagesName)
+              .overrideWith(fakePackagesProvider),
+        ],
       );
-      const search = FakeRepository.packageName;
       expect(
-        container.read(packagesProvider(search: search, debounce: false)),
-        const AsyncValue<List<Package>>.loading(),
+        container.read(packagesProvider(search: fakePackagesName)),
+        const AsyncLoading<List<Package>>(),
       );
       final packages = await container
-          .read(packagesProvider(search: search, debounce: false).future);
+          .read(packagesProvider(search: fakePackagesName).future);
       expect(
         packages,
-        FakeRepository.packages,
+        fakePackages,
       );
     });
 
     test('getPackageDetails()', () async {
-      final container = ProviderContainer(
-        overrides: [repositoryProvider.overrideWithValue(FakeRepository())],
+      final container = createContainer(
+        overrides: [
+          packageDetailsProvider(id: fakePackageDetailsName)
+              .overrideWith(fakePackageDetailsProvider),
+        ],
       );
-      const id = FakeRepository.packageName;
       expect(
-        container.read(packageDetailsProvider(id: id)),
-        const AsyncValue<PackageDetails>.loading(),
+        container.read(packageDetailsProvider(id: fakePackageDetailsName)),
+        const AsyncLoading<PackageDetails>(),
       );
-      final packageDetails =
-          await container.read(packageDetailsProvider(id: id).future);
+      final packageDetails = await container
+          .read(packageDetailsProvider(id: fakePackageDetailsName).future);
       expect(
         packageDetails,
-        FakeRepository.packageDetils,
+        fakePackageDetails,
       );
     });
   });
 }
- */
