@@ -27,6 +27,18 @@ class Sort extends _$Sort {
   void update(ScoreType type) => state = type;
 }
 
+@riverpod
+Future<List<Package>> sortedPackages(SortedPackagesRef ref,
+    {required String search}) async {
+  final packages = await ref.watch(packagesProvider(search: search).future);
+  final sort = ref.watch(sortProvider);
+
+  return sort == null
+      ? List.of(packages)
+      : packages.sortedByCompare(
+          (package) => sort.getValue(package.score), (a, b) => b.compareTo(a));
+}
+
 class PackagesPage extends HookConsumerWidget {
   const PackagesPage({super.key});
 
@@ -107,33 +119,25 @@ class _PackageItems extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final packages = ref.watch(packagesProvider(search: searchText));
-    final sort = ref.watch(sortProvider);
+    final packages = ref.watch(sortedPackagesProvider(search: searchText));
     final l10n = ref.watch(l10nProvider);
 
     return switch (packages) {
-      AsyncData(:final value) => Builder(builder: (context) {
-          final sortedPackages = sort == null
-              ? List.of(value)
-              : value.sortedByCompare((package) => sort.getValue(package.score),
-                  (a, b) => b.compareTo(a));
-
-          return sortedPackages.isEmpty
-              ? SingleChildScrollView(
-                  child: EmptyImage(text: l10n.packagesPage.packageNotFound),
-                )
-              : RefreshIndicator(
-                  onRefresh: () async => ref.refresh(packagesProvider(
-                    search: searchText,
-                    debounce: false,
-                  ).future),
-                  child: ListView.separated(
-                    separatorBuilder: (_, __) => const Divider(),
-                    itemCount: sortedPackages.length,
-                    itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
-                  ),
-                );
-        }),
+      AsyncData(:final value) => value.isEmpty
+          ? SingleChildScrollView(
+              child: EmptyImage(text: l10n.packagesPage.packageNotFound),
+            )
+          : RefreshIndicator(
+              onRefresh: () => ref.refresh(packagesProvider(
+                search: searchText,
+                debounce: false,
+              ).future),
+              child: ListView.separated(
+                separatorBuilder: (_, __) => const Divider(),
+                itemCount: value.length,
+                itemBuilder: (_, int i) => PackageItem(value[i]),
+              ),
+            ),
       AsyncError(:final error) => Text(error.toString()),
       _ => const Center(child: CircularProgressIndicator()),
     };

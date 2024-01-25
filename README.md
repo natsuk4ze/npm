@@ -56,7 +56,7 @@ By returning `.future` to `onRefresh`, the indicator will continue to be display
 
 ```dart
 RefreshIndicator(
-  onRefresh: () async => ref.refresh(packagesProvider(
+  onRefresh: () => ref.refresh(packagesProvider(
     search: searchText,
     debounce: false,
   ).future),
@@ -85,14 +85,20 @@ class Sort extends _$Sort {
   @override
   ScoreType? build() => null;
 
-  void update(ScoreType? type) => state = type;
+  void update(ScoreType type) => state = type;
 }
 
-final sortedPackages = sort == null
-    ? List.of(packages)
-    : packages.sortedByCompare(
-        (package) => sort.getValue(package.score),
-        (a, b) => b.compareTo(a));
+@riverpod
+Future<List<Package>> sortedPackages(SortedPackagesRef ref,
+    {required String search}) async {
+  final packages = await ref.watch(packagesProvider(search: search).future);
+  final sort = ref.watch(sortProvider);
+
+  return sort == null
+      ? List.of(packages)
+      : packages.sortedByCompare(
+          (package) => sort.getValue(package.score), (a, b) => b.compareTo(a));
+}
 ```
 See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/features/packages/packages_page.dart)
 
