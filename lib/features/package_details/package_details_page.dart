@@ -22,11 +22,11 @@ class PackageDetailsPage extends ConsumerWidget {
       appBar: TitleAppBar(title: l10n.packageDetailsPage.title),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: package.when(
-          data: (package) => PackegeDetailsItem(package),
-          error: (e, _) => Text(e.toString()),
-          loading: () => const Center(child: CircularProgressIndicator()),
-        ),
+        child: switch (package) {
+          AsyncData(:final value) => PackegeDetailsItem(value),
+          AsyncError(:final error) => Text(error.toString()),
+          _ => const Center(child: CircularProgressIndicator()),
+        },
       ),
     );
   }

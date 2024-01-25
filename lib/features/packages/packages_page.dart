@@ -17,7 +17,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'packages_page.g.dart';
 
 @visibleForTesting
-const initialSearchText = 'color';
+const initialSearchText = 'vue';
 
 @riverpod
 class Sort extends _$Sort {
@@ -111,32 +111,31 @@ class _PackageItems extends ConsumerWidget {
     final sort = ref.watch(sortProvider);
     final l10n = ref.watch(l10nProvider);
 
-    return packages.when(
-      data: (packages) {
-        final sortedPackages = sort == null
-            ? List.of(packages)
-            : packages.sortedByCompare(
-                (package) => sort.getValue(package.score),
-                (a, b) => b.compareTo(a));
+    return switch (packages) {
+      AsyncData(:final value) => Builder(builder: (context) {
+          final sortedPackages = sort == null
+              ? List.of(value)
+              : value.sortedByCompare((package) => sort.getValue(package.score),
+                  (a, b) => b.compareTo(a));
 
-        return sortedPackages.isEmpty
-            ? SingleChildScrollView(
-                child: EmptyImage(text: l10n.packagesPage.packageNotFound),
-              )
-            : RefreshIndicator(
-                onRefresh: () async => ref.refresh(packagesProvider(
-                  search: searchText,
-                  debounce: false,
-                ).future),
-                child: ListView.separated(
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemCount: sortedPackages.length,
-                  itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
-                ),
-              );
-      },
-      error: (e, _) => Text(e.toString()),
-      loading: () => const Center(child: CircularProgressIndicator()),
-    );
+          return sortedPackages.isEmpty
+              ? SingleChildScrollView(
+                  child: EmptyImage(text: l10n.packagesPage.packageNotFound),
+                )
+              : RefreshIndicator(
+                  onRefresh: () async => ref.refresh(packagesProvider(
+                    search: searchText,
+                    debounce: false,
+                  ).future),
+                  child: ListView.separated(
+                    separatorBuilder: (_, __) => const Divider(),
+                    itemCount: sortedPackages.length,
+                    itemBuilder: (_, int i) => PackageItem(sortedPackages[i]),
+                  ),
+                );
+        }),
+      AsyncError(:final error) => Text(error.toString()),
+      _ => const Center(child: CircularProgressIndicator()),
+    };
   }
 }
