@@ -3,8 +3,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/natsuk4ze/npm/badge)](https://www.codefactor.io/repository/github/natsuk4ze/npm)
 ![Test](https://github.com/natsuk4ze/npm/actions/workflows/ci.yml/badge.svg?branch=master)
 
-## Push ⭐️ if you like, Thank you シ
-
 ### A [npm](https://www.npmjs.com) client app as minimal project example with modern flutter coding style
 
 ### Using
@@ -424,3 +422,15 @@ See:
 </details>
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/auto_test.gif" width=330 alt="Auto test"/>
+
+
+## Discussion about folder structure
+
+The project uses a feature-first folder structure.  
+This will depend on the project, but I find it best to put things close together that are closely related.
+
+### Why is there no layer folder like "presentation"
+
+This project is minimal and even if you create a layered folder, only one file can go in that folder.  
+Putting them in a folder then would only needlessly add to the hierarchy and make it harder to see.  
+This should be best suited for the size of the project.
