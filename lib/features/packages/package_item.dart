@@ -71,7 +71,7 @@ class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetOrShrink(
       data: description,
-      builder: (description) => Text(
+      whenHasData: (description) => Text(
         description,
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
@@ -89,7 +89,7 @@ class _Keywords extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetOrShrink(
       data: keywords,
-      builder: (keywords) => SizedBox(
+      whenHasData: (keywords) => SizedBox(
         height: 60,
         child: ListView.separated(
           separatorBuilder: (_, __) => const Gap(8),

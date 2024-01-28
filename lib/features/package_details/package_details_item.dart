@@ -60,7 +60,7 @@ class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetOrShrink(
       data: description,
-      builder: (description) => Padding(
+      whenHasData: (description) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Text(
           description,
@@ -81,10 +81,10 @@ class _Homepage extends ConsumerWidget {
     final l10n = ref.watch(l10nProvider);
 
     return _InfoTile(
-      data: homepage,
       title: l10n.packageDetailsPage.homepage,
       icon: Icons.home_outlined,
-      contentBuilder: (homepage) => LinkText(homepage),
+      data: homepage,
+      whenHasData: (homepage) => LinkText(homepage),
     );
   }
 }
@@ -102,7 +102,7 @@ class _Repository extends ConsumerWidget {
       data: repository,
       title: l10n.packageDetailsPage.repository,
       icon: Icons.source_outlined,
-      contentBuilder: (repository) => LinkText(repository),
+      whenHasData: (repository) => LinkText(repository),
     );
   }
 }
@@ -117,10 +117,10 @@ class _Readme extends ConsumerWidget {
     final isDarkMode = ref.watch(isDarkModeProvider);
 
     return _InfoTile(
-      data: readme,
       title: 'Readme',
       icon: Icons.description_outlined,
-      contentBuilder: (readme) => MarkdownWidget(
+      data: readme,
+      whenHasData: (readme) => MarkdownWidget(
         config: isDarkMode
             ? MarkdownConfig.darkConfig
             : MarkdownConfig.defaultConfig,
@@ -144,7 +144,7 @@ class _Keywords extends ConsumerWidget {
       title: l10n.packageDetailsPage.keywords,
       icon: Icons.label_outline,
       data: keywords,
-      contentBuilder: (keywords) => Wrap(
+      whenHasData: (keywords) => Wrap(
         spacing: 8,
         runSpacing: 4,
         children: List.generate(keywords.length, (i) => Text(keywords[i])),
@@ -163,10 +163,10 @@ class _License extends ConsumerWidget {
     final l10n = ref.watch(l10nProvider);
 
     return _InfoTile(
-      data: license,
-      contentBuilder: (license) => Text(license),
       title: l10n.packageDetailsPage.license,
       icon: Icons.star_border,
+      data: license,
+      whenHasData: (license) => Text(license),
     );
   }
 }
@@ -174,7 +174,7 @@ class _License extends ConsumerWidget {
 class _InfoTile<T> extends StatelessWidget {
   const _InfoTile({
     required this.data,
-    required this.contentBuilder,
+    required this.whenHasData,
     required this.title,
     required this.icon,
   });
@@ -182,13 +182,13 @@ class _InfoTile<T> extends StatelessWidget {
   final String title;
   final IconData icon;
   final T? data;
-  final Widget Function(T value) contentBuilder;
+  final Widget Function(T value) whenHasData;
 
   @override
   Widget build(BuildContext context) {
     return WidgetOrShrink(
       data: data,
-      builder: (data) => Column(
+      whenHasData: (data) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -203,7 +203,7 @@ class _InfoTile<T> extends StatelessWidget {
             ],
           ),
           const Gap(6),
-          contentBuilder(data),
+          whenHasData(data),
           const Divider(),
           const Gap(8),
         ],
