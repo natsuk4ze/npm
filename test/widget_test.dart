@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/package_details/package_details.dart';
+import 'package:npm/features/package_details/package_details_page.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/packages/packages_page.dart';
-import 'package:npm/main.dart' as app;
-import 'package:npm/router.dart';
 import 'package:npm/util/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,7 +23,9 @@ void main() {
             sharedPreferencesProvider
                 .overrideWithValue(await SharedPreferences.getInstance()),
           ],
-          child: const app.App(),
+          child: const MaterialApp(
+            home: PackagesPage(),
+          ),
         ),
       );
 
@@ -46,16 +46,10 @@ void main() {
                 .overrideWith(fakePackageDetailsProvider),
             sharedPreferencesProvider
                 .overrideWithValue(await SharedPreferences.getInstance()),
-            routerProvider.overrideWithValue(
-              GoRouter(
-                routes: $appRoutes,
-                initialLocation:
-                    const PackageDetailsRoute(id: fakePackageDetailsName)
-                        .location,
-              ),
-            ),
           ],
-          child: const app.App(),
+          child: const MaterialApp(
+            home: PackageDetailsPage(id: fakePackageDetailsName),
+          ),
         ),
       );
 

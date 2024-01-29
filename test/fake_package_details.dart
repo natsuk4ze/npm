@@ -3,7 +3,7 @@ import 'package:npm/features/package_details/package_details.dart';
 
 const fakePackageDetailsName = 'fakePackageDetails';
 
-PackageDetails fakePackageDetails = const PackageDetails(
+const fakePackageDetails = PackageDetails(
   name: fakePackageDetailsName,
   license: 'MIT',
   homepage: 'https://homepage',
