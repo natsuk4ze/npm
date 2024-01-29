@@ -30,12 +30,14 @@ class _SelectionDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentLang = ref.watch(languageProvider);
+
     return SimpleDialog(children: [
       for (var lang in LanguageType.values)
         RadioListTile(
           title: Text(lang.toString()),
           value: lang,
-          groupValue: ref.watch(languageProvider),
+          groupValue: currentLang,
           onChanged: (value) async {
             await ref.read(languageProvider.notifier).update(value!);
             if (context.mounted) context.pop();
