@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:npm/common_widgets/widget_or_shrink.dart';
+import 'package:npm/common_widgets/shrink_if_no_data.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
 import 'package:npm/features/score/score_bar.dart';
@@ -69,7 +69,7 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetOrShrink(
+    return ShrinkIfNoData(
       data: description,
       whenHasData: (description) => Text(
         description,
@@ -87,7 +87,7 @@ class _Keywords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetOrShrink(
+    return ShrinkIfNoData(
       data: keywords,
       whenHasData: (keywords) => SizedBox(
         height: 60,

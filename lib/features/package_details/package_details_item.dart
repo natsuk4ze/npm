@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:markdown_widget/config/configs.dart';
 import 'package:markdown_widget/widget/markdown.dart';
-import 'package:npm/common_widgets/widget_or_shrink.dart';
+import 'package:npm/common_widgets/shrink_if_no_data.dart';
 import 'package:npm/features/package_details/package_details.dart';
 import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
@@ -58,7 +58,7 @@ class _Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetOrShrink(
+    return ShrinkIfNoData(
       data: description,
       whenHasData: (description) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -186,7 +186,7 @@ class _InfoTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetOrShrink(
+    return ShrinkIfNoData(
       data: data,
       whenHasData: (data) => Column(
         mainAxisSize: MainAxisSize.min,

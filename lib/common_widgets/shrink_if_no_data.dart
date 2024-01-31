@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class WidgetOrShrink<T> extends StatelessWidget {
+class ShrinkIfNoData<T> extends StatelessWidget {
   final T? data;
   final Widget Function(T value) whenHasData;
 
-  const WidgetOrShrink({
+  const ShrinkIfNoData({
     super.key,
     required this.data,
     required this.whenHasData,
