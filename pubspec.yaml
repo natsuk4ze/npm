@@ -23,7 +23,7 @@ dependencies:
   shared_preferences: ^2.2.2
   slang: ^3.29.0
   slang_flutter: ^3.29.0
-  url_launcher: ^6.2.3
+  url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:
