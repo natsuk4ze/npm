@@ -33,7 +33,7 @@ dev_dependencies:
   riverpod_generator: ^2.3.11
   build_runner: ^2.4.8
   build_verify: ^3.1.0
-  custom_lint: ^0.6.0
+  custom_lint: ^0.6.2
   riverpod_lint: ^2.3.7
   freezed: ^2.4.7
   json_serializable: ^6.7.1
