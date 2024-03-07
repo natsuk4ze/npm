@@ -8,12 +8,12 @@ class IsDarkMode extends _$IsDarkMode {
   static const _key = 'isDarkMode';
   @override
   bool build() {
-    final prefs = ref.watch(sharedPreferencesProvider);
+    final prefs = ref.watch(sharedPreferencesProvider).requireValue;
     return prefs.getBool(_key) ?? false;
   }
 
   Future<void> toggle() async {
-    final prefs = ref.read(sharedPreferencesProvider);
+    final prefs = ref.read(sharedPreferencesProvider).requireValue;
     await prefs.setBool(_key, !state);
     ref.invalidateSelf();
   }

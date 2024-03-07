@@ -15,13 +15,13 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
   group('[Widget Test]', () {
     testWidgets('PackagesPage', (tester) async {
+      final prefs = await SharedPreferences.getInstance();
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
             packagesProvider(search: initialSearchText)
                 .overrideWith(fakePackagesProvider),
-            sharedPreferencesProvider
-                .overrideWithValue(await SharedPreferences.getInstance()),
+            sharedPreferencesProvider.overrideWith((ref) => prefs),
           ],
           child: const MaterialApp(
             home: PackagesPage(),
@@ -39,13 +39,13 @@ void main() {
     });
 
     testWidgets('PackageDetailsPage', (tester) async {
+      final prefs = await SharedPreferences.getInstance();
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
             packageDetailsProvider(id: fakePackageDetailsName)
                 .overrideWith(fakePackageDetailsProvider),
-            sharedPreferencesProvider
-                .overrideWithValue(await SharedPreferences.getInstance()),
+            sharedPreferencesProvider.overrideWith((ref) => prefs),
           ],
           child: const MaterialApp(
             home: PackageDetailsPage(id: fakePackageDetailsName),

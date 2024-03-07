@@ -12,12 +12,12 @@ class Language extends _$Language {
   static const _key = 'language';
   @override
   LanguageType build() {
-    final prefs = ref.watch(sharedPreferencesProvider);
+    final prefs = ref.watch(sharedPreferencesProvider).requireValue;
     return LanguageType.fromName(prefs.getString(_key) ?? LanguageType.en.name);
   }
 
   Future<void> update(LanguageType type) async {
-    final prefs = ref.read(sharedPreferencesProvider);
+    final prefs = ref.read(sharedPreferencesProvider).requireValue;
     await prefs.setString(_key, type.name);
     ref.invalidateSelf();
   }
