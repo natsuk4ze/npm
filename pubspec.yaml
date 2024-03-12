@@ -16,10 +16,10 @@ dependencies:
   freezed_annotation: ^2.4.1
   gap: ^3.0.1
   go_router: ^13.2.0
-  hooks_riverpod: ^2.4.10
+  hooks_riverpod: ^2.5.1
   json_annotation: ^4.8.1
   markdown_widget: ^2.3.2+3
-  riverpod_annotation: ^2.3.4
+  riverpod_annotation: ^2.3.5
   shared_preferences: ^2.2.2
   slang: ^3.29.0
   slang_flutter: ^3.30.0
@@ -30,11 +30,11 @@ dev_dependencies:
     sdk: flutter
   test:
   flutter_lints: ^3.0.1
-  riverpod_generator: ^2.3.11
+  riverpod_generator: ^2.4.0
   build_runner: ^2.4.8
   build_verify: ^3.1.0
   custom_lint: ^0.6.2
-  riverpod_lint: ^2.3.7
+  riverpod_lint: ^2.3.10
   freezed: ^2.4.7
   json_serializable: ^6.7.1
   go_router_builder: ^2.4.1
