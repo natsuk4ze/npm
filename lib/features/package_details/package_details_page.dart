@@ -23,7 +23,7 @@ class PackageDetailsPage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: switch (package) {
-          AsyncData(:final value) => PackegeDetailsItem(value),
+          AsyncData(:final value) => PackageDetailsItem(value),
           AsyncError(:final error) => Text(error.toString()),
           _ => const Center(child: CircularProgressIndicator()),
         },

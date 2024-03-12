@@ -9,8 +9,8 @@ import 'package:npm/features/settings/dark_mode.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/common_widgets/link_text.dart';
 
-class PackegeDetailsItem extends StatelessWidget {
-  const PackegeDetailsItem(this.package, {super.key});
+class PackageDetailsItem extends StatelessWidget {
+  const PackageDetailsItem(this.package, {super.key});
 
   final PackageDetails package;
 
