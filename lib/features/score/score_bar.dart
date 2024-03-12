@@ -25,7 +25,7 @@ class ScoreBar extends ConsumerWidget {
         SizedBox(
           width: 12,
           child: Text(
-            type.transltate(l10n)[0],
+            type.translate(l10n)[0],
             style: Theme.of(context).textTheme.labelMedium,
           ),
         ),

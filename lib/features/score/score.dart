@@ -33,7 +33,7 @@ enum ScoreType {
         maintenance => score.maintenance,
       };
 
-  String transltate(StringsEn l10n) => switch (this) {
+  String translate(StringsEn l10n) => switch (this) {
         popularity => l10n.packagesPage.score.popularity,
         quality => l10n.packagesPage.score.quality,
         maintenance => l10n.packagesPage.score.maintenance,

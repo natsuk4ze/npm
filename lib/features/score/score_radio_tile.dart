@@ -7,13 +7,13 @@ import 'package:npm/features/settings/language.dart';
 class ScoreRadioTile extends ConsumerWidget {
   const ScoreRadioTile({
     required this.type,
-    required this.groupeType,
+    required this.groupType,
     required this.onTap,
     super.key,
   });
 
   final ScoreType type;
-  final ScoreType? groupeType;
+  final ScoreType? groupType;
   final void Function(ScoreType type) onTap;
 
   @override
@@ -34,14 +34,14 @@ class ScoreRadioTile extends ConsumerWidget {
                     activeColor: type.color,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     value: type,
-                    groupValue: groupeType,
+                    groupValue: groupType,
                     onChanged: (_) {},
                   ),
                 ),
               ),
               const Gap(12),
               Text(
-                type.transltate(l10n),
+                type.translate(l10n),
                 style: Theme.of(context).textTheme.labelMedium,
               ),
             ],

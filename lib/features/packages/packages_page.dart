@@ -102,7 +102,7 @@ class _SortPanel extends ConsumerWidget {
         for (var score in ScoreType.values)
           ScoreRadioTile(
             type: score,
-            groupeType: sort,
+            groupType: sort,
             onTap: (type) => sort == type
                 ? ref.invalidate(sortProvider)
                 : ref.read(sortProvider.notifier).update(type),
