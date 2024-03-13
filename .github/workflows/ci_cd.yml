@@ -52,13 +52,6 @@ jobs:
         timeout-minutes: 5
         run: flutter test test/widget_test.dart
 
-  upload:
-    needs: test
-    timeout-minutes: 30
-    strategy:
-      fail-fast: false
-    runs-on: macos-latest
-    steps:
       - name: Build Android
         timeout-minutes: 10
         run: flutter build appbundle
