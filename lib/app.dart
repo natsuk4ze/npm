@@ -20,15 +20,14 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final startup = ref.watch(appStartupProvider);
-    final router = ref.watch(routerProvider);
-    final isDarkMode = ref.watch(isDarkModeProvider);
-    final locale = ref.watch(l10nProvider).$meta.locale.flutterLocale;
 
     return switch (startup) {
       AsyncData() => MaterialApp.router(
-          locale: locale,
-          routerConfig: router,
-          theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
+          locale: ref.watch(l10nProvider).$meta.locale.flutterLocale,
+          routerConfig: ref.watch(routerProvider),
+          theme: ref.watch(isDarkModeProvider)
+              ? ThemeData.dark()
+              : ThemeData.light(),
         ),
       _ => const SizedBox()
     };
