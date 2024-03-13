@@ -5,6 +5,9 @@ on:
      tags:
        - '*'
 
+permissions:
+  contents: write
+
 jobs:
   cd:
     timeout-minutes: 30
