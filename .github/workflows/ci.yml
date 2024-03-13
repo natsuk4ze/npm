@@ -15,7 +15,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  test:
+  ci:
     needs: set-up
     timeout-minutes: 30
     strategy:
