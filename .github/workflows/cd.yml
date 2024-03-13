@@ -1,22 +1,12 @@
-name: CI/CD
+name: CD
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
+     tags:
+       - '*'
 
 jobs:
-  set-up:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel
-        uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          access_token: ${{ github.token }}
-
-  test:
-    needs: set-up
+  cd:
     timeout-minutes: 30
     strategy:
       fail-fast: false
@@ -37,20 +27,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-
-      - name: Flutter Pub get
-        run: flutter pub get
-
-      - name: Flutter Analyze
-        run: flutter analyze
-
-      - name: Unit Test
-        timeout-minutes: 5
-        run: flutter test test/unit_test.dart
-
-      - name: Widget Test
-        timeout-minutes: 5
-        run: flutter test test/widget_test.dart
 
       - name: Build Android
         timeout-minutes: 10
