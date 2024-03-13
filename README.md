@@ -45,8 +45,8 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/real_time_fetch.gif" width=200 alt="Real time fetch"/>
 
-### 👌 Pull to reflesh
-Pull to reflaseh with `RefleshIndicator`.
+### 👌 Pull to refresh
+Pull to refresh with `RefreshIndicator`.
 By returning `.future` to `onRefresh`, the indicator will continue to be displayed until the data fetching is complete.
 
 <details>
@@ -69,7 +69,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/pull_to_reflesh.gif" width=200 alt="Pull to reflesh"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/pull_to_refresh.gif" width=200 alt="Pull to refresh"/>
 
 ### 📊 Sort
 Sort with *riverpod*.
@@ -102,7 +102,7 @@ See: [packages_page.dart](https://github.com/natsuk4ze/npm/blob/master/lib/featu
 
 </details>
 
-<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/sort.gif" width=200 alt="Pull to reflesh"/>
+<img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/sort.gif" width=200 alt="Pull to refresh"/>
 
 ### ☁️ Empty state
 Switching widget according to status with `AsyncValue`.
@@ -230,7 +230,7 @@ See:
 
 ### 🌙 Dark mode
 Dynamic theming with *riverpod* and *shared_preferences*.
-Use `ref.invalidateSelf()` for ssot design.
+Use `ref.invalidateSelf()` for SSOT design.
 
 <details>
 <summary>Show codes</summary>
@@ -266,7 +266,7 @@ See:
 
 ### 🗣️ Localization
 Dynamic localization with *slang*, *riverpod* and *shared_preferences*.
-Use `ref.invalidateSelf()` for ssot design.
+Use `ref.invalidateSelf()` for SSOT design.
 
 <details>
 <summary>Show codes</summary>
@@ -321,7 +321,7 @@ See:
 <img src="https://github.com/natsuk4ze/npm/raw/master/assets/readme/localization.gif" width=200 alt="Localization"/>
 
 ### 🪄 Responsive design
-Dynamic layouting for diffrent screen sizes.
+Dynamic layout for different screen sizes.
 
 <details>
 <summary>Show codes</summary>
