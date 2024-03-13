@@ -52,29 +52,29 @@ jobs:
         timeout-minutes: 5
         run: flutter test test/widget_test.dart
 
-      - name: Build iOS
-        timeout-minutes: 10
-        run: flutter build ios --no-codesign
-
+  upload:
+    needs: test
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+    runs-on: macos-latest
+    steps:
       - name: Build Android
         timeout-minutes: 10
         run: flutter build appbundle
-
-      - name: Archive Android Build
-        run: zip -r build/app/outputs/bundle/release/app-release.aab.zip build/app/outputs/bundle/release/app-release.aab
      
       - name: Upload Android Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: android-app
-          path: build/app/outputs/bundle/release/app-release.aab.zip
-     
-      - name: Archive iOS Build
-        run: tar -czvf build/ios/iphoneos/app.ipa.tar.gz build/ios/iphoneos/app.ipa
-     
-      - name: Upload iOS Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-app
-          path: build/ios/iphoneos/app.ipa.tar.gz
+          path: build/app/outputs/bundle/release/app-release.aab
+      
+      #TODO: Add iOS build
     
+      - name: Create and Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/app/outputs/bundle/release/app-release.aab
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
