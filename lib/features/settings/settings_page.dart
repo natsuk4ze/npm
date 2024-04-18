@@ -16,7 +16,7 @@ class SettingsPage extends ConsumerWidget {
       appBar: TitleAppBar(title: l10n.settingsPage.title),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Theme.of(context).hoverColor,

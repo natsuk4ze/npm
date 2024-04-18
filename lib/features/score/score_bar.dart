@@ -30,20 +30,22 @@ class ScoreBar extends ConsumerWidget {
           ),
         ),
         const Gap(8),
-        Container(
+        SizedBox(
           width: 120,
           height: 10,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                type.color,
-                type.color,
-                Colors.transparent,
-                Colors.transparent,
-              ],
-              stops: [0.0, value, value, 1.0],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  type.color,
+                  type.color,
+                  Colors.transparent,
+                  Colors.transparent,
+                ],
+                stops: [0.0, value, value, 1.0],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
             ),
           ),
         ),
