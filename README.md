@@ -2,8 +2,11 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/38b5b48aa5e24a229b267c0c3a134bbe)](https://app.codacy.com/gh/natsuk4ze/npm/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![CodeFactor](https://www.codefactor.io/repository/github/natsuk4ze/npm/badge)](https://www.codefactor.io/repository/github/natsuk4ze/npm)
 ![Test](https://github.com/natsuk4ze/npm/actions/workflows/ci.yml/badge.svg?branch=master)
+![Preview](https://github.com/natsuk4ze/npm/actions/workflows/deploy_preview.yml/badge.svg?branch=master)
 
 ### A [npm](https://www.npmjs.com) client app as minimal project example with modern flutter coding style
+
+### [🌐 Device Preview on Flutter Web](https://natsuk4ze.github.io/npm)
 
 ### Using
 -  *hooks_riverpod* for state management
