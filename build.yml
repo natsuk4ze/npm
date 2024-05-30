@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        options:
+          # Tells Freezed not to format .freezed.dart files.
+          # This can significantly speed up code-generation.
+          format: false
