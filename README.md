@@ -4,7 +4,7 @@
 ![Test](https://github.com/natsuk4ze/npm/actions/workflows/ci.yml/badge.svg?branch=master)
 ![Preview](https://github.com/natsuk4ze/npm/actions/workflows/deploy_preview.yml/badge.svg?branch=master)
 
-### A [npm](https://www.npmjs.com) client app as minimal project example with modern flutter coding style
+### A [npm](https://www.npmjs.com) client app as minimal project example
 
 ### [🌐 Device Preview on Flutter Web](https://natsuk4ze.github.io/npm)
 
