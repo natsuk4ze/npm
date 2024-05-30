@@ -11,7 +11,7 @@ part 'app.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<void> appStartup(AppStartupRef ref) async {
-  await ref.read(sharedPreferencesProvider.future);
+  await ref.read(sharedPreferencesInitializerProvider.future);
 }
 
 class App extends ConsumerWidget {

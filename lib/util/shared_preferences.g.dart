@@ -6,11 +6,11 @@ part of 'shared_preferences.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sharedPreferencesHash() => r'78c7584b6ea86ee551988fb021124730c5cc019b';
+String _$sharedPreferencesHash() => r'a721c2e838e14fa6286689c90562e4e5ea3a32de';
 
 /// See also [sharedPreferences].
 @ProviderFor(sharedPreferences)
-final sharedPreferencesProvider = FutureProvider<SharedPreferences>.internal(
+final sharedPreferencesProvider = Provider<SharedPreferences>.internal(
   sharedPreferences,
   name: r'sharedPreferencesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,6 +20,23 @@ final sharedPreferencesProvider = FutureProvider<SharedPreferences>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef SharedPreferencesRef = FutureProviderRef<SharedPreferences>;
+typedef SharedPreferencesRef = ProviderRef<SharedPreferences>;
+String _$sharedPreferencesInitializerHash() =>
+    r'6522829853776fad8e231bcc2c0615c934b5e553';
+
+/// See also [sharedPreferencesInitializer].
+@ProviderFor(sharedPreferencesInitializer)
+final sharedPreferencesInitializerProvider =
+    FutureProvider<SharedPreferences>.internal(
+  sharedPreferencesInitializer,
+  name: r'sharedPreferencesInitializerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sharedPreferencesInitializerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef SharedPreferencesInitializerRef = FutureProviderRef<SharedPreferences>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
