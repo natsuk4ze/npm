@@ -21,11 +21,11 @@ class SettingsPage extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             color: Theme.of(context).hoverColor,
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
-              shrinkWrap: true,
-              children: const [
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 LanguageItem(),
                 Divider(),
                 DarkModeItem(),
