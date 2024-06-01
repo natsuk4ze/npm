@@ -20,3 +20,12 @@ extension ListX on List {
     return List<T>.from(source);
   }
 }
+
+extension TextScalerX on TextScaler {
+  static Widget fixBuilder(BuildContext context, Widget? child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: const TextScaler.linear(1.0),
+        ),
+        child: child!,
+      );
+}

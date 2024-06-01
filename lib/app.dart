@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:npm/features/settings/language.dart';
 import 'package:npm/router.dart';
 import 'package:npm/util/app_theme.dart';
+import 'package:npm/util/extensions.dart';
 import 'package:npm/util/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:slang_flutter/slang_flutter.dart';
@@ -26,6 +27,7 @@ class App extends ConsumerWidget {
           locale: ref.watch(l10nProvider).$meta.locale.flutterLocale,
           routerConfig: ref.watch(routerProvider),
           theme: ref.watch(themeProvider),
+          builder: TextScalerX.fixBuilder,
         ),
       _ => const SizedBox()
     };
