@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:npm/common_widgets/fade.dart';
 import 'package:npm/common_widgets/shrink_if_no_data.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -13,24 +14,26 @@ class PackageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => PackageDetailsRoute(id: package.name).go(context),
-      child: ListTile(
-        title: Wrap(
-          spacing: 8,
-          children: [
-            _Name(package.name),
-            _Version(package.version),
-          ],
-        ),
-        subtitle: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _Description(package.description),
-            _Keywords(package.keywords),
-            _ScoreBars(package.score),
-          ],
+    return Fade(
+      child: InkWell(
+        onTap: () => PackageDetailsRoute(id: package.name).go(context),
+        child: ListTile(
+          title: Wrap(
+            spacing: 8,
+            children: [
+              _Name(package.name),
+              _Version(package.version),
+            ],
+          ),
+          subtitle: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _Description(package.description),
+              _Keywords(package.keywords),
+              _ScoreBars(package.score),
+            ],
+          ),
         ),
       ),
     );
