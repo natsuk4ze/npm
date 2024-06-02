@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Fade extends HookWidget {
-  const Fade({
+class FadeIn extends HookWidget {
+  const FadeIn({
     required this.child,
     super.key,
   });

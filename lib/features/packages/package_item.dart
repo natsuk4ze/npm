@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:npm/common_widgets/fade.dart';
+import 'package:npm/common_widgets/fade_in.dart';
 import 'package:npm/common_widgets/shrink_if_no_data.dart';
 import 'package:npm/features/packages/packages.dart';
 import 'package:npm/features/score/score.dart';
@@ -14,7 +14,7 @@ class PackageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Fade(
+    return FadeIn(
       child: InkWell(
         onTap: () => PackageDetailsRoute(id: package.name).go(context),
         child: ListTile(
