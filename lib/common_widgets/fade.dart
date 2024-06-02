@@ -16,7 +16,7 @@ class Fade extends HookWidget {
         .addPostFrameCallback((_) => shouldShow.value = true);
 
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 280),
       opacity: shouldShow.value ? 1 : 0,
       child: child,
     );
