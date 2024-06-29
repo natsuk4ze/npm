@@ -5,10 +5,11 @@ const fakePackageDetailsName = 'fakePackageDetails';
 
 const fakePackageDetails = PackageDetails(
   name: fakePackageDetailsName,
+  description: 'description',
   license: 'MIT',
   homepage: 'https://homepage',
-  readme: null,
   repository: 'git+https://repository',
+  keywords: ['keyword1', 'keyword2'],
 );
 
 Future<PackageDetails> fakePackageDetailsProvider(Ref ref) async {

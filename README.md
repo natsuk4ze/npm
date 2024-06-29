@@ -408,6 +408,10 @@ jobs:
         timeout-minutes: 5
         run: flutter test test/widget_test.dart
 
+      - name: Golden Test
+        timeout-minutes: 5
+        run: flutter test test/golden_test.dart
+
       - name: Build iOS
         timeout-minutes: 10
         run: flutter build ios --no-codesign
@@ -420,6 +424,7 @@ jobs:
 See:
 - [unit_test](https://github.com/natsuk4ze/npm/blob/master/test/unit_test.dart)
 - [widget_test](https://github.com/natsuk4ze/npm/blob/master/test/widget_test.dart)
+- [golden test](https://github.com/natsuk4ze/npm/blob/master/test/golden_test.dart)
 - [workflows](https://github.com/natsuk4ze/npm/actions)
 
 </details>

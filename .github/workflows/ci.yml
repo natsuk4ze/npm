@@ -51,6 +51,10 @@ jobs:
       - name: Widget Test
         timeout-minutes: 5
         run: flutter test test/widget_test.dart
+      
+      - name: Golden Test
+        timeout-minutes: 5
+        run: flutter test test/golden_test.dart
 
       - name: Build iOS
         timeout-minutes: 10
