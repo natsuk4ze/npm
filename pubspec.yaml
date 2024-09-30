@@ -31,7 +31,7 @@ dev_dependencies:
     sdk: flutter
   test: 1.25.7
   golden_toolkit: ^0.15.0
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   riverpod_generator: ^2.4.0
   build_runner: ^2.4.12
   build_verify: ^3.1.0
