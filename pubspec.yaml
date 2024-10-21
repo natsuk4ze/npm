@@ -20,7 +20,7 @@ dependencies:
   hooks_riverpod: ^2.5.2
   json_annotation: ^4.9.0
   markdown_widget: ^2.3.2+3
-  riverpod_annotation: ^2.5.3
+  riverpod_annotation: ^2.6.0
   shared_preferences: ^2.3.2
   slang: ^3.32.0
   slang_flutter: ^3.30.0
