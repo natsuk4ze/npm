@@ -441,10 +441,10 @@ packages:
     dependency: "direct main"
     description:
       name: hooks_riverpod
-      sha256: "534ca8af331235f700f3916a74e4579cdfdd708e2fbed342fc8aa969d41a7af0"
+      sha256: "8010a5abaa625a98358d9bce14b56f63dacdb4ec8637544da3bfd0ae184a9ae6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.4"
+    version: "2.6.0"
   hotreloader:
     dependency: transitive
     description:
