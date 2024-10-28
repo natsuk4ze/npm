@@ -22,8 +22,8 @@ dependencies:
   markdown_widget: ^2.3.2+3
   riverpod_annotation: ^2.6.1
   shared_preferences: ^2.3.2
-  slang: ^3.32.0
-  slang_flutter: ^3.30.0
+  slang: ^4.1.0
+  slang_flutter: ^4.1.0
   url_launcher: ^6.3.1
 
 dev_dependencies:
@@ -40,7 +40,7 @@ dev_dependencies:
   freezed: ^2.5.2
   json_serializable: ^6.8.0
   go_router_builder: ^2.7.1
-  slang_build_runner: ^3.31.0
+  slang_build_runner: ^4.1.0
 
 flutter:
   uses-material-design: true
