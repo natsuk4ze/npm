@@ -40,7 +40,7 @@ dev_dependencies:
   freezed: ^2.5.7
   json_serializable: ^6.9.0
   go_router_builder: ^2.7.3
-  slang_build_runner: ^4.4.0
+  slang_build_runner: ^4.4.2
 
 flutter:
   uses-material-design: true
