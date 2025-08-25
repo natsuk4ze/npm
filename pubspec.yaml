@@ -17,10 +17,10 @@ dependencies:
   freezed_annotation: ^3.1.0
   gap: ^3.0.1
   go_router: ^16.1.0
-  hooks_riverpod: ^2.6.1
+  hooks_riverpod: ^3.0.0-dev.17
   json_annotation: ^4.9.0
   markdown_widget: ^2.3.2+3
-  riverpod_annotation: ^2.6.1
+  riverpod_annotation: ^3.0.0-dev.17
   shared_preferences: ^2.5.3
   slang: ^4.7.3
   slang_flutter: ^4.8.0
@@ -32,14 +32,14 @@ dev_dependencies:
   test: 1.26.2
   golden_toolkit: ^0.15.0
   flutter_lints: ^6.0.0
-  riverpod_generator: ^2.6.5
-  build_runner: ^2.4.15
+  riverpod_generator: ^3.0.0-dev.17
+  build_runner: ^2.6.0
   build_verify: ^3.1.1
-  custom_lint: ^0.7.6
-  riverpod_lint: ^2.6.5
-  freezed: ^3.0.6
-  json_serializable: ^6.9.5
-  go_router_builder: ^3.0.1
+  custom_lint: ^0.8.0
+  riverpod_lint: ^3.0.0-dev.17
+  freezed: ^3.2.0
+  json_serializable: ^6.10.0
+  go_router_builder: ^3.3.0
   slang_build_runner: ^4.8.0
 
 flutter:
