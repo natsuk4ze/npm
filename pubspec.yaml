@@ -32,7 +32,7 @@ dev_dependencies:
   test: 1.26.2
   golden_toolkit: ^0.15.0
   flutter_lints: ^6.0.0
-  riverpod_generator: ^3.0.0-dev.17
+  riverpod_generator: ^3.0.0
   build_runner: ^2.7.1
   build_verify: ^3.1.1
   custom_lint: ^0.8.0
