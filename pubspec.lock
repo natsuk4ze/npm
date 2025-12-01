@@ -417,10 +417,10 @@ packages:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: e0646fb5586e04e1df92678f539059f38e4314848f06dd4f3cd87fed434e16b5
+      sha256: "07215ebe9d458cc2426f271a6443dbe5ee35cc313088064e013378614453f50a"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   golden_toolkit:
     dependency: "direct dev"
     description:
