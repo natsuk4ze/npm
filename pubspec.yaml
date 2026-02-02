@@ -23,7 +23,7 @@ dependencies:
   riverpod_annotation: ^4.0.0
   shared_preferences: ^2.5.4
   slang: ^4.12.1
-  slang_flutter: ^4.11.0
+  slang_flutter: ^4.12.1
   url_launcher: ^6.3.2
 
 dev_dependencies:
